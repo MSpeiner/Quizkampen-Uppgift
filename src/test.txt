@@ -1,0 +1,35 @@
+Kategori....
+Vad heter Sveriges största sjö? ; Vättern. ; Vänern. ; Hjälmaren. ; Siljan. ; 1
+Vad är Sveriges längsta flod? ; Göta älv. ; Dalälven. ; Klarälven. ; Mälaren. ; 1
+Vilket är Sveriges högsta berg? ; Kebnekaise. ; Sarektjåhkkå. ; Anaris. ; Storsteinsfjellet. ; 0
+Vilken stad är Sveriges huvudstad? ; Göteborg. ; Malmö. ; Stockholm. ; Uppsala. ; 2
+Vilken ö är Sveriges största? ; Gotland. ; Öland. ; Orust. ; Hisingen. ; 0
+Vad kallas den stora ishavsviken som ligger längs Sveriges östra kust? ; Bottenviken. ; Skagerrak. ; Kattegatt. ; Östersjön. ; 3
+Vilket hav ligger längs Sveriges västra kust? ; Skagerrak. ; Nordsjön. ; Östersjön. ; Kattegatt. ; 1
+Vad är Sveriges näst största stad? ; Göteborg. ; Malmö. ; Stockholm. ; Uppsala. ; 0
+Vilket år grundades Sverige som en enhetlig stat? ; 1200-talet. ; 1300-talet. ; 1400-talet. ; 1500-talet. ; 2
+Vad kallas den högsta domstolen i Sverige? ; Högsta domstolen. ; Riksrätten. ; Riksåklagaren. ; Justitiekanslern. ; 0
+Vilken är Sveriges nationaldag? ; 6 juni. ; 1 maj. ; 17 maj. ; 30 april. ; 0
+Vad heter den svenska valutan? ; Krona. ; Euro. ; Mark. ; Dollar. ; 0
+Hur många landskap finns det i Sverige? ; 21. ; 25. ; 18. ; 14. ; 0
+Vilket år inträdde Sverige i Europeiska Unionen (EU)? ; 1995. ; 1985. ; 2005. ; 1975. ; 0
+Vad kallas den traditionella svenska maträtten med inlagd sill, potatis och gräddfil? ; Janssons frestelse. ; Köttbullar. ; Surströmming. ; Smörgåsbord. ; 0
+Vilken är Sveriges officiella minoritetsspråk? ; Samiska. ; Finska. ; Meänkieli. ; Romani. ; 1
+Vad kallas den årliga musikfestivalen i Sverige där artister tävlar med egna låtar? ; Melodifestivalen. ; Summerburst. ; Way Out West. ; Bråvalla. ; 0
+Vilken svensk uppfinnare uppfann dynamiten? ; Alfred Nobel. ; Carl von Linné. ; Gustaf Dalén. ; Ericsson. ; 0
+Vilket slott är Sveriges kungafamiljs officiella residens? ; Drottningholm. ; Gripsholm. ; Kalmar. ; Rosersberg. ; 0
+Vad kallas den stora ishavsviken längs Sveriges västra kust? ; Kattegatt. ; Öresund. ; Skagerrak. ; Västerhavet. ; 3
+Vilket år hölls de olympiska sommarspelen senast i Sverige? ; 1912. ; 1948. ; 1960. ; 2004. ; 0
+Vilken svensk författare skrev "Män som hatar kvinnor"? ; Henning Mankell. ; Stieg Larsson. ; Camilla Läckberg. ; Jo Nesbø. ; 1
+Vilken svensk kung regerade under Kalmarunionen? ; Gustav Vasa. ; Karl XII. ; Erik XIV. ; Kristian II. ; 0
+Vilken är Sveriges största ö i Östersjön? ; Gotland. ; Öland. ; Orust. ; Hisingen. ; 0
+Vad kallas den traditionella svenska rätten med köttbullar, potatismos och lingonsylt? ; Flygande Jacob. ; Pyttipanna. ; Smörgåstårta. ; Husmanskost. ; 3
+Vilket år infördes allmän rösträtt för kvinnor i Sverige? ; 1902. ; 1919. ; 1921. ; 1932. ; 1
+Vad heter den största insjön i Dalarna? ; Siljan. ; Orsasjön. ; Barken. ; Värmeln. ; 0
+Vilken svensk regissör är känd för filmer som "Det sjunde inseglet" och "Persona"? ; Roy Andersson. ; Ingmar Bergman. ; Lukas Moodysson. ; Ruben Östlund. ; 1
+Vad kallas det område i Stockholm där många museer, inklusive Vasa-museet, ligger? ; Skeppsholmen. ; Djurgården. ; Norrmalm. ; Gamla stan. ; 0
+Vilken färg har den svenska flaggan? ; Blå och gul. ; Röd och vit. ; Blå och vit. ; Gul och röd. ; 2
+Vad är Sveriges största sjö? ; Vättern. ; Vänern. ; Hjälmaren. ; Siljan. ; 1
+Vilket år grundades IKEA, det svenska möbelföretaget? ; 1943. ; 1956. ; 1969. ; 1975. ; 0
+Vad kallas den traditionella svenska midsommarstången smyckad med blommor och löv? ; Blomsterstång. ; Majstång. ; Midsommarstång. ; Sommarstång. ; 2
+Vilken svensk uppfinnare introducerade den justerbara skiftnyckeln? ; Alfred Nobel. ; Gustaf Dalén. ; Christopher Polhem. ; Johan Petter Johansson. ; 3
