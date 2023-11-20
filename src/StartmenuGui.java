@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class StartmenuGui extends JFrame {
+public class StartmenuGui extends JFrame implements ActionListener {
     private JPanel jps = new JPanel();
     private JPanel center = new JPanel();
     private JPanel south = new JPanel();
@@ -27,9 +29,27 @@ public class StartmenuGui extends JFrame {
         south.setLayout(new FlowLayout(FlowLayout.CENTER));
         south.add(newGame);
 
+        newGame.addActionListener(this);
+
+
         pack();
         setSize(300,150);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+    }
+
+    public void newGameMethod(){
+        jps.removeAll();
+        jps.revalidate();
+        jps.repaint();
+        //Nadia kommer att skapa en UI för "välj kategori" där vi kommer kommer att skapa upp en instans av detta här.
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == newGame){
+            newGameMethod();
+        }
+
     }
 }
