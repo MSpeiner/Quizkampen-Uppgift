@@ -1,5 +1,13 @@
-public class Server {
-}
+import java.io.*;
+import java.net.Socket;
+
+public class Server extends Thread {
+
+    Socket s;
+
+    public Server(Socket s) {
+        this.s = s;
+    }
 
     @Override
     public void run() {
