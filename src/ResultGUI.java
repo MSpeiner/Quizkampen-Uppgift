@@ -70,14 +70,12 @@ public class ResultGUI extends JFrame implements ActionListener {
         south.setLayout(new FlowLayout());
         south.add(continueGame);
 
+        continueGame.addActionListener(this);
+
         pack();
         setSize(350, 300);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
-
-    public static void main(String[] args) {
-        ResultGUI rG = new ResultGUI();
     }
 
     @Override
