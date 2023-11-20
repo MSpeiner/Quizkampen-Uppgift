@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+// Denna Client-klass kan enbart startas efter att ServerListerner är igång.
 public class Client extends JFrame {
     public Client() {
         try (
