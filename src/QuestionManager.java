@@ -11,7 +11,7 @@ public class QuestionManager {
     public QuestionManager(){
 
     }
-
+    //
     public ArrayList<String> readFile (String path) {
         Path filePath = Paths.get(path);
         ArrayList<String> result = new ArrayList<>();
