@@ -2,11 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class StartmenuGui extends JFrame {
-    JPanel jps = new JPanel();
-    JPanel center = new JPanel();
-    JPanel south = new JPanel();
-    JButton newGame = new JButton("New game");
-    JLabel welcomeText = new JLabel("Welcome to Quizkampen!");
+    private JPanel jps = new JPanel();
+    private JPanel center = new JPanel();
+    private JPanel south = new JPanel();
+    private JButton newGame = new JButton("New game");
+    private JLabel welcomeText = new JLabel("Welcome to Quizkampen!");
 
 
     public StartmenuGui() {
@@ -31,9 +31,5 @@ public class StartmenuGui extends JFrame {
         setSize(300,150);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        StartmenuGui SmG = new StartmenuGui();
     }
 }

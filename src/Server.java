@@ -2,7 +2,6 @@ import java.io.*;
 import java.net.Socket;
 
 public class Server extends Thread {
-
     Socket s;
 
     public Server(Socket s) {
@@ -15,8 +14,10 @@ public class Server extends Thread {
                 PrintWriter out = new PrintWriter(s.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()))
         ) {
+            StartmenuGui sMG = new StartmenuGui();
             System.out.println("Client connected");
             String fromClient;
+
 
             while ((fromClient = in.readLine()) != null) {
                 System.out.println("From Client: " + fromClient);
