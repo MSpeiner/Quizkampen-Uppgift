@@ -8,10 +8,12 @@ public class StartmenuGui extends JFrame implements ActionListener {
     private JPanel center = new JPanel();
     private JPanel south = new JPanel();
     private JButton newGame = new JButton("New game");
-    private JLabel welcomeText = new JLabel("Welcome to Quizkampen!");
+    private JLabel welcomeText = new JLabel();
+    private Players players;
 
 
-    public StartmenuGui() {
+    public StartmenuGui(Players players) {
+        this.players = players;
         setTitle("Quizkampen");
 
         this.add(jps);
@@ -25,6 +27,9 @@ public class StartmenuGui extends JFrame implements ActionListener {
         jps.add(south, BorderLayout.SOUTH);
         south.setLayout(new FlowLayout(FlowLayout.CENTER));
         south.add(newGame);
+
+        setWelcomeText();
+
         newGame.addActionListener(this);
 
         pack();
@@ -40,6 +45,10 @@ public class StartmenuGui extends JFrame implements ActionListener {
         jps.repaint();
         CategoryViewGUI cg = new CategoryViewGUI();
         setVisible(false);
+    }
+
+    public void setWelcomeText(){
+        welcomeText.setText("Welcome to Quizkampen " + players.getName());
     }
 
     @Override
