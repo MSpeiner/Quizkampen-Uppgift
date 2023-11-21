@@ -74,6 +74,7 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
         if (e.getSource() == historiaButton){
             chosenCategory = Category.History;
             chosenCategoryLabel.setText(Category.History.name());
+            switchToGameView();
         }
         if (e.getSource() == religionButton){
             chosenCategory = Category.Religion;
@@ -83,6 +84,7 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
         if (e.getSource() == naturvetenskapButton){
             chosenCategory = Category.Science;
             chosenCategoryLabel.setText(Category.Science.name());
+            switchToGameView();
         }
     }
 }
