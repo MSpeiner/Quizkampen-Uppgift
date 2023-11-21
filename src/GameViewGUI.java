@@ -14,6 +14,7 @@ public class GameViewGUI extends JFrame {
     private Questions currentQuestion;
 
     private String category;
+    private int numberOfQuestions = 1;
 
     public GameViewGUI(String category) {
         this.category = category;
@@ -22,7 +23,8 @@ public class GameViewGUI extends JFrame {
         displayNextQuestion();
     }
 
-    public GameViewGUI() {}
+    public GameViewGUI() {
+    }
 
     private void loadQuestions() {
         String myPath = "src/TextFiles/" + getCategory() + ".txt";
@@ -61,17 +63,21 @@ public class GameViewGUI extends JFrame {
 
     private void displayNextQuestion() {
         currentQuestion = questionManager.getRandomQuestion();
-        if (currentQuestion != null) {
-            questionLabel.setText(currentQuestion.getQuestion());
-            categoryLabel.setText("Category: " + currentQuestion.getCategory());
+        if (numberOfQuestions <= 2) {
+            if (currentQuestion != null) {
+                questionLabel.setText(currentQuestion.getQuestion());
+                categoryLabel.setText("Category: " + currentQuestion.getCategory());
 
-            for (int i = 0; i < answerButtons.size(); i++) {
-                answerButtons.get(i).setText(currentQuestion.getAnswers()[i]);
-                answerButtons.get(i).putClientProperty("answer_index", i);
+                for (int i = 0; i < answerButtons.size(); i++) {
+                    answerButtons.get(i).setText(currentQuestion.getAnswers()[i]);
+                    answerButtons.get(i).putClientProperty("answer_index", i);
+                }
             }
+            numberOfQuestions++;
         } else {
             JOptionPane.showMessageDialog(this, "End of Quiz!");
             dispose();
+            ResultGUI r = new ResultGUI();
         }
     }
 
@@ -85,7 +91,6 @@ public class GameViewGUI extends JFrame {
             JOptionPane.showMessageDialog(this, "Incorrect! The correct answer was: "
                     + currentQuestion.getAnswers()[currentQuestion.getCorrectAnswer()]);
         }
-
         displayNextQuestion();
     }
 

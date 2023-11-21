@@ -75,15 +75,20 @@ public class ResultGUI extends JFrame implements ActionListener {
         pack();
         setSize(350, 300);
         setVisible(true);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == continueGame) {
-            jpR.removeAll();
+            CategoryViewGUI cvg = new CategoryViewGUI();
+            setVisible(false);
+
+            /*jpR.removeAll();
             jpR.revalidate();
             jpR.repaint();
+             */
 
             //lägg till funktionallitet för att känna av när det är min tur, återuppta då tidigare spel via protokoll
         }
