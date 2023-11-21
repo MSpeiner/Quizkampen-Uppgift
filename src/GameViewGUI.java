@@ -1,72 +1,88 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.stream.IntStream;
 
-public class GameViewGUI extends JFrame implements ActionListener {
-    private JPanel jp = new JPanel(new BorderLayout());
-    private JPanel northPanel = new JPanel(new GridLayout(2,1));
-    private JPanel southPanel = new JPanel(new GridLayout(2,2));
+public class GameViewGUI extends JFrame {
+    private final JPanel mainPanel = new JPanel(new BorderLayout());
+    private final JLabel questionLabel = new JLabel("Waiting for question...");
+    private final JLabel categoryLabel = new JLabel("Category: ");
+    private final List<JButton> answerButtons = new ArrayList<>();
+    private final QuestionManager questionManager = new QuestionManager();
+    private Questions currentQuestion;
 
-    private JLabel questionLabel = new JLabel("Blablabla hur många blabla?");
-    private JLabel categoryLabel = new JLabel();
-
-    private JButton alternative1 = new JButton("Alt 1");
-    private JButton alternative2 = new JButton("Alt 2");
-    private JButton alternative3 = new JButton("Alt 3");
-    private JButton alternative4 = new JButton("Alt 4");
-
-    private String category = "Category: ";
-
-    GameViewGUI(JPanel jp, String category){
-        this.jp = jp;
-        this.category = category;
+    public GameViewGUI() {
+        loadQuestions();
+        setupUI();
+        displayNextQuestion();
     }
 
-    public GameViewGUI(){
-        this.add(jp);
-        jp.add(northPanel, BorderLayout.NORTH);
-        jp.add(southPanel, BorderLayout.SOUTH);
+    private void loadQuestions() {
+        String myPath = "src/test.txt";
+        questionManager.loadQuestions(myPath);
+    }
 
-        northPanel.add(categoryLabel);
-        northPanel.add(questionLabel);
+    private void setupUI() {
+        setupNorthPanel();
+        setupSouthPanel();
 
-        southPanel.add(alternative1);
-        southPanel.add(alternative2);
-        southPanel.add(alternative3);
-        southPanel.add(alternative4);
-        categoryLabel.setText(category + " ");
-
-        alternative1.addActionListener(this);
-        alternative2.addActionListener(this);
-        alternative3.addActionListener(this);
-        alternative4.addActionListener(this);
-
+        this.add(mainPanel);
         pack();
-        setSize(300,150);
+        setSize(600, 150);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+    }
 
+    private void setupNorthPanel() {
+        JPanel northPanel = new JPanel(new GridLayout(2, 1));
+        northPanel.add(categoryLabel);
+        northPanel.add(questionLabel);
+        mainPanel.add(northPanel, BorderLayout.NORTH);
+    }
+
+    private void setupSouthPanel() {
+        JPanel southPanel = new JPanel(new GridLayout(2, 2));
+        IntStream.rangeClosed(1, 4).forEach(i -> {
+            JButton button = new JButton("Alt " + i);
+            button.addActionListener(this::buttonClicked);
+            answerButtons.add(button);
+            southPanel.add(button);
+        });
+        mainPanel.add(southPanel, BorderLayout.SOUTH);
+    }
+
+    private void displayNextQuestion() {
+        currentQuestion = questionManager.getRandomQuestion();
+        if (currentQuestion != null) {
+            questionLabel.setText(currentQuestion.getQuestion());
+            categoryLabel.setText("Category: " + currentQuestion.getCategory());
+
+            for (int i = 0; i < answerButtons.size(); i++) {
+                answerButtons.get(i).setText(currentQuestion.getAnswers()[i]);
+                answerButtons.get(i).putClientProperty("answer_index", i);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "End of Quiz!");
+            dispose();
+        }
+    }
+
+    private void buttonClicked(ActionEvent event) {
+        JButton clickedButton = (JButton) event.getSource();
+        int selectedAnswer = (int) clickedButton.getClientProperty("answer_index");
+
+        if (currentQuestion.getCorrectAnswer() == selectedAnswer) {
+            JOptionPane.showMessageDialog(this, "Correct!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Incorrect! The correct answer was: " + currentQuestion.getAnswers()[currentQuestion.getCorrectAnswer()]);
+        }
+
+        displayNextQuestion();
     }
 
     public static void main(String[] args) {
-        GameViewGUI g = new GameViewGUI();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == alternative1){
-            //checkIfWinmetod
-        }
-        if (e.getSource() == alternative2){
-            //checkIfWinmetod
-        }
-        if (e.getSource() == alternative3){
-            //checkIfWinmetod
-        }
-        if (e.getSource() == alternative4){
-            //checkIfWinmetod
-        }
-
+        SwingUtilities.invokeLater(GameViewGUI::new);
     }
 }
