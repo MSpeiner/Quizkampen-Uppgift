@@ -8,10 +8,12 @@ public class StartmenuGui extends JFrame implements ActionListener {
     private JPanel center = new JPanel();
     private JPanel south = new JPanel();
     private JButton newGame = new JButton("New game");
-    private JLabel welcomeText = new JLabel("Welcome to Quizkampen!");
+    private JLabel welcomeText = new JLabel();
+    private Players players;
 
 
-    public StartmenuGui() {
+    public StartmenuGui(Players players) {
+        this.players = players;
         setTitle("Quizkampen");
 
         this.add(jps);
@@ -29,6 +31,8 @@ public class StartmenuGui extends JFrame implements ActionListener {
         south.setLayout(new FlowLayout(FlowLayout.CENTER));
         south.add(newGame);
 
+        setWelcomeText();
+
         newGame.addActionListener(this);
 
 
@@ -43,6 +47,10 @@ public class StartmenuGui extends JFrame implements ActionListener {
         jps.revalidate();
         jps.repaint();
         //Nadia kommer att skapa en UI för "välj kategori" där vi kommer kommer att skapa upp en instans av detta här.
+    }
+
+    public void setWelcomeText(){
+        welcomeText.setText("Welcome to Quizkampen " + players.getName());
     }
 
     @Override
