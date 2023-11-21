@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class QuestionManager {
 
-    private ArrayList<Questions> questionsArray = new ArrayList<>();
+    protected ArrayList<Questions> questionsArray = new ArrayList<>();
     private Random random = new Random();
 
     public void loadQuestions(String path) {
@@ -77,4 +77,6 @@ public class QuestionManager {
             System.out.println("Correct answer index: " + randomQuestion.getCorrectAnswer());
         }
     }
+
+
 }

@@ -10,9 +10,9 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
     private JLabel questionLabel = new JLabel("Vilken kategori vill du välja?");
 
     private JButton sportButton = new JButton(Category.Sport.name());
-    private JButton historiaButton = new JButton(Category.Historia.name());
+    private JButton historiaButton = new JButton(Category.History.name());
     private JButton religionButton = new JButton(Category.Religion.name());
-    private JButton naturvetenskapButton = new JButton(Category.Naturvetenskap.name());
+    private JButton naturvetenskapButton = new JButton(Category.Science.name());
 
     private Category chosenCategory = null; // anger spelarens valda kategori, och variabeln ska används av spelmotor
     private JLabel chosenCategoryLabel = new JLabel(""); // variabel för att visa vald kategori i GUI. Den här variabeln kan tas bort sen
@@ -62,16 +62,16 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
             chosenCategoryLabel.setText(Category.Sport.name());
         }
         if (e.getSource() == historiaButton){
-            chosenCategory = Category.Historia;
-            chosenCategoryLabel.setText(Category.Historia.name());
+            chosenCategory = Category.History;
+            chosenCategoryLabel.setText(Category.History.name());
         }
         if (e.getSource() == religionButton){
             chosenCategory = Category.Religion;
             chosenCategoryLabel.setText(Category.Religion.name());
         }
         if (e.getSource() == naturvetenskapButton){
-            chosenCategory = Category.Naturvetenskap;
-            chosenCategoryLabel.setText(Category.Naturvetenskap.name());
+            chosenCategory = Category.Science;
+            chosenCategoryLabel.setText(Category.Science.name());
         }
     }
 }
