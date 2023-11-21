@@ -1,0 +1,16 @@
+Sport
+What is the highest-scoring game in NBA history? ; 186 ; 173 ; 198 ; 225 ; 0
+In which city did the first modern Olympic Games take place? ; Paris ; London ; Athens ; Rome ; 2
+Who holds the record for the most goals scored in a single FIFA World Cup tournament? ; Ronaldo ; Lionel Messi ; Pele ; Miroslav Klose ; 3
+What country has won the most gold medals in the history of the Summer Olympics? ; United States ; China ; Soviet Union ; Russia ; 0
+In which year did Serena Williams win her first Grand Slam singles title? ; 1999 ; 2002 ; 2005 ; 2008 ; 1
+Which boxer is known as "The Greatest" and "The People's Champion"? ; Mike Tyson ; Muhammad Ali ; Floyd Mayweather ; Manny Pacquiao ; 1
+What is the official diameter of a standard table tennis ball in millimeters? ; 38 ; 40 ; 42 ; 44 ; 1
+Which country won the FIFA Women's World Cup in 2019? ; United States ; Germany ; Brazil ; Sweden ; 0
+Who holds the record for the most Olympic gold medals in swimming? ; Michael Phelps ; Ian Thorpe ; Mark Spitz ; Ryan Lochte ; 0
+In which year did the first Super Bowl take place? ; 1965 ; 1967 ; 1970 ; 1972 ; 1
+Which golfer is known as the "Golden Bear"? ; Tiger Woods ; Phil Mickelson ; Arnold Palmer ; Jack Nicklaus ; 3
+What is the length of a standard Olympic swimming pool in meters? ; 40 ; 50 ; 60 ; 70 ; 1
+Who is the all-time leading scorer in the history of the NBA? ; LeBron James ; Kareem Abdul-Jabbar ; Kobe Bryant ; Michael Jordan ; 1
+In which sport would you perform a slam dunk? ; Tennis ; Basketball ; Soccer ; Golf ; 1
+Which country hosted the 2016 Summer Olympics? ; Brazil ; Russia ; China ; South Africa ; 0

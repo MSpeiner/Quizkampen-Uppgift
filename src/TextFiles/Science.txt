@@ -1,0 +1,16 @@
+Science
+What is the chemical symbol for gold? ; Gd ; Au ; Ag ; Pt ; 1
+In the periodic table, which element has the atomic number 1? ; Hydrogen ; Helium ; Oxygen ; Carbon ; 0
+What is the largest planet in our solar system? ; Earth ; Jupiter ; Mars ; Venus ; 1
+Who is credited with the discovery of penicillin? ; Alexander Fleming ; Marie Curie ; Louis Pasteur ; Joseph Lister ; 0
+What is the main component of Earth's atmosphere? ; Oxygen ; Nitrogen ; Carbon Dioxide ; Argon ; 1
+Which scientist formulated the laws of motion and universal gravitation? ; Albert Einstein ; Isaac Newton ; Galileo Galilei ; Johannes Kepler ; 1
+What is the powerhouse of the cell? ; Mitochondria ; Nucleus ; Endoplasmic Reticulum ; Golgi Apparatus ; 0
+What is the speed of light in a vacuum? ; 300,000 km/s ; 150,000 km/s ; 500,000 km/s ; 1,000,000 km/s ; 0
+Which planet is known as the "Red Planet"? ; Venus ; Mars ; Jupiter ; Saturn ; 1
+What is the chemical formula for water? ; CO2 ; H2O ; O2 ; CH4 ; 1
+Who proposed the theory of relativity? ; Isaac Newton ; Galileo Galilei ; Albert Einstein ; Niels Bohr ; 2
+What is the smallest prime number? ; 0 ; 1 ; 2 ; 3 ; 2
+Which gas is responsible for the Earth's greenhouse effect? ; Oxygen ; Nitrogen ; Carbon Dioxide ; Hydrogen ; 2
+What is the smallest bone in the human body? ; Femur ; Stapes ; Tibia ; Radius ; 1
+What is the chemical symbol for the element with atomic number 6? ; C ; O ; N ; Fe ; 0
