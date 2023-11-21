@@ -1,3 +1,3 @@
 public enum Category {
-    Sport, Historia, Naturvetenskap, Religion;
+    Sport, Religion, Science, History;
 }

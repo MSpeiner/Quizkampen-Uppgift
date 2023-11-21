@@ -13,14 +13,21 @@ public class GameViewGUI extends JFrame {
     private final QuestionManager questionManager = new QuestionManager();
     private Questions currentQuestion;
 
-    public GameViewGUI() {
+    private String category;
+    private int numberOfQuestions = 1;
+
+    public GameViewGUI(String category) {
+        this.category = category;
         loadQuestions();
         setupUI();
         displayNextQuestion();
     }
 
+    public GameViewGUI() {
+    }
+
     private void loadQuestions() {
-        String myPath = "src/test.txt";
+        String myPath = "src/TextFiles/" + getCategory() + ".txt";
         questionManager.loadQuestions(myPath);
     }
 
@@ -32,6 +39,7 @@ public class GameViewGUI extends JFrame {
         pack();
         setSize(600, 150);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -55,17 +63,21 @@ public class GameViewGUI extends JFrame {
 
     private void displayNextQuestion() {
         currentQuestion = questionManager.getRandomQuestion();
-        if (currentQuestion != null) {
-            questionLabel.setText(currentQuestion.getQuestion());
-            categoryLabel.setText("Category: " + currentQuestion.getCategory());
+        if (numberOfQuestions <= 2) {
+            if (currentQuestion != null) {
+                questionLabel.setText(currentQuestion.getQuestion());
+                categoryLabel.setText("Category: " + currentQuestion.getCategory());
 
-            for (int i = 0; i < answerButtons.size(); i++) {
-                answerButtons.get(i).setText(currentQuestion.getAnswers()[i]);
-                answerButtons.get(i).putClientProperty("answer_index", i);
+                for (int i = 0; i < answerButtons.size(); i++) {
+                    answerButtons.get(i).setText(currentQuestion.getAnswers()[i]);
+                    answerButtons.get(i).putClientProperty("answer_index", i);
+                }
             }
+            numberOfQuestions++;
         } else {
             JOptionPane.showMessageDialog(this, "End of Quiz!");
             dispose();
+            ResultGUI r = new ResultGUI();
         }
     }
 
@@ -76,13 +88,21 @@ public class GameViewGUI extends JFrame {
         if (currentQuestion.getCorrectAnswer() == selectedAnswer) {
             JOptionPane.showMessageDialog(this, "Correct!");
         } else {
-            JOptionPane.showMessageDialog(this, "Incorrect! The correct answer was: " + currentQuestion.getAnswers()[currentQuestion.getCorrectAnswer()]);
+            JOptionPane.showMessageDialog(this, "Incorrect! The correct answer was: "
+                    + currentQuestion.getAnswers()[currentQuestion.getCorrectAnswer()]);
         }
-
         displayNextQuestion();
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(GameViewGUI::new);
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

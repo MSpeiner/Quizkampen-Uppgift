@@ -17,23 +17,19 @@ public class StartmenuGui extends JFrame implements ActionListener {
         this.add(jps);
         jps.setLayout(new BorderLayout());
 
-
         //Sätter welcomeText position
         jps.add(center);
         center.setLayout(new FlowLayout(FlowLayout.CENTER));
         center.add(welcomeText);
 
-
-
         jps.add(south, BorderLayout.SOUTH);
         south.setLayout(new FlowLayout(FlowLayout.CENTER));
         south.add(newGame);
-
         newGame.addActionListener(this);
-
 
         pack();
         setSize(300,150);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
     }
@@ -42,7 +38,8 @@ public class StartmenuGui extends JFrame implements ActionListener {
         jps.removeAll();
         jps.revalidate();
         jps.repaint();
-        //Nadia kommer att skapa en UI för "välj kategori" där vi kommer kommer att skapa upp en instans av detta här.
+        CategoryViewGUI cg = new CategoryViewGUI();
+        setVisible(false);
     }
 
     @Override
