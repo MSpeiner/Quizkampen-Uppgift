@@ -28,7 +28,7 @@ Vilket år infördes allmän rösträtt för kvinnor i Sverige? ; 1902. ; 1919. 
 Vad heter den största insjön i Dalarna? ; Siljan. ; Orsasjön. ; Barken. ; Värmeln. ; 0
 Vilken svensk regissör är känd för filmer som "Det sjunde inseglet" och "Persona"? ; Roy Andersson. ; Ingmar Bergman. ; Lukas Moodysson. ; Ruben Östlund. ; 1
 Vad kallas det område i Stockholm där många museer, inklusive Vasa-museet, ligger? ; Skeppsholmen. ; Djurgården. ; Norrmalm. ; Gamla stan. ; 0
-Vilken färg har den svenska flaggan? ; Blå och gul. ; Röd och vit. ; Blå och vit. ; Gul och röd. ; 2
+Vilken färg har den svenska flaggan? ; Blå och gul. ; Röd och vit. ; Blå och vit. ; Gul och röd. ; 1
 Vad är Sveriges största sjö? ; Vättern. ; Vänern. ; Hjälmaren. ; Siljan. ; 1
 Vilket år grundades IKEA, det svenska möbelföretaget? ; 1943. ; 1956. ; 1969. ; 1975. ; 0
 Vad kallas den traditionella svenska midsommarstången smyckad med blommor och löv? ; Blomsterstång. ; Majstång. ; Midsommarstång. ; Sommarstång. ; 2

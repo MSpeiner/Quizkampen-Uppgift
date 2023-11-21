@@ -2,13 +2,12 @@ public class Questions {
 
     private String question;
     private String[] answers;
-    private int correctAnswer; // index i answers!
-    private String Category;
+    private int correctAnswer;
+    private String category;
 
     public String getQuestion() {
         return question;
     }
-
 
     public void setQuestion(String question) {
         this.question = question;
@@ -31,16 +30,16 @@ public class Questions {
     }
 
     public String getCategory() {
-        return Category;
+        return category;
     }
 
     public void setCategory(String category) {
-        Category = category;
+        this.category = category;
     }
 
     public void printAllAnswers (){          // Ta bort sen
-        for (int i=0; i<answers.length; i++){
-            System.out.println(answers[i]);
+        for (String answer : answers) {
+            System.out.println(answer);
         }
     }
 }
