@@ -17,6 +17,7 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
     private Category chosenCategory = null; // anger spelarens valda kategori, och variabeln ska används av spelmotor
     private JLabel chosenCategoryLabel = new JLabel(""); // variabel för att visa vald kategori i GUI. Den här variabeln kan tas bort sen
 
+    private PropertiesManager propertiesManager;
 
     public CategoryViewGUI(){
         createPanel();
