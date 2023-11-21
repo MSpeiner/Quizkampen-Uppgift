@@ -13,14 +13,19 @@ public class GameViewGUI extends JFrame {
     private final QuestionManager questionManager = new QuestionManager();
     private Questions currentQuestion;
 
-    public GameViewGUI() {
+    private String category;
+
+    public GameViewGUI(String category) {
+        this.category = category;
         loadQuestions();
         setupUI();
         displayNextQuestion();
     }
 
+    public GameViewGUI() {}
+
     private void loadQuestions() {
-        String myPath = "src/test.txt";
+        String myPath = "src/TextFiles/" + getCategory() + ".txt";
         questionManager.loadQuestions(myPath);
     }
 
@@ -86,5 +91,13 @@ public class GameViewGUI extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(GameViewGUI::new);
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

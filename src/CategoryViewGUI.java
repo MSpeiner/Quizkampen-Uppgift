@@ -17,10 +17,6 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
     private Category chosenCategory = null; // anger spelarens valda kategori, och variabeln ska används av spelmotor
     private JLabel chosenCategoryLabel = new JLabel(""); // variabel för att visa vald kategori i GUI. Den här variabeln kan tas bort sen
 
-    private StartmenuGui gui;
-
-
-
     public CategoryViewGUI(){
         createPanel();
         createButtons();
@@ -55,36 +51,32 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
         southPanel.add(naturvetenskapButton);
     }
 
-    private void switchToGameView(){
-        GameViewGUI gameGUI = new GameViewGUI();
+    private void switchToGameView(String category){
+        GameViewGUI gameGUI = new GameViewGUI(category);
         setVisible(false);
     }
-
-    /*public static void main(String[] args) {
-        CategoryViewGUI categoryViewGUI = new CategoryViewGUI();
-    }*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == sportButton){
             chosenCategory = Category.Sport;
             chosenCategoryLabel.setText(Category.Sport.name());
-            switchToGameView();
+            switchToGameView("Sport");
         }
         if (e.getSource() == historiaButton){
             chosenCategory = Category.History;
             chosenCategoryLabel.setText(Category.History.name());
-            switchToGameView();
+            switchToGameView("History");
         }
         if (e.getSource() == religionButton){
             chosenCategory = Category.Religion;
             chosenCategoryLabel.setText(Category.Religion.name());
-            switchToGameView();
+            switchToGameView("Religion");
         }
         if (e.getSource() == naturvetenskapButton){
             chosenCategory = Category.Science;
             chosenCategoryLabel.setText(Category.Science.name());
-            switchToGameView();
+            switchToGameView("Science");
         }
     }
 }
