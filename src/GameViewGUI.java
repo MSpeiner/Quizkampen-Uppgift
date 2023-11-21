@@ -32,6 +32,7 @@ public class GameViewGUI extends JFrame {
         pack();
         setSize(600, 150);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -76,7 +77,8 @@ public class GameViewGUI extends JFrame {
         if (currentQuestion.getCorrectAnswer() == selectedAnswer) {
             JOptionPane.showMessageDialog(this, "Correct!");
         } else {
-            JOptionPane.showMessageDialog(this, "Incorrect! The correct answer was: " + currentQuestion.getAnswers()[currentQuestion.getCorrectAnswer()]);
+            JOptionPane.showMessageDialog(this, "Incorrect! The correct answer was: "
+                    + currentQuestion.getAnswers()[currentQuestion.getCorrectAnswer()]);
         }
 
         displayNextQuestion();

@@ -17,6 +17,9 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
     private Category chosenCategory = null; // anger spelarens valda kategori, och variabeln ska används av spelmotor
     private JLabel chosenCategoryLabel = new JLabel(""); // variabel för att visa vald kategori i GUI. Den här variabeln kan tas bort sen
 
+    private StartmenuGui gui;
+
+
 
     public CategoryViewGUI(){
         createPanel();
@@ -28,6 +31,7 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
         pack();
         setSize(300,150);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -51,27 +55,36 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
         southPanel.add(naturvetenskapButton);
     }
 
-    public static void main(String[] args) {
-        CategoryViewGUI categoryViewGUI = new CategoryViewGUI();
+    private void switchToGameView(){
+        GameViewGUI gameGUI = new GameViewGUI();
+        setVisible(false);
     }
+
+    /*public static void main(String[] args) {
+        CategoryViewGUI categoryViewGUI = new CategoryViewGUI();
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == sportButton){
             chosenCategory = Category.Sport;
             chosenCategoryLabel.setText(Category.Sport.name());
+            switchToGameView();
         }
         if (e.getSource() == historiaButton){
             chosenCategory = Category.Historia;
             chosenCategoryLabel.setText(Category.Historia.name());
+            switchToGameView();
         }
         if (e.getSource() == religionButton){
             chosenCategory = Category.Religion;
             chosenCategoryLabel.setText(Category.Religion.name());
+            switchToGameView();
         }
         if (e.getSource() == naturvetenskapButton){
             chosenCategory = Category.Naturvetenskap;
             chosenCategoryLabel.setText(Category.Naturvetenskap.name());
+            switchToGameView();
         }
     }
 }
