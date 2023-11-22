@@ -1,26 +1,10 @@
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-/**
- * A client for the TicTacToe game, modified and extended from the
- * class presented in Deitel and Deitel "Java How to Program" book.
- * I made a bunch of enhancements and rewrote large sections of the
- * code. In particular I created the TTTP (Tic Tac Toe Protocol)
- * which is entirely text based. Here are the strings that are sent:
- *
- * Client -> Server        Server -> Client
- * ----------------------  ----------
- * MOVE <n> (0 <= n <= 8)  WELCOME <char> (char in {X, O})
- * QUIT                    VALID_MOVE
- *                         OTHER_PLAYER_MOVED <n>
- *                         VICTORY
- *                         DEFEAT
- *                         TIE
- *                         MESSAGE <text>
- *
- */
+
 public class Client {
 
 
@@ -31,84 +15,96 @@ public class Client {
 
     private boolean blocked = false;
 
-    /**
-     * Constructs the client by connecting to a server, laying out the
-     * GUI and registering GUI listeners.
-     */
+
     public Client(String serverAddress) throws Exception {
 
         socket = new Socket(serverAddress, PORT);
         in = new BufferedReader(new InputStreamReader(
                 socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
-
-        // Layout GUI
-
+        // out är precis som System.out, båda är printwriters, en är till terminalen, den andra är till servern
+        // vi är kopplade till
     }
 
-    /**
-     * The main thread of the client will listen for messages
-     * from the server. The first message will be a "WELCOME"
-     * message in which we receive our mark. Then we go into a
-     * loop listening for "VALID_MOVE", "OPPONENT_MOVED", "VICTORY",
-     * "DEFEAT", "TIE", "OPPONENT_QUIT or "MESSAGE" messages,
-     * and handling each message appropriately. The "VICTORY",
-     * "DEFEAT" and "TIE" ask the user whether or not to play
-     * another game. If the answer is no, the loop is exited and
-     * the server is sent a "QUIT" message. If an OPPONENT_QUIT
-     * message is recevied then the loop will exit and the server
-     * will be sent a "QUIT" message also.
-     */
     public void play() throws Exception {
+        // Meddelanden från servern
         String response;
-        char playerNumber = 'S';
-        char opponentPlayerNumber = 'P';
+        // Används till GUI:t
+        String playerName = "";
+        String opponentName = "";
+        // Används till GUI:t
+        String currentCategory = "";
         try {
-            System.out.println("Väntar på svar från servern");
-            response = in.readLine();
-
-            if (response.startsWith("WELCOME")) {
-                playerNumber = response.charAt(8);
-                if (playerNumber == '2') blocked = true;
-                opponentPlayerNumber = (playerNumber == '1' ? '2' : '1');
-
-            }
             while (true) {
+                // TA EMOT MEDDELANDE FRÅN SERVERN
                 response = in.readLine();
-                System.out.println(response);
+                // OM DET BÖRJAR MED ENTER NAME
+                if(response.startsWith("ENTER_NAME")){
+                    // Ber vi användaren skriva in sitt namn
+                    playerName = JOptionPane.showInputDialog(null, "Enter your username");
+                    // Sen skickar vi det till servern med "NAME" först
+                    out.println("NAME " + playerName);
+                }
+                // OM DET BÖRJAR MED OPPONENT_NAME
+                if(response.startsWith("OPPONENT_NAME")){
+                    // Sparar vi motståndarens namn så att vi kan använda det i vårat GUI
+                    opponentName = response.substring(14);
+                }
+                // OM DET BÖRJAR MED CATEGORY_SELECTED
+                if(response.startsWith("CATEGORY_SELECTED")){
+                    // Hämtar vi ut den valda kategorin (vid index 18)
+                    // och sparar ner den så att vi kan använda den till GUIt
+                    currentCategory = response.substring(18);
+                }
+                // OM DET BÖRJAR MED QUESTION
+                if(response.startsWith("QUESTION")){
+                    // NU HÄNDER DET GREJER!
+                    // Först tar vi själva frågesträngen som börjar vid index 9
+                    String question = response.substring(9);
+                    // Sen kommer servern DIREKT skicka 4 svarsalternativ som vi sparar ner
+                    String answer1 = in.readLine();
+                    String answer2 = in.readLine();
+                    String answer3 = in.readLine();
+                    String answer4 = in.readLine();
+                    // Sen skapar vi en GameViewGUI som ansvarar för att presentera frågor till användaren
+                    // Vi stoppar in vår out så att GUI:t kan skicka meddelande till Servern om vilket svar vi
+                    // valde
+                    GameViewGUI gameView = new GameViewGUI(out, currentCategory);
+                    // Skapa en array av våra svarsalternativ
+                    String[] answers = {answer1, answer2, answer3, answer4};
+                    // Skicka in frågan tillsammans med svarsalternativen
+                    // till metoden som ansvarar för att presentera frågan till användaren
+                    gameView.displayNextQuestion(question, answers);
+                }
+                if(response.startsWith("SELECT_CATEGORY")){
+                    // Stoppar in out så att GUI:t kan skicka meddelanden till servern
+                    CategoryViewGUI viewGUI = new CategoryViewGUI(out);
+                }
+                // TODO: Skriva if-satser för att hantera meddelanden från servern som
+                // informerar oss om huruvida vi svarade rätt eller fel på frågan användaren
+                // samt information om huruvida motståndaren svarade rätt eller fel på sin fråga
+                // TODO: Skriva en if-sats där servern meddelar användaren att den väntar på svar
+                // från motståndaren, så att klienten kan rita ut någonting att titta på sålänge
+                // t.ex. hur det står mellan motståndaren och användaren (ResultGUI)
                 if(response.equals("QUIT")){
+                    System.out.println("Vi slutar nu");
                     break;
                 }
             }
-            out.println("QUIT");
         }
         finally {
             socket.close();
         }
     }
 
-    //private boolean wantsToPlayAgain() {
-        // int response = JOptionPane.showConfirmDialog(frame,
-        //        "Want to play again?",
-        //        "Tic Tac Toe is Fun Fun Fun",
-        //        JOptionPane.YES_NO_OPTION);
-        //frame.dispose();
-        //return response == JOptionPane.YES_OPTION;
-    //}
 
 
     /**
      * Runs the client as an application.
      */
     public static void main(String[] args) throws Exception {
-        while (true) {
-            String serverAddress = (args.length == 0) ? "localhost" : args[1];
-            Client client = new Client(serverAddress);
-
-            client.play();
-            //if (!client.wantsToPlayAgain()) {
-            //    break;
-            //}
-        }
+        String serverAddress = (args.length == 0) ? "localhost" : args[1];
+        Client client = new Client(serverAddress);
+        client.play();
     }
 }

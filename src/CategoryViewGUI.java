@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintWriter;
 
 public class CategoryViewGUI extends JFrame implements ActionListener {
     private JPanel northPanel = new JPanel(new GridLayout(2,1));
@@ -16,6 +17,15 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
 
     private Category chosenCategory = null; // anger spelarens valda kategori, och variabeln ska används av spelmotor
     private JLabel chosenCategoryLabel = new JLabel(""); // variabel för att visa vald kategori i GUI. Den här variabeln kan tas bort sen
+
+    private PrintWriter clientOutputStream;
+
+    public CategoryViewGUI(PrintWriter clientOutputStream){
+        this.clientOutputStream =  clientOutputStream;
+        createPanel();
+        createButtons();
+        createFrame();
+    }
 
     public CategoryViewGUI(){
         createPanel();
@@ -51,8 +61,8 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
         southPanel.add(naturvetenskapButton);
     }
 
-    private void switchToGameView(String category){
-        GameViewGUI gameGUI = new GameViewGUI(category);
+    private void selectCategory(String category){
+        clientOutputStream.println("CATEGORY_SELECTED " + category);
         setVisible(false);
     }
 
@@ -61,22 +71,22 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
         if (e.getSource() == sportButton){
             chosenCategory = Category.Sport;
             chosenCategoryLabel.setText(Category.Sport.name());
-            switchToGameView("Sport");
+            selectCategory("SPORT");
         }
         if (e.getSource() == historiaButton){
             chosenCategory = Category.History;
             chosenCategoryLabel.setText(Category.History.name());
-            switchToGameView("History");
+            selectCategory("HISTORY");
         }
         if (e.getSource() == religionButton){
             chosenCategory = Category.Religion;
             chosenCategoryLabel.setText(Category.Religion.name());
-            switchToGameView("Religion");
+            selectCategory("RELIGION");
         }
         if (e.getSource() == naturvetenskapButton){
             chosenCategory = Category.Science;
             chosenCategoryLabel.setText(Category.Science.name());
-            switchToGameView("Science");
+            selectCategory("SCIENCE");
         }
     }
 }

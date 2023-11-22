@@ -1,3 +1,3 @@
-enum Answer {
+public enum Answer {
     CORRECT, INCORRECT
 }

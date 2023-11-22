@@ -1,4 +1,4 @@
-public class Questions {
+public class Question {
 
     private String question;
     private String[] answers;

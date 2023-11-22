@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
@@ -10,25 +11,16 @@ public class GameViewGUI extends JFrame {
     private final JLabel questionLabel = new JLabel("Waiting for question...");
     private final JLabel categoryLabel = new JLabel("Category: ");
     private final List<JButton> answerButtons = new ArrayList<>();
-    private final QuestionManager questionManager = new QuestionManager();
-    private Questions currentQuestion;
 
-    private String category;
-    private int numberOfQuestions = 1;
+    private final String category;
+    private final PrintWriter clientOutputStream;
 
-    public GameViewGUI(String category) {
+    // Tar in clientOutputStream för att kunna skicka meddelanden
+    // till servern när man klickar på ett svarsalternativ
+    public GameViewGUI(PrintWriter clientOutputStream, String category) {
         this.category = category;
-        loadQuestions();
+        this.clientOutputStream = clientOutputStream;
         setupUI();
-        displayNextQuestion();
-    }
-
-    public GameViewGUI() {
-    }
-
-    private void loadQuestions() {
-        String myPath = "src/TextFiles/" + getCategory() + ".txt";
-        questionManager.loadQuestions(myPath);
     }
 
     private void setupUI() {
@@ -61,48 +53,20 @@ public class GameViewGUI extends JFrame {
         mainPanel.add(southPanel, BorderLayout.SOUTH);
     }
 
-    private void displayNextQuestion() {
-        currentQuestion = questionManager.getRandomQuestion();
-        if (numberOfQuestions <= 2) {
-            if (currentQuestion != null) {
-                questionLabel.setText(currentQuestion.getQuestion());
-                categoryLabel.setText("Category: " + currentQuestion.getCategory());
-
-                for (int i = 0; i < answerButtons.size(); i++) {
-                    answerButtons.get(i).setText(currentQuestion.getAnswers()[i]);
-                    answerButtons.get(i).putClientProperty("answer_index", i);
-                }
-            }
-            numberOfQuestions++;
-        } else {
-            JOptionPane.showMessageDialog(this, "End of Quiz!");
-            dispose();
-            ResultGUI r = new ResultGUI();
+    public void displayNextQuestion(String question, String[] answers) {
+        questionLabel.setText(question);
+        categoryLabel.setText("Category: " + this.category);
+        for (int i = 0; i < answerButtons.size(); i++) {
+            answerButtons.get(i).setText(answers[i]);
+            answerButtons.get(i).putClientProperty("answer_index", i);
         }
     }
 
     private void buttonClicked(ActionEvent event) {
         JButton clickedButton = (JButton) event.getSource();
         int selectedAnswer = (int) clickedButton.getClientProperty("answer_index");
-
-        if (currentQuestion.getCorrectAnswer() == selectedAnswer) {
-            JOptionPane.showMessageDialog(this, "Correct!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Incorrect! The correct answer was: "
-                    + currentQuestion.getAnswers()[currentQuestion.getCorrectAnswer()]);
-        }
-        displayNextQuestion();
+        clientOutputStream.println("ANSWER " + selectedAnswer);
+        setVisible(false);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(GameViewGUI::new);
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 }

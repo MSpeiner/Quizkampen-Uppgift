@@ -1,6 +1,15 @@
 public class GameState {
-    private Answer[] player1Answers;
-    private Answer[] player2Answers;
+    public String getCurrentCategory() {
+        return currentCategory;
+    }
+
+    public void setCurrentCategory(String currentCategory) {
+        this.currentCategory = currentCategory;
+    }
+
+    private String currentCategory;
+    private final Answer[] player1Answers;
+    private final Answer[] player2Answers;
 
     public GameState() {
         // Initialize each player's answers with nulls (unanswered)
@@ -9,11 +18,13 @@ public class GameState {
     }
 
     // Method to update an answer for a player
-    public void updateAnswer(int player, int question, Answer answer) {
-        if (player == 1) {
-            player1Answers[question] = answer;
-        } else if (player == 2) {
-            player2Answers[question] = answer;
+    public void updateAnswer(int playerNumber, Answer answer) {
+        if (playerNumber == 1) {
+            int playerOneAnswerCount = countAnswers(player1Answers);
+            player1Answers[playerOneAnswerCount] = answer;
+        } else if (playerNumber == 2) {
+            int playerTwoAnswerCount = countAnswers(player2Answers);
+            player2Answers[playerTwoAnswerCount] = answer;
         }
     }
 
@@ -31,11 +42,16 @@ public class GameState {
         return player1CorrectCount > player2CorrectCount;
     }
 
-    public String getWinner() {
+    public int getWinner() {
         int player1CorrectCount = countCorrectAnswers(player1Answers);
         int player2CorrectCount = countCorrectAnswers(player2Answers);
-
-        return player1CorrectCount > player2CorrectCount ? "1" : "2";
+        if(player1CorrectCount > player2CorrectCount){
+            return 1;
+        }
+        if(player2CorrectCount > player1CorrectCount){
+            return 2;
+        }
+        return 0;
     }
 
     // Helper method to count "CORRECT" answers in a player's answer array
@@ -47,6 +63,35 @@ public class GameState {
             }
         }
         return correctCount;
+    }
+
+    public int getCorrectForPlayer1(){
+        return countCorrectAnswers(player1Answers);
+    }
+    public int getCorrectForPlayer2(){
+        return countCorrectAnswers(player2Answers);
+    }
+
+    public boolean isNewRound() {
+        int player1AnswerCount = countAnswers(player1Answers);
+        int player2AnswerCount = countAnswers(player2Answers);
+        if(player1AnswerCount != player2AnswerCount){
+            return false; // Om dom inte har lika många svar är det inte en ny runda
+        }
+        // Om deras svar är jämnt delbart med 2 är det ny runda
+        // Dvs om båda har 0 eller 2 svar
+        return player1AnswerCount % 2 == 0;
+    }
+
+    // Helper method to count "CORRECT" answers in a player's answer array
+    private int countAnswers(Answer[] answers) {
+        int count = 0;
+        for (Answer answer : answers) {
+            if (answer != null) {
+                count++;
+            }
+        }
+        return count;
     }
 
     private boolean allAnswersFilled(Answer[] answers) {

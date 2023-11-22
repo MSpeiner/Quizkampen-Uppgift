@@ -7,11 +7,12 @@ import java.util.Scanner;
 
 public class QuestionManager {
 
-    protected ArrayList<Questions> questionsArray = new ArrayList<>();
+    protected ArrayList<Question> questionArray = new ArrayList<>();
     private Random random = new Random();
 
     public void loadQuestions(String path) {
         Path filePath = Paths.get(path);
+        questionArray.clear();
 
         try (Scanner file = new Scanner(filePath)) {
             ArrayList<String> questionList = new ArrayList<>();
@@ -32,7 +33,7 @@ public class QuestionManager {
                     continue;
                 }
 
-                Questions tempQuestion = new Questions();
+                Question tempQuestion = new Question();
                 tempQuestion.setCategory(category);
                 tempQuestion.setQuestion(tempArray[0].trim());
                 tempQuestion.setCorrectAnswer(Integer.parseInt(tempArray[5].trim()));
@@ -41,7 +42,7 @@ public class QuestionManager {
                 System.arraycopy(tempArray, 1, answers, 0, 4);
                 tempQuestion.setAnswers(answers);
 
-                questionsArray.add(tempQuestion);
+                questionArray.add(tempQuestion);
             }
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
@@ -50,33 +51,32 @@ public class QuestionManager {
         }
     }
 
-    public Questions getRandomQuestion() {
-        if (questionsArray.isEmpty()) {
+    public Question getQuestionByCategory(String category) {
+        if(category.equals("HISTORY")){
+            loadQuestions("src/TextFiles/History.txt");
+        }
+        if(category.equals("RELIGION")){
+            loadQuestions("src/TextFiles/Religion.txt");
+        }
+        if(category.equals("SCIENCE")){
+            loadQuestions("src/TextFiles/Science.txt");
+        }
+        if(category.equals("SPORT")){
+            loadQuestions("src/TextFiles/Sport.txt");
+        }
+        return getRandomQuestion();
+    }
+
+    public Question getRandomQuestion() {
+        if (questionArray.isEmpty()) {
             return null;
         }
-        int randomIndex = random.nextInt(questionsArray.size());
-        return questionsArray.get(randomIndex);
+        int randomIndex = random.nextInt(questionArray.size());
+        return questionArray.get(randomIndex);
     }
 
-
-    public ArrayList<Questions> getQuestions() {
-        return new ArrayList<>(questionsArray);
+    public ArrayList<Question> getQuestions() {
+        return new ArrayList<>(questionArray);
     }
-
-    public static void main(String[] args) {
-        String myPath = "src/test.txt";
-        QuestionManager questionManager = new QuestionManager();
-        questionManager.loadQuestions(myPath);
-
-        Questions randomQuestion = questionManager.getRandomQuestion();
-        if (randomQuestion != null) {
-            System.out.println(randomQuestion.getQuestion());
-            for (String answer : randomQuestion.getAnswers()) {
-                System.out.println(answer);
-            }
-            System.out.println("Correct answer index: " + randomQuestion.getCorrectAnswer());
-        }
-    }
-
 
 }
