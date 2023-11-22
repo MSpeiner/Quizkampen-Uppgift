@@ -20,19 +20,15 @@ public class StartmenuGui extends JFrame implements ActionListener {
         this.add(jps);
         jps.setLayout(new BorderLayout());
 
-        //Sätter welcomeText position
         jps.add(center);
         center.setLayout(new FlowLayout(FlowLayout.CENTER));
         center.add(welcomeText);
-        setWelcomeText();
 
         jps.add(south, BorderLayout.SOUTH);
         south.setLayout(new FlowLayout(FlowLayout.CENTER));
         south.add(newGame);
 
 
-
-        setWelcomeText();
 
         //Knappstil
         newGame.addActionListener(this);
@@ -62,9 +58,9 @@ public class StartmenuGui extends JFrame implements ActionListener {
     }
 
     public void setWelcomeTextProperties() {
-        // Change the size, color, and font style of the welcomeText
-        welcomeText.setFont(new Font("Impact", Font.BOLD, 20)); // Adjust font size and style
-        welcomeText.setForeground(Color.BLUE); // Adjust color
+        Font newFont = new Font("Arial", Font.BOLD, 18);
+        welcomeText.setFont(newFont);
+        welcomeText.setForeground(Color.BLUE);
     }
 
     public void setWelcomeText() {
