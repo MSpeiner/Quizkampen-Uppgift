@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,18 +24,17 @@ public class ResultGUI extends JFrame implements ActionListener {
     int player2WinCounter = 0;
     String winCounterP2String = Integer.toString(player2WinCounter);
 
-    JRadioButton round1Question1Player1 = new JRadioButton();
-    JRadioButton round1Question1Player2 = new JRadioButton();
+   JButton  round1Question1Player1 =new JButton();
+   JButton  round1Question1Player2 =new JButton();
 
+   JButton  round1Question2Player1 =new JButton();
+   JButton round1Question2Player2 = new JButton();
 
-    JRadioButton round1Question2Player1 = new JRadioButton();
-    JRadioButton round1Question2Player2 = new JRadioButton();
+   JButton round2Question1Player1 = new JButton();
+   JButton round2Question1Player2 = new JButton();
 
-    JRadioButton round2Question1Player1 = new JRadioButton();
-    JRadioButton round2Question1Player2 = new JRadioButton();
-
-    JRadioButton round2Question2Player1 = new JRadioButton();
-    JRadioButton round2Question2Player2 = new JRadioButton();
+   JButton round2Question2Player1 = new JButton();
+   JButton round2Question2Player2 = new JButton();
 
 
     public ResultGUI() {
@@ -49,7 +49,7 @@ public class ResultGUI extends JFrame implements ActionListener {
 
         north.setLayout(new GridLayout(1, 2));
         player1.setText("Player one" + " Victories: " + winCounterP1String);
-        player2.setText("Player one" + " Victories: " + winCounterP2String);
+        player2.setText("Player Two" + " Victories: " + winCounterP2String);
 
         north.add(player1);
         north.add(player2);

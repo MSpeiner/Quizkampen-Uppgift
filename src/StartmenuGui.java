@@ -8,7 +8,7 @@ public class StartmenuGui extends JFrame implements ActionListener {
     private JPanel center = new JPanel();
     private JPanel south = new JPanel();
     private JButton newGame = new JButton("New game");
-    private JLabel welcomeText = new JLabel();
+    private JLabel welcomeText = new JLabel("Welcome to Quizkampen!");
     private Players players;
 
 
