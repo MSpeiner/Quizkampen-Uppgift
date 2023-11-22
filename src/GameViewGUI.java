@@ -13,6 +13,8 @@ public class GameViewGUI extends JFrame {
     private final QuestionManager questionManager = new QuestionManager();
     private Questions currentQuestion;
 
+    private PropertiesManager propertiesManager = new PropertiesManager();
+
     private String category;
     private int numberOfQuestions = 1;
 
@@ -63,7 +65,8 @@ public class GameViewGUI extends JFrame {
 
     private void displayNextQuestion() {
         currentQuestion = questionManager.getRandomQuestion();
-        if (numberOfQuestions <= 2) {
+        int antalFraga = propertiesManager.antalFragor();
+        if (numberOfQuestions <= antalFraga) {
             if (currentQuestion != null) {
                 questionLabel.setText(currentQuestion.getQuestion());
                 categoryLabel.setText("Category: " + currentQuestion.getCategory());
