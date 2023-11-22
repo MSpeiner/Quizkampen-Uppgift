@@ -18,7 +18,6 @@ public class RoundBorder implements Border {
 
         RoundRectangle2D roundRect = new RoundRectangle2D.Float(x, y, width - 1, height - 1, radius, radius);
 
-        // Create a radial gradient paint for the border
         Paint paint = new RadialGradientPaint(
                 new Point(x + width / 2, y + height / 2),
                 width / 2,
