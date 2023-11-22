@@ -1,0 +1,3 @@
+enum Answer {
+    CORRECT, INCORRECT
+}
