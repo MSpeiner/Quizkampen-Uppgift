@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +13,7 @@ public class ResultGUI extends JFrame implements ActionListener {
     JLabel roundOne = new JLabel("Round 1");
     JLabel roundTwo = new JLabel("Round 2");
 
-    JButton continueGame = new JButton("Continue Game");
+    JButton playAgain = new JButton("Play again");
 
 
     JLabel player1 = new JLabel("Player one");
@@ -62,9 +61,9 @@ public class ResultGUI extends JFrame implements ActionListener {
         center.add(round2Question2Player2);
 
         south.setLayout(new FlowLayout());
-        south.add(continueGame);
+        south.add(playAgain);
 
-        continueGame.addActionListener(this);
+        playAgain.addActionListener(this);
 
         pack();
         setSize(350, 300);
@@ -75,10 +74,8 @@ public class ResultGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == continueGame) {
-            CategoryViewGUI cvg = new CategoryViewGUI();
-            setVisible(false);
-
+        if (e.getSource() == playAgain) {
+            dispose();
         }
     }
 }
