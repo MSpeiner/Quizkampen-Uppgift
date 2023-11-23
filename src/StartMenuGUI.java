@@ -28,6 +28,10 @@ public class StartMenuGUI extends JFrame implements ActionListener {
 
         setWelcomeText();
         newGame.addActionListener(this);
+        int cornerRadius = 15;
+        Color glowColor = new Color(0, 0, 200);
+        newGame.setBorder(new RoundBorder(cornerRadius, glowColor));
+
 
         pack();
         setSize(300, 150);
@@ -54,5 +58,6 @@ public class StartMenuGUI extends JFrame implements ActionListener {
         if (e.getSource() == newGame) {
             newGameMethod();
         }
+
     }
 }
