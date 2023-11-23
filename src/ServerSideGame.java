@@ -62,6 +62,7 @@ class ServerSideGame {
         // T.ex. OPPONENT_ANSWERED CORRECT och YOU_ANSWERED INCORRECT
     }
 
+    //Skapar upp
     private void setResultBoard(Answer[] player1Result, Answer[] player2Result) {
         ResultGUI rG = new ResultGUI();
         int scoreCounter1 = 0;
@@ -127,8 +128,10 @@ class ServerSideGame {
         }
         if (scoreCounter1 > scoreCounter2) {
             JOptionPane.showMessageDialog(null, "Player One has won!");
+            winCounterPlayer1++;
         } else if (scoreCounter2 > scoreCounter1) {
             JOptionPane.showMessageDialog(null, "Player Two has won!");
+            winCounterPlayer2++;
         } else if (scoreCounter1 == scoreCounter2) {
             JOptionPane.showMessageDialog(null, "It's a tie!");
         }

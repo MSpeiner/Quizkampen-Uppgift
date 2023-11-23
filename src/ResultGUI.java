@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ResultGUI extends JFrame implements ActionListener {
+    ServerSideGame sSg;
     JPanel jpR = new JPanel();
     JPanel south = new JPanel();
     JPanel center = new JPanel();
@@ -16,8 +17,8 @@ public class ResultGUI extends JFrame implements ActionListener {
     JButton continueGame = new JButton("Continue Game");
 
 
-    JLabel player1 = new JLabel("Player one" + " Victories: ");
-    JLabel player2 = new JLabel("\t" + "Player two" + " Victories: ");
+    JLabel player1 = new JLabel("Player one");
+    JLabel player2 = new JLabel("Player two");
 
    JButton  round1Question1Player1 =new JButton();
    JButton  round1Question1Player2 =new JButton();
