@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ResultGUI extends JFrame implements ActionListener {
-    ServerSideGame sSg;
     JPanel jpR = new JPanel();
     JPanel south = new JPanel();
     JPanel center = new JPanel();
@@ -16,23 +15,28 @@ public class ResultGUI extends JFrame implements ActionListener {
     JButton playAgain = new JButton("Play again");
 
 
-    JLabel player1 = new JLabel("Player one");
-    JLabel player2 = new JLabel("Player two");
+    JLabel playerOne = new JLabel("Player one");
+    JLabel playerTwo = new JLabel("Player two");
 
-   JButton  round1Question1Player1 =new JButton();
-   JButton  round1Question1Player2 =new JButton();
+    JLabel wins1 = new JLabel("Player 1 amount of wins: ");
+    JLabel wins2 = new JLabel("Player 2 amount of wins: ");
 
-   JButton  round1Question2Player1 =new JButton();
-   JButton round1Question2Player2 = new JButton();
+    JButton round1Question1Player1 = new JButton();
+    JButton round1Question1Player2 = new JButton();
 
-   JButton round2Question1Player1 = new JButton();
-   JButton round2Question1Player2 = new JButton();
+    JButton round1Question2Player1 = new JButton();
+    JButton round1Question2Player2 = new JButton();
 
-   JButton round2Question2Player1 = new JButton();
-   JButton round2Question2Player2 = new JButton();
+    JButton round2Question1Player1 = new JButton();
+    JButton round2Question1Player2 = new JButton();
+
+    JButton round2Question2Player1 = new JButton();
+    JButton round2Question2Player2 = new JButton();
 
 
     public ResultGUI() {
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
 
         setTitle("Quizkampen");
         this.add(jpR);
@@ -44,8 +48,8 @@ public class ResultGUI extends JFrame implements ActionListener {
 
         north.setLayout(new GridLayout(1, 2));
 
-        north.add(player1);
-        north.add(player2);
+        north.add(playerOne);
+        north.add(playerTwo);
 
         center.setLayout(new GridLayout(2, 6));
         center.add(round1Question1Player1);
@@ -61,12 +65,14 @@ public class ResultGUI extends JFrame implements ActionListener {
         center.add(round2Question2Player2);
 
         south.setLayout(new FlowLayout());
+        south.add(wins1);
         south.add(playAgain);
+        south.add(wins2);
 
         playAgain.addActionListener(this);
 
         pack();
-        setSize(350, 300);
+        setSize(450, 300);
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

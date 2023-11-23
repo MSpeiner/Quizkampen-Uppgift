@@ -10,8 +10,8 @@ class ServerSideGame {
     private final QuestionManager questionManager = new QuestionManager();
     // Håller reda på spelets nuvarande tillstånd
     private final GameState gameState = new GameState();
-    private int winCounterPlayer1 = 0;
-    private int winCounterPlayer2 = 0;
+    public int winCounterPlayer1 = 0;
+    public int winCounterPlayer2 = 0;
 
     public ServerSideGame(ServerPlayer player1, ServerPlayer player2) {
         this.player1 = player1;
@@ -135,6 +135,10 @@ class ServerSideGame {
         } else if (scoreCounter1 == scoreCounter2) {
             JOptionPane.showMessageDialog(null, "It's a tie!");
         }
+        String wins1String = Integer.toString(winCounterPlayer1);
+        rG.wins1.setText("Player 1 amount of wins: " + wins1String);
+        String wins2String = Integer.toString(winCounterPlayer2);
+        rG.wins2.setText("Player 2 amount of wins: " + wins2String);
     }
 
     public void doGame() {
