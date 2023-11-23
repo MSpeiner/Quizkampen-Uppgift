@@ -10,6 +10,10 @@ public class GameState {
     private String currentCategory;
     private final Answer[] player1Answers;
     private final Answer[] player2Answers;
+    String answer1;
+    String answer2;
+    String answer3;
+    String answer4;
 
     public GameState() {
         // Initialize each player's answers with nulls (unanswered)
@@ -115,12 +119,6 @@ public class GameState {
         return stringArray;
     }
 
-    //Strings för varje separat svar
-    String answer1;
-    String answer2;
-    String answer3;
-    String answer4;
-
     //Metod som gör om String Array till 4 separata strängar som kan skickas till klienten
     public void sendableAnswers(String[] Answers) {
         answer1 = Answers[0];
@@ -136,21 +134,5 @@ public class GameState {
 
     public Answer[] getPlayer2Answers() {
         return player2Answers;
-    }
-
-    public String getAnswer1() {
-        return answer1;
-    }
-
-    public String getAnswer2() {
-        return answer2;
-    }
-
-    public String getAnswer3() {
-        return answer3;
-    }
-
-    public String getAnswer4() {
-        return answer4;
     }
 }

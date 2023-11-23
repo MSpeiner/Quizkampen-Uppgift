@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 
 class ServerSideGame {
@@ -9,6 +10,8 @@ class ServerSideGame {
     private final QuestionManager questionManager = new QuestionManager();
     // Håller reda på spelets nuvarande tillstånd
     private final GameState gameState = new GameState();
+    private int winCounterPlayer1 = 0;
+    private int winCounterPlayer2 = 0;
 
     public ServerSideGame(ServerPlayer player1, ServerPlayer player2) {
         this.player1 = player1;
@@ -61,6 +64,8 @@ class ServerSideGame {
 
     private void setResultBoard(Answer[] player1Result, Answer[] player2Result) {
         ResultGUI rG = new ResultGUI();
+        int scoreCounter1 = 0;
+        int scoreCounter2 = 0;
 
         if (player1Result == gameState.getPlayer1Answers()) {
             String[] stringArrayAnswers = gameState.convertAnswersToStringArray(player1Result);
@@ -68,21 +73,25 @@ class ServerSideGame {
 
             if (gameState.answer1 == "CORRECT") {
                 rG.round1Question1Player1.setBackground(Color.green);
+                scoreCounter1++;
             } else if (gameState.answer1 == "INCORRECT") {
                 rG.round1Question1Player1.setBackground(Color.red);
             }
             if (gameState.answer2 == "CORRECT") {
                 rG.round1Question2Player1.setBackground(Color.green);
+                scoreCounter1++;
             } else if (gameState.answer2 == "INCORRECT") {
                 rG.round1Question2Player1.setBackground(Color.red);
             }
             if (gameState.answer3 == "CORRECT") {
                 rG.round2Question1Player1.setBackground(Color.green);
+                scoreCounter1++;
             } else if (gameState.answer3 == "INCORRECT") {
                 rG.round2Question1Player1.setBackground(Color.red);
             }
             if (gameState.answer4 == "CORRECT") {
                 rG.round2Question2Player1.setBackground(Color.green);
+                scoreCounter1++;
             } else if (gameState.answer4 == "INCORRECT") {
                 rG.round2Question2Player1.setBackground(Color.red);
             }
@@ -93,24 +102,35 @@ class ServerSideGame {
 
             if (gameState.answer1 == "CORRECT") {
                 rG.round1Question1Player2.setBackground(Color.green);
+                scoreCounter2++;
             } else if (gameState.answer1 == "INCORRECT") {
                 rG.round1Question1Player2.setBackground(Color.red);
             }
             if (gameState.answer2 == "CORRECT") {
                 rG.round1Question2Player2.setBackground(Color.green);
+                scoreCounter2++;
             } else if (gameState.answer2 == "INCORRECT") {
                 rG.round1Question2Player2.setBackground(Color.red);
             }
             if (gameState.answer3 == "CORRECT") {
                 rG.round2Question1Player2.setBackground(Color.green);
+                scoreCounter2++;
             } else if (gameState.answer3 == "INCORRECT") {
                 rG.round2Question1Player2.setBackground(Color.red);
             }
             if (gameState.answer4 == "CORRECT") {
                 rG.round2Question2Player2.setBackground(Color.green);
+                scoreCounter2++;
             } else if (gameState.answer4 == "INCORRECT") {
                 rG.round2Question2Player2.setBackground(Color.red);
             }
+        }
+        if (scoreCounter1 > scoreCounter2) {
+            JOptionPane.showMessageDialog(null, "Player One has won!");
+        } else if (scoreCounter2 > scoreCounter1) {
+            JOptionPane.showMessageDialog(null, "Player Two has won!");
+        } else if (scoreCounter1 == scoreCounter2) {
+            JOptionPane.showMessageDialog(null, "It's a tie!");
         }
     }
 
@@ -136,8 +156,8 @@ class ServerSideGame {
                     } else {
                         System.out.println("Det blev lika!");
                     }
-                    
-                    setResultBoard(gameState.getPlayer1Answers(),gameState.getPlayer2Answers());
+
+                    setResultBoard(gameState.getPlayer1Answers(), gameState.getPlayer2Answers());
 
                     player1.send("QUIT");
                     player2.send("QUIT");

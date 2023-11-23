@@ -19,11 +19,6 @@ public class ResultGUI extends JFrame implements ActionListener {
     JLabel player1 = new JLabel("Player one" + " Victories: ");
     JLabel player2 = new JLabel("\t" + "Player two" + " Victories: ");
 
-    int player1WinCounter = 0;
-    String winCounterP1String = Integer.toString(player1WinCounter);
-    int player2WinCounter = 0;
-    String winCounterP2String = Integer.toString(player2WinCounter);
-
    JButton  round1Question1Player1 =new JButton();
    JButton  round1Question1Player2 =new JButton();
 
@@ -48,8 +43,6 @@ public class ResultGUI extends JFrame implements ActionListener {
         jpR.add(north, BorderLayout.NORTH);
 
         north.setLayout(new GridLayout(1, 2));
-        player1.setText("Player one" + " Victories: " + winCounterP1String);
-        player2.setText("Player Two" + " Victories: " + winCounterP2String);
 
         north.add(player1);
         north.add(player2);
@@ -85,12 +78,6 @@ public class ResultGUI extends JFrame implements ActionListener {
             CategoryViewGUI cvg = new CategoryViewGUI();
             setVisible(false);
 
-            /*jpR.removeAll();
-            jpR.revalidate();
-            jpR.repaint();
-             */
-
-            //lägg till funktionallitet för att känna av när det är min tur, återuppta då tidigare spel via protokoll
         }
     }
 }
