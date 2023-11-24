@@ -1,9 +1,11 @@
 package Server;
 
+import Client.ResultGUI;
 import Enums.Answer;
 import Game.GameState;
 import Game.Question;
 import Game.QuestionManager;
+import Client.ResultGUI;
 import javax.swing.*;
 import java.awt.*;
 
@@ -69,7 +71,7 @@ public class ServerSideGame {
     }
 
     //Skapar upp
-    private void setResultBoard(Answer[] player1Result, Answer[] player2Result) {
+    public void setResultBoard(Answer[] player1Result, Answer[] player2Result) {
         ResultGUI rG = new ResultGUI();
         int scoreCounter1 = 0;
         int scoreCounter2 = 0;

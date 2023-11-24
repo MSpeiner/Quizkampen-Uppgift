@@ -14,10 +14,10 @@ public class GameState {
     private String currentCategory;
     private final Answer[] player1Answers;
     private final Answer[] player2Answers;
-    String answer1;
-    String answer2;
-    String answer3;
-    String answer4;
+    public String answer1;
+    public String answer2;
+    public String answer3;
+    public String answer4;
 
     public GameState() {
         // Initialize each player's answers with nulls (unanswered)

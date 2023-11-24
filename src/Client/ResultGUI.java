@@ -20,20 +20,20 @@ public class ResultGUI extends JFrame implements ActionListener {
     JLabel playerOne = new JLabel("Player one");
     JLabel playerTwo = new JLabel("Player two");
 
-    JLabel wins1 = new JLabel("Player 1 amount of wins: ");
-    JLabel wins2 = new JLabel("Player 2 amount of wins: ");
+    public JLabel wins1 = new JLabel("Player 1 amount of wins: ");
+    public JLabel wins2 = new JLabel("Player 2 amount of wins: ");
 
-    JButton round1Question1Player1 = new JButton();
-    JButton round1Question1Player2 = new JButton();
+    public JButton round1Question1Player1 = new JButton();
+    public JButton round1Question1Player2 = new JButton();
 
-    JButton round1Question2Player1 = new JButton();
-    JButton round1Question2Player2 = new JButton();
+    public JButton round1Question2Player1 = new JButton();
+    public JButton round1Question2Player2 = new JButton();
 
-    JButton round2Question1Player1 = new JButton();
-    JButton round2Question1Player2 = new JButton();
+    public JButton round2Question1Player1 = new JButton();
+    public JButton round2Question1Player2 = new JButton();
 
-    JButton round2Question2Player1 = new JButton();
-    JButton round2Question2Player2 = new JButton();
+    public JButton round2Question2Player1 = new JButton();
+    public JButton round2Question2Player2 = new JButton();
 
 
     public ResultGUI() {
