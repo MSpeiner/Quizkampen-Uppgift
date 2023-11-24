@@ -1,5 +1,8 @@
 package Client;
 
+import Enums.Answer;
+import Game.GameState;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -35,8 +38,10 @@ public class ResultGUI extends JFrame implements ActionListener {
     public JButton round2Question2Player1 = new JButton();
     public JButton round2Question2Player2 = new JButton();
 
+    GameState gameState; // GameState gameState = new GameState();
 
-    public ResultGUI() {
+    public ResultGUI(GameState gameState) {
+        this.gameState = gameState;
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
 
@@ -70,7 +75,7 @@ public class ResultGUI extends JFrame implements ActionListener {
         south.add(wins1);
         south.add(continueGame);
         south.add(wins2);
-
+        setResultBoard(gameState.getPlayer1Answers(), gameState.getPlayer2Answers());
         continueGame.addActionListener(this);
 
         pack();
@@ -79,6 +84,88 @@ public class ResultGUI extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+
+    public void setResultBoard(Answer[] player1Result, Answer[] player2Result) {
+        int scoreCounter1 = 0;
+        int scoreCounter2 = 0;
+        int winCounterPlayer1 = 0;
+        int winCounterPlayer2 = 0;
+
+        if (player1Result == gameState.getPlayer1Answers()) {
+            String[] stringArrayAnswers = gameState.convertAnswersToStringArray(player1Result);
+            gameState.sendableAnswers(stringArrayAnswers);
+
+            if (gameState.answer1 == "CORRECT" ) {
+                round1Question1Player1.setBackground(Color.green);
+                scoreCounter1++;
+            } else if (gameState.answer1 == "INCORRECT") {
+                round1Question1Player1.setBackground(Color.red);
+            }
+            if (gameState.answer2 == "CORRECT") {
+                round1Question2Player1.setBackground(Color.green);
+                scoreCounter1++;
+            } else if (gameState.answer2 == "INCORRECT") {
+                round1Question2Player1.setBackground(Color.red);
+            }
+            if (gameState.answer3 == "CORRECT") {
+                round2Question1Player1.setBackground(Color.green);
+                scoreCounter1++;
+            } else if (gameState.answer3 == "INCORRECT") {
+                round2Question1Player1.setBackground(Color.red);
+            }
+            if (gameState.answer4 == "CORRECT") {
+                round2Question2Player1.setBackground(Color.green);
+                scoreCounter1++;
+            } else if (gameState.answer4 == "INCORRECT") {
+                round2Question2Player1.setBackground(Color.red);
+            }
+        }
+        if (player2Result == gameState.getPlayer2Answers()) {
+            String[] stringArrayAnswers2 = gameState.convertAnswersToStringArray(player2Result);
+            gameState.sendableAnswers(stringArrayAnswers2);
+
+            if (gameState.answer1 == "CORRECT") {
+                round1Question1Player2.setBackground(Color.green);
+                scoreCounter2++;
+            } else if (gameState.answer1 == "INCORRECT") {
+                round1Question1Player2.setBackground(Color.red);
+            }
+            if (gameState.answer2 == "CORRECT") {
+                round1Question2Player2.setBackground(Color.green);
+                scoreCounter2++;
+            } else if (gameState.answer2 == "INCORRECT") {
+                round1Question2Player2.setBackground(Color.red);
+            }
+            if (gameState.answer3 == "CORRECT") {
+                round2Question1Player2.setBackground(Color.green);
+                scoreCounter2++;
+            } else if (gameState.answer3 == "INCORRECT") {
+                round2Question1Player2.setBackground(Color.red);
+            }
+            if (gameState.answer4 == "CORRECT") {
+                round2Question2Player2.setBackground(Color.green);
+                scoreCounter2++;
+            } else if (gameState.answer4 == "INCORRECT") {
+                round2Question2Player2.setBackground(Color.red);
+            }
+        }
+        if (scoreCounter1 > scoreCounter2) {
+            JOptionPane.showMessageDialog(null, "Player One has won!");
+            winCounterPlayer1++;
+        } else if (scoreCounter2 > scoreCounter1) {
+            JOptionPane.showMessageDialog(null, "Player Two has won!");
+            winCounterPlayer2++;
+        } else {
+            JOptionPane.showMessageDialog(null, "It's a tie!");
+        }
+        String wins1String = Integer.toString(winCounterPlayer1);
+        wins1.setText("Player 1 amount of wins: " + wins1String);
+        String wins2String = Integer.toString(winCounterPlayer2);
+        wins2.setText("Player 2 amount of wins: " + wins2String);
+        this.revalidate();
+        this.repaint();
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

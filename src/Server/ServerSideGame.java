@@ -7,6 +7,7 @@ import Game.Question;
 import Game.QuestionManager;
 import Client.ResultGUI;
 import javax.swing.*;
+import javax.xml.transform.Result;
 import java.awt.*;
 
 public class ServerSideGame {
@@ -18,8 +19,9 @@ public class ServerSideGame {
     private final QuestionManager questionManager = new QuestionManager();
     // Håller reda på spelets nuvarande tillstånd
     private final GameState gameState = new GameState();
-    public int winCounterPlayer1 = 0;
-    public int winCounterPlayer2 = 0;
+
+    ResultGUI result;
+
 
     public ServerSideGame(ServerPlayer player1, ServerPlayer player2) {
         this.player1 = player1;
@@ -71,84 +73,6 @@ public class ServerSideGame {
     }
 
     //Skapar upp
-    public void setResultBoard(Answer[] player1Result, Answer[] player2Result) {
-        ResultGUI rG = new ResultGUI();
-        int scoreCounter1 = 0;
-        int scoreCounter2 = 0;
-
-        if (player1Result == gameState.getPlayer1Answers()) {
-            String[] stringArrayAnswers = gameState.convertAnswersToStringArray(player1Result);
-            gameState.sendableAnswers(stringArrayAnswers);
-
-            if (gameState.answer1 == "CORRECT") {
-                rG.round1Question1Player1.setBackground(Color.green);
-                scoreCounter1++;
-            } else if (gameState.answer1 == "INCORRECT") {
-                rG.round1Question1Player1.setBackground(Color.red);
-            }
-            if (gameState.answer2 == "CORRECT") {
-                rG.round1Question2Player1.setBackground(Color.green);
-                scoreCounter1++;
-            } else if (gameState.answer2 == "INCORRECT") {
-                rG.round1Question2Player1.setBackground(Color.red);
-            }
-            if (gameState.answer3 == "CORRECT") {
-                rG.round2Question1Player1.setBackground(Color.green);
-                scoreCounter1++;
-            } else if (gameState.answer3 == "INCORRECT") {
-                rG.round2Question1Player1.setBackground(Color.red);
-            }
-            if (gameState.answer4 == "CORRECT") {
-                rG.round2Question2Player1.setBackground(Color.green);
-                scoreCounter1++;
-            } else if (gameState.answer4 == "INCORRECT") {
-                rG.round2Question2Player1.setBackground(Color.red);
-            }
-        }
-        if (player2Result == gameState.getPlayer2Answers()) {
-            String[] stringArrayAnswers2 = gameState.convertAnswersToStringArray(player2Result);
-            gameState.sendableAnswers(stringArrayAnswers2);
-
-            if (gameState.answer1 == "CORRECT") {
-                rG.round1Question1Player2.setBackground(Color.green);
-                scoreCounter2++;
-            } else if (gameState.answer1 == "INCORRECT") {
-                rG.round1Question1Player2.setBackground(Color.red);
-            }
-            if (gameState.answer2 == "CORRECT") {
-                rG.round1Question2Player2.setBackground(Color.green);
-                scoreCounter2++;
-            } else if (gameState.answer2 == "INCORRECT") {
-                rG.round1Question2Player2.setBackground(Color.red);
-            }
-            if (gameState.answer3 == "CORRECT") {
-                rG.round2Question1Player2.setBackground(Color.green);
-                scoreCounter2++;
-            } else if (gameState.answer3 == "INCORRECT") {
-                rG.round2Question1Player2.setBackground(Color.red);
-            }
-            if (gameState.answer4 == "CORRECT") {
-                rG.round2Question2Player2.setBackground(Color.green);
-                scoreCounter2++;
-            } else if (gameState.answer4 == "INCORRECT") {
-                rG.round2Question2Player2.setBackground(Color.red);
-            }
-        }
-        if (scoreCounter1 > scoreCounter2) {
-            JOptionPane.showMessageDialog(null, "Player One has won!");
-            winCounterPlayer1++;
-        } else if (scoreCounter2 > scoreCounter1) {
-            JOptionPane.showMessageDialog(null, "Player Two has won!");
-            winCounterPlayer2++;
-        } else if (scoreCounter1 == scoreCounter2) {
-            JOptionPane.showMessageDialog(null, "It's a tie!");
-        }
-        String wins1String = Integer.toString(winCounterPlayer1);
-        rG.wins1.setText("Player 1 amount of wins: " + wins1String);
-        String wins2String = Integer.toString(winCounterPlayer2);
-        rG.wins2.setText("Player 2 amount of wins: " + wins2String);
-    }
-
     public void doGame() {
         setPlayerName(player1);
         setPlayerName(player2);
@@ -171,8 +95,9 @@ public class ServerSideGame {
                     } else {
                         System.out.println("Det blev lika!");
                     }
+                    ResultGUI result = new ResultGUI(gameState);
 
-                    setResultBoard(gameState.getPlayer1Answers(), gameState.getPlayer2Answers());
+
 
                     player1.send("QUIT");
                     player2.send("QUIT");
@@ -201,3 +126,4 @@ public class ServerSideGame {
         }
     }
 }
+

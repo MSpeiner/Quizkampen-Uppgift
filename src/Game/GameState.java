@@ -2,7 +2,9 @@ package Game;
 
 import Enums.Answer;
 
-public class GameState {
+import java.io.Serializable;
+
+public class GameState implements Serializable {
     public String getCurrentCategory() {
         return currentCategory;
     }
@@ -12,8 +14,8 @@ public class GameState {
     }
 
     private String currentCategory;
-    private final Answer[] player1Answers;
-    private final Answer[] player2Answers;
+    protected Answer[] player1Answers;
+    protected Answer[] player2Answers;
     public String answer1;
     public String answer2;
     public String answer3;
