@@ -12,7 +12,7 @@ public class ResultGUI extends JFrame implements ActionListener {
     JLabel roundOne = new JLabel("Round 1");
     JLabel roundTwo = new JLabel("Round 2");
 
-    JButton playAgain = new JButton("Play again");
+    JButton continueGame = new JButton("Continue");
 
 
     JLabel playerOne = new JLabel("Player one");
@@ -66,10 +66,10 @@ public class ResultGUI extends JFrame implements ActionListener {
 
         south.setLayout(new FlowLayout());
         south.add(wins1);
-        south.add(playAgain);
+        south.add(continueGame);
         south.add(wins2);
 
-        playAgain.addActionListener(this);
+        continueGame.addActionListener(this);
 
         pack();
         setSize(450, 300);
@@ -80,7 +80,7 @@ public class ResultGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == playAgain) {
+        if (e.getSource() == continueGame) {
             dispose();
         }
     }
