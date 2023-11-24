@@ -66,7 +66,7 @@ public class ServerSideGame {
         // Uppdaterar spelet med användarens svar så att det sparas undan till senare
         gameState.updateAnswer(currentPlayer.getPlayerNumber(), answer);
         currentPlayer.send("ANSWER_RESULT " + (answer == Answer.CORRECT ? "Correct" : "Incorrect"));
-
+        currentPlayer.getOpponent().send("OPPONENT_RESULT " + (answer == Answer.CORRECT ? "Correct" : "Incorrect"));
         // TODO: informera spelaren och motståndaren om huruvida spelaren svarade rätt
         // Kom ihåg att hantera det meddelandet hos klienten med något protokoll.
         // T.ex. OPPONENT_ANSWERED CORRECT och YOU_ANSWERED INCORRECT
