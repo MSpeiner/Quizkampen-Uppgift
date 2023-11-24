@@ -6,6 +6,8 @@ import Game.GameState;
 import Game.Question;
 import Game.QuestionManager;
 import Client.ResultGUI;
+import Utils.PropertiesManager;
+
 import javax.swing.*;
 import javax.xml.transform.Result;
 import java.awt.*;
@@ -17,6 +19,7 @@ public class ServerSideGame {
     ServerPlayer currentPlayer;
     // Vi använder för att hämta frågor
     private final QuestionManager questionManager = new QuestionManager();
+    private final PropertiesManager propertiesManager = new PropertiesManager();
     // Håller reda på spelets nuvarande tillstånd
     private final GameState gameState = new GameState();
 
@@ -77,6 +80,7 @@ public class ServerSideGame {
         setPlayerName(player1);
         setPlayerName(player2);
 
+        int numberOfQuestionAsked = 0;
         while (true) {
             // Om vi är på en ny runda!
             if (gameState.isNewRound()) {
@@ -105,6 +109,7 @@ public class ServerSideGame {
                 } else {
                     // Om spelet INTE är slut OCH vi är på en ny runda!
                     // DAGS ATT VÄLJA NY KATEGORI
+                    numberOfQuestionAsked = 1;
                     currentPlayer.send("SELECT_CATEGORY");
                     String categoryMessage = currentPlayer.receive();  // ta emot från klient
                     // Eftersom meddelandet börjar med CATEGORY_SELECTED kommer kategorin börja på index 18
@@ -116,13 +121,21 @@ public class ServerSideGame {
                     // Uppdaterar gamestate med vald kategori
                     // kommer att behöva ha koll på detta när vi ska hämta frågor
                     gameState.setCurrentCategory(category);
+
+                    numberOfQuestionAsked++;
                     askQuestion();
+                    currentPlayer = currentPlayer.getOpponent();
                 }
             } else {
                 // PRESENTERA EN FRÅGA
-                askQuestion();
+                int antalFragor = propertiesManager.antalFragor() * 2; // vi har två spelare tar därför gånger 2
+
+                while (numberOfQuestionAsked <= antalFragor ) {
+                    numberOfQuestionAsked++;
+                    askQuestion();
+                    currentPlayer = currentPlayer.getOpponent();
+                }
             }
-            currentPlayer = currentPlayer.getOpponent();
         }
     }
 }
