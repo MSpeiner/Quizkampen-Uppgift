@@ -1,4 +1,16 @@
-class ServerSideGame {
+package Server;
+
+import Client.ResultGUI;
+import Enums.Answer;
+import Game.GameState;
+import Game.Question;
+import Game.QuestionManager;
+import Client.ResultGUI;
+import javax.swing.*;
+import javax.xml.transform.Result;
+import java.awt.*;
+
+public class ServerSideGame {
 
     ServerPlayer player1;
     ServerPlayer player2;
@@ -8,9 +20,12 @@ class ServerSideGame {
     // Håller reda på spelets nuvarande tillstånd
     private final GameState gameState = new GameState();
 
-    public ServerSideGame(ServerPlayer player1, ServerPlayer player2){
-        this.player1=player1;
-        this.player2=player2;
+    ResultGUI result;
+
+
+    public ServerSideGame(ServerPlayer player1, ServerPlayer player2) {
+        this.player1 = player1;
+        this.player2 = player2;
         this.currentPlayer = player1;
         this.player1.setOpponent(player2);
         this.player2.setOpponent(player1);
@@ -59,29 +74,33 @@ class ServerSideGame {
         // T.ex. OPPONENT_ANSWERED CORRECT och YOU_ANSWERED INCORRECT
     }
 
-    public void doGame(){
+    //Skapar upp
+    public void doGame() {
         setPlayerName(player1);
         setPlayerName(player2);
 
         while (true) {
             // Om vi är på en ny runda!
-            if(gameState.isNewRound()){
+            if(gameState.isNewRound()) {
                 // Kollar vi först om spelet är slut
-                if(gameState.gameIsOver()){
+                if (gameState.gameIsOver()) {
                     // LOGIK FÖR NÄR SPELET ÄR SLUT
                     int player1Score = gameState.getCorrectForPlayer1();
                     int player2Score = gameState.getCorrectForPlayer2();
                     System.out.println(player1.getPlayerName() + " fick " + player1Score + " rätt!");
                     System.out.println(player2.getPlayerName() + " fick " + player2Score + " rätt!");
                     int winner = gameState.getWinner();
-                    if(winner == 1){
+                    if (winner == 1) {
                         System.out.println("Vinnaren är " + player1.getPlayerName());
-                    }
-                    else if(winner == 2){
+                    } else if (winner == 2) {
                         System.out.println("Vinnaren är " + player2.getPlayerName());
                     } else {
                         System.out.println("Det blev lika!");
                     }
+                    ResultGUI result = new ResultGUI(gameState);
+
+
+
                     player1.send("QUIT");
                     player2.send("QUIT");
                     break;
@@ -91,7 +110,7 @@ class ServerSideGame {
                     currentPlayer.send("SELECT_CATEGORY");
                     String categoryMessage = currentPlayer.receive();  // ta emot från klient
                     // Eftersom meddelandet börjar med CATEGORY_SELECTED kommer kategorin börja på index 18
-                    String category =  categoryMessage.substring(18);
+                    String category = categoryMessage.substring(18);
                     // Informera current player om att kategorin är vald
                     currentPlayer.send("CATEGORY_SELECTED " + category);
                     // Informera motståndaren om att kategorin är vald
@@ -108,5 +127,5 @@ class ServerSideGame {
             currentPlayer = currentPlayer.getOpponent();
         }
     }
-
 }
+

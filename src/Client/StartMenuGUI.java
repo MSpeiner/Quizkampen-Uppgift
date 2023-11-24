@@ -1,3 +1,7 @@
+package Client;
+
+import Server.ServerPlayer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +13,7 @@ public class StartMenuGUI extends JFrame implements ActionListener {
     private JPanel south = new JPanel();
     private JButton newGame = new JButton("New game");
     private JLabel welcomeText = new JLabel();
-    private ServerPlayer serverPlayer; // ServerPlayer instance
+    private ServerPlayer serverPlayer; // Server.ServerPlayer instance
 
     public StartMenuGUI(ServerPlayer serverPlayer) {
         this.serverPlayer = serverPlayer;

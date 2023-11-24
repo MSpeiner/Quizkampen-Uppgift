@@ -1,10 +1,14 @@
+package Database;
+
+import Game.QuestionManager;
+
 import java.util.ArrayList;
 
-public class Databas {
+public class Database {
 
     private ArrayList<QuestionManager> questionList = new ArrayList<>();
 
-    public Databas() {
+    public Database() {
 
         QuestionManager history = new QuestionManager();
         history.loadQuestions("src/TextFiles/History.txt");
