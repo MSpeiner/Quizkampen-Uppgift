@@ -1,3 +1,6 @@
+package Client;
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -42,7 +45,7 @@ public class Client {
                     playerName = JOptionPane.showInputDialog(null, "Enter your username");
                     // Sen skickar vi det till servern med "NAME" först
                     out.println("NAME " + playerName);
-                    frame = new JFrame("Game Client");
+                    frame = new JFrame("Game Client.Client");
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frame.setSize(400, 300);
 
@@ -84,7 +87,7 @@ public class Client {
                     String answer2 = in.readLine();
                     String answer3 = in.readLine();
                     String answer4 = in.readLine();
-                    // Sen skapar vi en GameViewGUI som ansvarar för att presentera frågor till användaren
+                    // Sen skapar vi en Client.GameViewGUI som ansvarar för att presentera frågor till användaren
                     // Vi stoppar in vår out så att GUI:t kan skicka meddelande till Servern om vilket svar vi
                     // valde
                     GameViewGUI gameView = new GameViewGUI(out, currentCategory);
@@ -104,7 +107,7 @@ public class Client {
                     SwingUtilities.invokeLater(new Runnable() {
                         public void run() {
                             String existingText = answerResultLabel.getText().replace("<html>", "").replace("</html>", "");
-                            answerResultLabel.setText("<html>" + existingText + "<br>Answer was: " + result + "</html>");
+                            answerResultLabel.setText("<html>" + existingText + "<br>Enums.Answer was: " + result + "</html>");
                         }
                     });
                 }
@@ -114,7 +117,7 @@ public class Client {
                 // samt information om huruvida motståndaren svarade rätt eller fel på sin fråga
                 // TODO: Skriva en if-sats där servern meddelar användaren att den väntar på svar
                 // från motståndaren, så att klienten kan rita ut någonting att titta på sålänge
-                // t.ex. hur det står mellan motståndaren och användaren (ResultGUI)
+                // t.ex. hur det står mellan motståndaren och användaren (Client.ResultGUI)
                 if(response.equals("QUIT")){
                     System.out.println("Vi slutar nu");
                     break;

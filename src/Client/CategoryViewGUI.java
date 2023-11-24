@@ -1,3 +1,7 @@
+package Client;
+
+import Enums.Category;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

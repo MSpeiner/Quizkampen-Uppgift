@@ -1,3 +1,7 @@
+package Game;
+
+import Enums.Answer;
+
 public class GameState {
     public String getCurrentCategory() {
         return currentCategory;

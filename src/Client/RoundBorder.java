@@ -1,3 +1,5 @@
+package Client;
+
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;

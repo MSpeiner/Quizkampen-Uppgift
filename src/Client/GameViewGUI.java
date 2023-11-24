@@ -1,3 +1,5 @@
+package Client;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +11,7 @@ import java.util.stream.IntStream;
 public class GameViewGUI extends JFrame {
     private final JPanel mainPanel = new JPanel(new BorderLayout());
     private final JLabel questionLabel = new JLabel("Waiting for question...");
-    private final JLabel categoryLabel = new JLabel("Category: ");
+    private final JLabel categoryLabel = new JLabel("GUI.Category: ");
     private final List<JButton> answerButtons = new ArrayList<>();
 
     private final String category;
@@ -55,7 +57,7 @@ public class GameViewGUI extends JFrame {
 
     public void displayNextQuestion(String question, String[] answers) {
         questionLabel.setText(question);
-        categoryLabel.setText("Category: " + this.category);
+        categoryLabel.setText("GUI.Category: " + this.category);
         for (int i = 0; i < answerButtons.size(); i++) {
             answerButtons.get(i).setText(answers[i]);
             answerButtons.get(i).putClientProperty("answer_index", i);

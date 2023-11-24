@@ -1,4 +1,11 @@
-class ServerSideGame {
+package Server;
+
+import Enums.Answer;
+import Game.GameState;
+import Game.Question;
+import Game.QuestionManager;
+
+public class ServerSideGame {
 
     ServerPlayer player1;
     ServerPlayer player2;
