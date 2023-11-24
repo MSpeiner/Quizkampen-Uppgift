@@ -17,6 +17,9 @@ public class Client {
     private JLabel waitingMessage;
     private JLabel answerResultLabel;
 
+    private JLabel playerResultLabel;
+    private JLabel opponentResultLabel;
+
     public Client(String serverAddress) throws Exception {
         socket = new Socket(serverAddress, PORT);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -42,14 +45,30 @@ public class Client {
                     playerName = JOptionPane.showInputDialog(null, "Enter your username");
                     // Sen skickar vi det till servern med "NAME" först
                     out.println("NAME " + playerName);
+
                     frame = new JFrame("Game Client");
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frame.setSize(400, 300);
 
+// Create panels for results
+                    JPanel resultPanel = new JPanel();
+                    resultPanel.setLayout(new GridLayout(1, 2)); // Grid layout for side by side display
+
+                    playerResultLabel = new JLabel("<html>Your Result:<br></html>");
+                    playerResultLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    opponentResultLabel = new JLabel("<html>Opponent's Result:<br></html>");
+                    opponentResultLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+                    resultPanel.add(playerResultLabel);
+                    resultPanel.add(opponentResultLabel);
+
+                    frame.add(resultPanel, BorderLayout.SOUTH);
+
                     // Skapa waitingScreen
                     waitingScreen = new JPanel();
                     waitingScreen.setLayout(new BoxLayout(waitingScreen, BoxLayout.Y_AXIS));
-                    waitingMessage = new JLabel("Waiting for other player..." + playerName);
+                    waitingMessage = new JLabel("Player:" + playerName);
                     waitingMessage.setAlignmentX(Component.CENTER_ALIGNMENT);
                     waitingScreen.add(waitingMessage);
                     answerResultLabel = new JLabel("<html></html>");
@@ -100,14 +119,22 @@ public class Client {
                 }
                 if (response.startsWith("ANSWER_RESULT")) {
                     String result = response.substring(13);
-
-                    SwingUtilities.invokeLater(new Runnable() {
-                        public void run() {
-                            String existingText = answerResultLabel.getText().replace("<html>", "").replace("</html>", "");
-                            answerResultLabel.setText("<html>" + existingText + "<br>Answer was: " + result + "</html>");
-                        }
+                    final String finalPlayerName = playerName; // Create a final copy of playerName
+                    SwingUtilities.invokeLater(() -> {
+                        String existingText = playerResultLabel.getText().replace("<html>", "").replace("</html>", "");
+                        playerResultLabel.setText("<html>" + existingText + "<br>" + finalPlayerName + " answer was: " + result + "</html>");
                     });
                 }
+
+                if (response.startsWith("OPPONENT_RESULT")) {
+                    String opponentResult = response.substring(16);
+                    final String finalOpponentName = opponentName; // Create a final copy of opponentName
+                    SwingUtilities.invokeLater(() -> {
+                        String existingText = opponentResultLabel.getText().replace("<html>", "").replace("</html>", "");
+                        opponentResultLabel.setText("<html>" + existingText + "<br>" + finalOpponentName + "'s answer was: " + opponentResult + "</html>");
+                    });
+                }
+
 
                 // TODO: Skriva if-satser för att hantera meddelanden från servern som
                 // informerar oss om huruvida vi svarade rätt eller fel på frågan användaren
