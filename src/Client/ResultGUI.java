@@ -14,31 +14,31 @@ public class ResultGUI extends JFrame implements ActionListener {
     JLabel roundOne = new JLabel("Round 1");
     JLabel roundTwo = new JLabel("Round 2");
 
-    JButton continueGame = new JButton("Continue Game");
+    JButton continueGame = new JButton("Continue");
 
 
-    JLabel player1 = new JLabel("Player one" + " Victories: ");
-    JLabel player2 = new JLabel("\t" + "Player two" + " Victories: ");
+    JLabel playerOne = new JLabel("Player one");
+    JLabel playerTwo = new JLabel("Player two");
 
-    int player1WinCounter = 0;
-    String winCounterP1String = Integer.toString(player1WinCounter);
-    int player2WinCounter = 0;
-    String winCounterP2String = Integer.toString(player2WinCounter);
+    JLabel wins1 = new JLabel("Player 1 amount of wins: ");
+    JLabel wins2 = new JLabel("Player 2 amount of wins: ");
 
-   JButton  round1Question1Player1 =new JButton();
-   JButton  round1Question1Player2 =new JButton();
+    JButton round1Question1Player1 = new JButton();
+    JButton round1Question1Player2 = new JButton();
 
-   JButton  round1Question2Player1 =new JButton();
-   JButton round1Question2Player2 = new JButton();
+    JButton round1Question2Player1 = new JButton();
+    JButton round1Question2Player2 = new JButton();
 
-   JButton round2Question1Player1 = new JButton();
-   JButton round2Question1Player2 = new JButton();
+    JButton round2Question1Player1 = new JButton();
+    JButton round2Question1Player2 = new JButton();
 
-   JButton round2Question2Player1 = new JButton();
-   JButton round2Question2Player2 = new JButton();
+    JButton round2Question2Player1 = new JButton();
+    JButton round2Question2Player2 = new JButton();
 
 
     public ResultGUI() {
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
 
         setTitle("Quizkampen");
         this.add(jpR);
@@ -49,11 +49,9 @@ public class ResultGUI extends JFrame implements ActionListener {
         jpR.add(north, BorderLayout.NORTH);
 
         north.setLayout(new GridLayout(1, 2));
-        player1.setText("Player one" + " Victories: " + winCounterP1String);
-        player2.setText("Player Two" + " Victories: " + winCounterP2String);
 
-        north.add(player1);
-        north.add(player2);
+        north.add(playerOne);
+        north.add(playerTwo);
 
         center.setLayout(new GridLayout(2, 6));
         center.add(round1Question1Player1);
@@ -69,12 +67,14 @@ public class ResultGUI extends JFrame implements ActionListener {
         center.add(round2Question2Player2);
 
         south.setLayout(new FlowLayout());
+        south.add(wins1);
         south.add(continueGame);
+        south.add(wins2);
 
         continueGame.addActionListener(this);
 
         pack();
-        setSize(350, 300);
+        setSize(450, 300);
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -83,15 +83,7 @@ public class ResultGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == continueGame) {
-            CategoryViewGUI cvg = new CategoryViewGUI();
-            setVisible(false);
-
-            /*jpR.removeAll();
-            jpR.revalidate();
-            jpR.repaint();
-             */
-
-            //lägg till funktionallitet för att känna av när det är min tur, återuppta då tidigare spel via protokoll
+            dispose();
         }
     }
 }

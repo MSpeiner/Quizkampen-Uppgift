@@ -4,6 +4,8 @@ import Enums.Answer;
 import Game.GameState;
 import Game.Question;
 import Game.QuestionManager;
+import javax.swing.*;
+import java.awt.*;
 
 public class ServerSideGame {
 
@@ -14,10 +16,12 @@ public class ServerSideGame {
     private final QuestionManager questionManager = new QuestionManager();
     // Håller reda på spelets nuvarande tillstånd
     private final GameState gameState = new GameState();
+    public int winCounterPlayer1 = 0;
+    public int winCounterPlayer2 = 0;
 
-    public ServerSideGame(ServerPlayer player1, ServerPlayer player2){
-        this.player1=player1;
-        this.player2=player2;
+    public ServerSideGame(ServerPlayer player1, ServerPlayer player2) {
+        this.player1 = player1;
+        this.player2 = player2;
         this.currentPlayer = player1;
         this.player1.setOpponent(player2);
         this.player2.setOpponent(player1);
@@ -64,29 +68,110 @@ public class ServerSideGame {
         // T.ex. OPPONENT_ANSWERED CORRECT och YOU_ANSWERED INCORRECT
     }
 
-    public void doGame(){
+    //Skapar upp
+    private void setResultBoard(Answer[] player1Result, Answer[] player2Result) {
+        ResultGUI rG = new ResultGUI();
+        int scoreCounter1 = 0;
+        int scoreCounter2 = 0;
+
+        if (player1Result == gameState.getPlayer1Answers()) {
+            String[] stringArrayAnswers = gameState.convertAnswersToStringArray(player1Result);
+            gameState.sendableAnswers(stringArrayAnswers);
+
+            if (gameState.answer1 == "CORRECT") {
+                rG.round1Question1Player1.setBackground(Color.green);
+                scoreCounter1++;
+            } else if (gameState.answer1 == "INCORRECT") {
+                rG.round1Question1Player1.setBackground(Color.red);
+            }
+            if (gameState.answer2 == "CORRECT") {
+                rG.round1Question2Player1.setBackground(Color.green);
+                scoreCounter1++;
+            } else if (gameState.answer2 == "INCORRECT") {
+                rG.round1Question2Player1.setBackground(Color.red);
+            }
+            if (gameState.answer3 == "CORRECT") {
+                rG.round2Question1Player1.setBackground(Color.green);
+                scoreCounter1++;
+            } else if (gameState.answer3 == "INCORRECT") {
+                rG.round2Question1Player1.setBackground(Color.red);
+            }
+            if (gameState.answer4 == "CORRECT") {
+                rG.round2Question2Player1.setBackground(Color.green);
+                scoreCounter1++;
+            } else if (gameState.answer4 == "INCORRECT") {
+                rG.round2Question2Player1.setBackground(Color.red);
+            }
+        }
+        if (player2Result == gameState.getPlayer2Answers()) {
+            String[] stringArrayAnswers2 = gameState.convertAnswersToStringArray(player2Result);
+            gameState.sendableAnswers(stringArrayAnswers2);
+
+            if (gameState.answer1 == "CORRECT") {
+                rG.round1Question1Player2.setBackground(Color.green);
+                scoreCounter2++;
+            } else if (gameState.answer1 == "INCORRECT") {
+                rG.round1Question1Player2.setBackground(Color.red);
+            }
+            if (gameState.answer2 == "CORRECT") {
+                rG.round1Question2Player2.setBackground(Color.green);
+                scoreCounter2++;
+            } else if (gameState.answer2 == "INCORRECT") {
+                rG.round1Question2Player2.setBackground(Color.red);
+            }
+            if (gameState.answer3 == "CORRECT") {
+                rG.round2Question1Player2.setBackground(Color.green);
+                scoreCounter2++;
+            } else if (gameState.answer3 == "INCORRECT") {
+                rG.round2Question1Player2.setBackground(Color.red);
+            }
+            if (gameState.answer4 == "CORRECT") {
+                rG.round2Question2Player2.setBackground(Color.green);
+                scoreCounter2++;
+            } else if (gameState.answer4 == "INCORRECT") {
+                rG.round2Question2Player2.setBackground(Color.red);
+            }
+        }
+        if (scoreCounter1 > scoreCounter2) {
+            JOptionPane.showMessageDialog(null, "Player One has won!");
+            winCounterPlayer1++;
+        } else if (scoreCounter2 > scoreCounter1) {
+            JOptionPane.showMessageDialog(null, "Player Two has won!");
+            winCounterPlayer2++;
+        } else if (scoreCounter1 == scoreCounter2) {
+            JOptionPane.showMessageDialog(null, "It's a tie!");
+        }
+        String wins1String = Integer.toString(winCounterPlayer1);
+        rG.wins1.setText("Player 1 amount of wins: " + wins1String);
+        String wins2String = Integer.toString(winCounterPlayer2);
+        rG.wins2.setText("Player 2 amount of wins: " + wins2String);
+    }
+
+    public void doGame() {
         setPlayerName(player1);
         setPlayerName(player2);
 
         while (true) {
             // Om vi är på en ny runda!
-            if(gameState.isNewRound()){
+            if (gameState.isNewRound()) {
                 // Kollar vi först om spelet är slut
-                if(gameState.gameIsOver()){
+                if (gameState.gameIsOver()) {
                     // LOGIK FÖR NÄR SPELET ÄR SLUT
                     int player1Score = gameState.getCorrectForPlayer1();
                     int player2Score = gameState.getCorrectForPlayer2();
                     System.out.println(player1.getPlayerName() + " fick " + player1Score + " rätt!");
                     System.out.println(player2.getPlayerName() + " fick " + player2Score + " rätt!");
                     int winner = gameState.getWinner();
-                    if(winner == 1){
+                    if (winner == 1) {
                         System.out.println("Vinnaren är " + player1.getPlayerName());
-                    }
-                    else if(winner == 2){
+                    } else if (winner == 2) {
                         System.out.println("Vinnaren är " + player2.getPlayerName());
                     } else {
                         System.out.println("Det blev lika!");
                     }
+
+                    setResultBoard(gameState.getPlayer1Answers(), gameState.getPlayer2Answers());
+
                     player1.send("QUIT");
                     player2.send("QUIT");
                     break;
@@ -96,7 +181,7 @@ public class ServerSideGame {
                     currentPlayer.send("SELECT_CATEGORY");
                     String categoryMessage = currentPlayer.receive();  // ta emot från klient
                     // Eftersom meddelandet börjar med CATEGORY_SELECTED kommer kategorin börja på index 18
-                    String category =  categoryMessage.substring(18);
+                    String category = categoryMessage.substring(18);
                     // Informera current player om att kategorin är vald
                     currentPlayer.send("CATEGORY_SELECTED " + category);
                     // Informera motståndaren om att kategorin är vald
@@ -113,5 +198,4 @@ public class ServerSideGame {
             currentPlayer = currentPlayer.getOpponent();
         }
     }
-
 }
