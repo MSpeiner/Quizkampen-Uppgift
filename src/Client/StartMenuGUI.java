@@ -48,7 +48,6 @@ public class StartMenuGUI extends JFrame implements ActionListener {
         jps.removeAll();
         jps.revalidate();
         jps.repaint();
-        CategoryViewGUI cg = new CategoryViewGUI();
         setVisible(false);
     }
 

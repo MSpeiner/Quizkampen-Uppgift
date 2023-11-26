@@ -28,12 +28,6 @@ public class CategoryViewGUI extends JFrame implements ActionListener {
         createFrame();
     }
 
-    public CategoryViewGUI(){
-        createPanel();
-        createButtons();
-        createFrame();
-    }
-
     private void createFrame() {
         pack();
         setSize(300,150);
