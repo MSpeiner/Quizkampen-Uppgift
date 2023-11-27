@@ -1,4 +1,4 @@
-package Client;
+package Client.GUI;
 
 import Server.ServerPlayer;
 
@@ -48,7 +48,7 @@ public class StartMenuGUI extends JFrame implements ActionListener {
         jps.removeAll();
         jps.revalidate();
         jps.repaint();
-        CategoryViewGUI cg = new CategoryViewGUI();
+        // CategoryViewGUI cg = new CategoryViewGUI();
         setVisible(false);
     }
 

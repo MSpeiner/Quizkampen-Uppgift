@@ -1,4 +1,4 @@
-package Client;
+package Client.GUI;
 
 import Enums.Answer;
 import Game.GameState;

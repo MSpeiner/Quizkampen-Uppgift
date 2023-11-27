@@ -1,14 +1,11 @@
 package Server;
 
-import Client.ResultGUI;
+import Client.GUI.ResultGUI;
 import Enums.Answer;
+import Enums.Category;
 import Game.GameState;
 import Game.Question;
 import Game.QuestionManager;
-import Client.ResultGUI;
-import javax.swing.*;
-import javax.xml.transform.Result;
-import java.awt.*;
 
 public class ServerSideGame {
 
@@ -40,17 +37,18 @@ public class ServerSideGame {
         String playerName = command.substring(5);
         // Sparar spelarens namn
         player.setPlayerName(playerName);
+        player.send("YOUR_NAME " + playerName);
         // Skickar spelarens namn till motståndarens klient för deras GUIs skull
         player.getOpponent().send("OPPONENT_NAME " + playerName);
     }
 
     private void askQuestion() {
         // Förutsätter att en kategori är vald
-        String selectedCategory = gameState.getCurrentCategory();
+        Category selectedCategory = gameState.getCurrentCategory();
         // Hämta en slumpmässig fråga från vald kategori
         Question question = questionManager.getQuestionByCategory(selectedCategory);
         // Skicka frågan till spelaren
-        currentPlayer.send("QUESTION + " + question.getQuestion());
+        currentPlayer.send("QUESTION" + question.getQuestion());
         // Hämta ut frågans svarsalternativ
         String[] answers = question.getAnswers();
         for (String answer : answers) {
@@ -65,13 +63,8 @@ public class ServerSideGame {
         Answer answer = answerIndex == question.getCorrectAnswer() ? Answer.CORRECT : Answer.INCORRECT;
         // Uppdaterar spelet med användarens svar så att det sparas undan till senare
         gameState.updateAnswer(currentPlayer.getPlayerNumber(), answer);
-        currentPlayer.send("ANSWER_RESULT " + (answer == Answer.CORRECT ? "Correct" : "Incorrect"));
-        currentPlayer.getOpponent().send("OPPONENT_RESULT " + (answer == Answer.CORRECT ? "Correct" : "Incorrect"));
-
-
-        // TODO: informera spelaren och motståndaren om huruvida spelaren svarade rätt
-        // Kom ihåg att hantera det meddelandet hos klienten med något protokoll.
-        // T.ex. OPPONENT_ANSWERED CORRECT och YOU_ANSWERED INCORRECT
+        currentPlayer.send("ANSWER_RESULT " + answer);
+        currentPlayer.getOpponent().send("OPPONENT_RESULT " + answer);
     }
 
     //Skapar upp
@@ -110,7 +103,7 @@ public class ServerSideGame {
                     currentPlayer.send("SELECT_CATEGORY");
                     String categoryMessage = currentPlayer.receive();  // ta emot från klient
                     // Eftersom meddelandet börjar med CATEGORY_SELECTED kommer kategorin börja på index 18
-                    String category = categoryMessage.substring(18);
+                    Category category = Category.valueOf(categoryMessage.substring(18));
                     // Informera current player om att kategorin är vald
                     currentPlayer.send("CATEGORY_SELECTED " + category);
                     // Informera motståndaren om att kategorin är vald
@@ -124,7 +117,9 @@ public class ServerSideGame {
                 // PRESENTERA EN FRÅGA
                 askQuestion();
             }
-            currentPlayer = currentPlayer.getOpponent();
+            if(!gameState.isNewRound()) {
+                currentPlayer = currentPlayer.getOpponent();
+            }
         }
     }
 }
