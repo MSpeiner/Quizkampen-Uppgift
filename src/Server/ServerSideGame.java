@@ -34,6 +34,14 @@ public class ServerSideGame {
         this.player2.setOpponent(player1);
     }
 
+    private void informPlayerAboutGameProperties(ServerPlayer player) {
+        int numberOfQuestions = propertiesManager.antalFragor();
+        int rounds = propertiesManager.antalOmgangar();
+        player.send("GAME_INFORMATION");
+        player.send("ROUNDS " + rounds);
+        player.send("QUESTIONS " + numberOfQuestions);
+    }
+
     private void setPlayerName(ServerPlayer player) {
         // Promptar klienten till att be om användarens namn
         player.send("ENTER_NAME");
@@ -75,6 +83,8 @@ public class ServerSideGame {
 
     //Skapar upp
     public void doGame() {
+        informPlayerAboutGameProperties(player1);
+        informPlayerAboutGameProperties(player2);
         setPlayerName(player1);
         setPlayerName(player2);
 

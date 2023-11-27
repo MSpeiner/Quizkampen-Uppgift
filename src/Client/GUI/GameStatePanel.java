@@ -41,6 +41,7 @@ public class GameStatePanel extends JPanel {
         add(createCenteredLabel("Category"));
         add(createCenteredLabel(Objects.requireNonNullElse(opponentName, "Opponent")));
 
+
         // Adding each round's details
         for (ClientRoundState round : gameState.getRounds()) {
             addRoundDetails(round);

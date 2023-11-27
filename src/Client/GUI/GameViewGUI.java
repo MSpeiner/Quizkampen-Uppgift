@@ -32,6 +32,18 @@ public class GameViewGUI extends JPanel {
         add(answersPanel, BorderLayout.SOUTH);
     }
 
+    public void changeButtonColor(JButton button, Color color) {
+        button.setBackground(color);
+        button.setOpaque(true);
+        button.setBorderPainted(false);
+    }
+
+    public void setAnswerButtonsEnabled(boolean enabled) {
+        for (JButton button : answerButtons) {
+            button.setEnabled(enabled);
+        }
+    }
+
     public int getSelectedAnswerIndex(ActionEvent e) {
         for (int i = 0; i < answerButtons.length; i++) {
             if (e.getSource() == answerButtons[i]) {

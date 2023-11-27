@@ -111,22 +111,39 @@ public class GUIManager {
      * @param answers The possible answers for the question.
      */
     public void answerQuestion(String category, String question, String[] answers) {
+        // Använder SwingUtilities.invokeLater för att se till att GUI-uppdateringar körs på rätt tråd
         SwingUtilities.invokeLater(() -> {
-            clear();
+            clear(); // Rensar det nuvarande gränssnittet
 
+            // Skapar en behållare för frågepanelen
             final GameViewGUI[] questionPanelHolder = new GameViewGUI[1];
 
+            // Initierar frågepanelen med kategorin, frågan, svarsalternativen och en händelsehanterare för knapptryck
             questionPanelHolder[0] = new GameViewGUI(category, question, answers, e -> {
-                int selectedAnswer = questionPanelHolder[0].getSelectedAnswerIndex(e);
-                clientOutputStream.println("ANSWER " + selectedAnswer);
-                clear();
+                JButton clickedButton = (JButton) e.getSource(); // Hämtar den klickade knappen
+                questionPanelHolder[0].changeButtonColor(clickedButton, Color.GREEN); // Ändrar färgen på knappen till grön
+
+                // Avaktiverar alla svarsknappar för att förhindra ytterligare inmatning
+                questionPanelHolder[0].setAnswerButtonsEnabled(false);
+
+                // Skapar en timer för att skapa en fördröjning
+                Timer delayTimer = new Timer(1000, ev -> {
+                    int selectedAnswer = questionPanelHolder[0].getSelectedAnswerIndex(e); // Hämtar index för det valda svaret
+                    clientOutputStream.println("ANSWER " + selectedAnswer); // Skickar det valda svaret till servern
+                    clear(); // Rensar gränssnittet
+                });
+                delayTimer.setRepeats(false); // Ser till att timern inte upprepar sig
+                delayTimer.start(); // Startar timern
             });
 
+            // Lägger till frågepanelen i huvudfönstrets innehållspanel
             frame.getContentPane().add(questionPanelHolder[0], BorderLayout.CENTER);
-            frame.revalidate();
-            frame.repaint();
+            frame.revalidate(); // Uppdaterar och validerar fönstrets layout
+            frame.repaint(); // Omritar fönstret
         });
     }
+
+
 
     /**
      * Displays a screen indicating that the game is waiting for the other player.

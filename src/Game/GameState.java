@@ -96,13 +96,12 @@ public class GameState implements Serializable {
 
         int totalAnswer = player1AnswerCount + player2AnswerCount;
         int antalFragor = propertiesManager.antalFragor();
-        if (totalAnswer == 0) {
-            return true;
-        } else if (totalAnswer % antalFragor == 0)  {
-            return true;
-        } else {
-            return false;
-        }
+        // totalAnswer % antalFragor == 0 OM totalAnswer == 0
+        // returnerar true om totalAnswer % antalFragor == 0
+        // annars returnerar vi false.
+        // Vi kan göra detta genom att direkt returnera
+        // totalAnswer % antalFragor == 0
+        return totalAnswer % antalFragor == 0;
     }
 
     // Helper method to count "CORRECT" answers in a player's answer array
