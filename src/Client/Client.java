@@ -98,14 +98,10 @@ public class Client {
                     Answer answer = Answer.valueOf(response.substring(16));
                     gameState.addOpponentAnswer(answer);
                     guiManager.showGameStateScreen(gameState);
-                } else if (response.startsWith("RESULT")){
-                    // Handle game result
-                    try{
-                        GameState receivedObject = (GameState) objectInputStream.readObject();
-                        ResultGUI result = new ResultGUI(receivedObject);
-                    } catch (ClassNotFoundException e ){
-                        e.printStackTrace();
-                    }
+                } else if (response.startsWith("GAME_OVER")){
+                    String winner = response.substring(9);
+                    guiManager.showGameOverResult(gameState, winner);
+
                 } else if(response.equals("QUIT")){
                     break; // Exit the loop if the server sends a quit command
                 }
