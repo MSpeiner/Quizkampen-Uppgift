@@ -1,6 +1,7 @@
 package Server;
 
 import Client.GUI.ResultGUI;
+import Database.Database;
 import Enums.Answer;
 import Enums.Category;
 import Game.GameState;
@@ -22,6 +23,8 @@ public class ServerSideGame {
     private final PropertiesManager propertiesManager = new PropertiesManager();
     // Håller reda på spelets nuvarande tillstånd
     private final GameState gameState = new GameState();
+
+    Database database = new Database();
 
     ResultGUI result;
 
@@ -52,7 +55,8 @@ public class ServerSideGame {
         // Förutsätter att en kategori är vald
         Category selectedCategory = gameState.getCurrentCategory();
         // Hämta en slumpmässig fråga från vald kategori
-        Question question = questionManager.getQuestionByCategory(selectedCategory);
+        //Question question = questionManager.getQuestionByCategory(selectedCategory);
+        Question question = database.getQuestionByCategory(selectedCategory);
         // Skicka frågan till spelaren
         currentPlayer.send("QUESTION" + question.getQuestion());
         // Hämta ut frågans svarsalternativ

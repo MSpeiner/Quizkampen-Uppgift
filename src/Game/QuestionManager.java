@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -86,5 +87,10 @@ public class QuestionManager {
     public ArrayList<Question> getQuestions() {
         return new ArrayList<>(questionArray);
     }
+
+    public String getCategory (){
+        return questionArray.get(0).getCategory();
+    }
+
 
 }
