@@ -1,9 +1,8 @@
     package Server;
 
-    import java.io.BufferedReader;
-    import java.io.IOException;
-    import java.io.InputStreamReader;
-    import java.io.PrintWriter;
+    import Game.GameState;
+
+    import java.io.*;
     import java.net.Socket;
 
     public class ServerPlayer extends Thread {
@@ -12,6 +11,8 @@
         Socket socket;
         BufferedReader input;
         PrintWriter output;
+
+        ObjectOutputStream objectOutputStream;
 
         public String getPlayerName() {
             return playerName;
@@ -29,6 +30,7 @@
             try {
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 output = new PrintWriter(socket.getOutputStream(), true);
+                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             } catch (IOException e) {
                 System.out.println("Player died: " + e);
             }
@@ -44,6 +46,15 @@
 
         public void send(String message) {
             output.println(message);
+        }
+        public void sendObject(GameState gameState) {
+            try{
+                objectOutputStream.writeObject(gameState);
+                objectOutputStream.flush();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
         }
 
         public String receive() {

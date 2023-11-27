@@ -1,19 +1,24 @@
 package Game;
 
 import Enums.Answer;
+import Utils.PropertiesManager;
+import Enums.Category;
 
-public class GameState {
-    public String getCurrentCategory() {
+import java.io.Serializable;
+
+public class GameState implements Serializable {
+    public Category getCurrentCategory() {
         return currentCategory;
     }
 
-    public void setCurrentCategory(String currentCategory) {
+    public void setCurrentCategory(Category currentCategory) {
         this.currentCategory = currentCategory;
     }
 
-    private String currentCategory;
-    private final Answer[] player1Answers;
-    private final Answer[] player2Answers;
+    private final PropertiesManager propertiesManager = new PropertiesManager();
+    private Category currentCategory;
+    protected Answer[] player1Answers;
+    protected Answer[] player2Answers;
     public String answer1;
     public String answer2;
     public String answer3;
@@ -21,8 +26,9 @@ public class GameState {
 
     public GameState() {
         // Initialize each player's answers with nulls (unanswered)
-        player1Answers = new Answer[4];
-        player2Answers = new Answer[4];
+        int antalFragorTillSpelare = propertiesManager.antalFragor() * propertiesManager.antalOmgangar();
+        player1Answers = new Answer[antalFragorTillSpelare];
+        player2Answers = new Answer[antalFragorTillSpelare];
     }
 
     // Method to update an answer for a player
@@ -87,9 +93,16 @@ public class GameState {
         if (player1AnswerCount != player2AnswerCount) {
             return false; // Om dom inte har lika många svar är det inte en ny runda
         }
-        // Om deras svar är jämnt delbart med 2 är det ny runda
-        // Dvs om båda har 0 eller 2 svar
-        return player1AnswerCount % 2 == 0;
+
+        int totalAnswer = player1AnswerCount + player2AnswerCount;
+        int antalFragor = propertiesManager.antalFragor();
+        if (totalAnswer == 0) {
+            return true;
+        } else if (totalAnswer % antalFragor == 0)  {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Helper method to count "CORRECT" answers in a player's answer array

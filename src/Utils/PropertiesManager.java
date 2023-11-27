@@ -8,7 +8,7 @@ import java.util.Properties;
 public class PropertiesManager {
     public int antalOmgangar() {
         int antalOmgangarInt = 1; // default värde ifall vi inte kan läsa properties filen
-        try (InputStream inputFil = new FileInputStream("src/quizkampen.properties")) {
+        try (InputStream inputFil = new FileInputStream("src/Utils/quizkampen.properties")) {
 
             Properties properties = new Properties();
             // läser in propeties-filen till min properties variabel
@@ -26,7 +26,7 @@ public class PropertiesManager {
 
     public int antalFragor() {
         int antalFragaInt = 1; // default värde ifall vi inte kan läsa properties filen
-        try (InputStream inputFil = new FileInputStream("src/quizkampen.properties")) {
+        try (InputStream inputFil = new FileInputStream("src/Utils/quizkampen.properties")) {
 
             Properties properties = new Properties();
             // läser in propeties-filen till min properties variabel
