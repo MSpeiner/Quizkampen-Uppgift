@@ -1,5 +1,7 @@
 package Game;
 
+import Enums.Category;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,15 +15,18 @@ public class QuestionManager {
     private Random random = new Random();
 
     public void loadQuestions(String path) {
+        System.out.println("We get here? loading questions");
         Path filePath = Paths.get(path);
         questionArray.clear();
 
         try (Scanner file = new Scanner(filePath)) {
             ArrayList<String> questionList = new ArrayList<>();
-            while (file.hasNext()) {
-                questionList.add(file.nextLine());
-            }
 
+            while (file.hasNext()) {
+                String line = file.nextLine();
+                questionList.add(line);
+            }
+            System.out.println("Size: " + questionList.size());
             if (questionList.isEmpty()) {
                 throw new IOException("The file is empty or not formatted correctly");
             }
@@ -53,23 +58,24 @@ public class QuestionManager {
         }
     }
 
-    public Question getQuestionByCategory(String category) {
-        if(category.equals("HISTORY")){
+    public Question getQuestionByCategory(Category category) {
+        if(category.equals(Category.History)){
             loadQuestions("src/TextFiles/History.txt");
         }
-        if(category.equals("RELIGION")){
+        if(category.equals(Category.Religion)){
             loadQuestions("src/TextFiles/Religion.txt");
         }
-        if(category.equals("SCIENCE")){
+        if(category.equals(Category.Science)){
             loadQuestions("src/TextFiles/Science.txt");
         }
-        if(category.equals("SPORT")){
+        if(category.equals(Category.Sport)){
             loadQuestions("src/TextFiles/Sport.txt");
         }
         return getRandomQuestion();
     }
 
     public Question getRandomQuestion() {
+        System.out.println("length: " + questionArray.size());
         if (questionArray.isEmpty()) {
             return null;
         }

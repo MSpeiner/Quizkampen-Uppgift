@@ -2,21 +2,23 @@ package Game;
 
 import Enums.Answer;
 import Utils.PropertiesManager;
+import Enums.Category;
 
 import java.io.Serializable;
 
 public class GameState implements Serializable {
-    public String getCurrentCategory() {
+    public Category getCurrentCategory() {
         return currentCategory;
     }
 
-    public void setCurrentCategory(String currentCategory) {
+    public void setCurrentCategory(Category currentCategory) {
         this.currentCategory = currentCategory;
     }
 
     private final PropertiesManager propertiesManager = new PropertiesManager();
 
     private String currentCategory;
+    private Category currentCategory;
     protected Answer[] player1Answers;
     protected Answer[] player2Answers;
     public String answer1;

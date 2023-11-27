@@ -1,4 +1,4 @@
-package Client;
+package Client.GUI;
 
 import javax.swing.border.Border;
 import java.awt.*;
