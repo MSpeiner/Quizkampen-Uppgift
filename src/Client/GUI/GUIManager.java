@@ -2,8 +2,10 @@ package Client.GUI;
 
 import Client.ClientGameState.ClientGameState;
 import Enums.Category;
+import Game.GameState;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.io.PrintWriter;
 
@@ -159,5 +161,20 @@ public class GUIManager {
             frame.revalidate();
             frame.repaint();
         });
+    }
+
+    public void showGameOverResult(ClientGameState gameState, String winner){
+        SwingUtilities.invokeLater(() -> {
+            clear();
+            String gameOverText = "Game Over!" + winner;
+
+            GameStatePanel gameStatePanel = new GameStatePanel(gameState);
+            JLabel gameOverLabel = new JLabel(gameOverText);
+            frame.getContentPane().add(gameStatePanel, BorderLayout.CENTER);
+            frame.add(gameOverLabel, BorderLayout.NORTH);
+            frame.revalidate();
+            frame.repaint();
+        });
+
     }
 }

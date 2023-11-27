@@ -8,10 +8,6 @@ import Game.Question;
 import Game.QuestionManager;
 import Utils.PropertiesManager;
 
-import javax.swing.*;
-import javax.xml.transform.Result;
-import java.awt.*;
-
 public class ServerSideGame {
 
     ServerPlayer player1;
@@ -22,8 +18,6 @@ public class ServerSideGame {
     private final PropertiesManager propertiesManager = new PropertiesManager();
     // Håller reda på spelets nuvarande tillstånd
     private final GameState gameState = new GameState();
-
-    ResultGUI result;
 
 
     public ServerSideGame(ServerPlayer player1, ServerPlayer player2) {
@@ -62,7 +56,7 @@ public class ServerSideGame {
         // Hämta en slumpmässig fråga från vald kategori
         Question question = questionManager.getQuestionByCategory(selectedCategory);
         // Skicka frågan till spelaren
-        currentPlayer.send("QUESTION" + question.getQuestion());
+        currentPlayer.send("QUESTION " + question.getQuestion());
         // Hämta ut frågans svarsalternativ
         String[] answers = question.getAnswers();
         for (String answer : answers) {
@@ -93,31 +87,26 @@ public class ServerSideGame {
             // Om vi är på en ny runda!
             if(gameState.isNewRound()) {
                 // Kollar vi först om spelet är slut
-                if (gameState.gameIsOver()) {
+                if (gameState.gameIsOver() || numberOfQuestionAsked > 7) {
                     // LOGIK FÖR NÄR SPELET ÄR SLUT
-                    int player1Score = gameState.getCorrectForPlayer1();
-                    int player2Score = gameState.getCorrectForPlayer2();
-                    System.out.println(player1.getPlayerName() + " fick " + player1Score + " rätt!");
-                    System.out.println(player2.getPlayerName() + " fick " + player2Score + " rätt!");
                     int winner = gameState.getWinner();
                     if (winner == 1) {
-                        System.out.println("Vinnaren är " + player1.getPlayerName());
+                        currentPlayer.send("GAME_OVER" + " Winner is: " + player1.getPlayerName());
+                        currentPlayer.getOpponent().send("GAME_OVER" + " Winner is: " + player1.getPlayerName());
                     } else if (winner == 2) {
-                        System.out.println("Vinnaren är " + player2.getPlayerName());
+                        currentPlayer.send("GAME_OVER" + " Winner is: " + player2.getPlayerName());
+                        currentPlayer.getOpponent().send("GAME_OVER" + " Winner is: " + player2.getPlayerName());
                     } else {
-                        System.out.println("Det blev lika!");
+                        currentPlayer.send("GAME_OVER" + " It's a tie!");
+                        currentPlayer.getOpponent().send("GAME_OVER" + " It's a tie!");
                     }
-                    ResultGUI result = new ResultGUI(gameState);
-
-
-
                     player1.send("QUIT");
                     player2.send("QUIT");
                     break;
                 } else {
                     // Om spelet INTE är slut OCH vi är på en ny runda!
                     // DAGS ATT VÄLJA NY KATEGORI
-                    numberOfQuestionAsked = 1;
+                    //numberOfQuestionAsked = 1;
                     currentPlayer.send("SELECT_CATEGORY");
                     String categoryMessage = currentPlayer.receive();  // ta emot från klient
                     // Eftersom meddelandet börjar med CATEGORY_SELECTED kommer kategorin börja på index 18
@@ -135,6 +124,7 @@ public class ServerSideGame {
                 }
             } else {
                 // PRESENTERA EN FRÅGA
+                numberOfQuestionAsked++;
                 askQuestion();
             }
             if(!gameState.isNewRound()) {
