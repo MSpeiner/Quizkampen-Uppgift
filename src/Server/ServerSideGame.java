@@ -6,7 +6,6 @@ import Enums.Category;
 import Game.GameState;
 import Game.Question;
 import Game.QuestionManager;
-import Client.ResultGUI;
 import Utils.PropertiesManager;
 
 import javax.swing.*;
@@ -123,7 +122,6 @@ public class ServerSideGame {
 
                     numberOfQuestionAsked++;
                     askQuestion();
-                    currentPlayer = currentPlayer.getOpponent();
                 }
             } else {
                 // PRESENTERA EN FRÅGA

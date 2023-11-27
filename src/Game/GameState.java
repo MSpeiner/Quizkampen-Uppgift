@@ -16,8 +16,6 @@ public class GameState implements Serializable {
     }
 
     private final PropertiesManager propertiesManager = new PropertiesManager();
-
-    private String currentCategory;
     private Category currentCategory;
     protected Answer[] player1Answers;
     protected Answer[] player2Answers;
