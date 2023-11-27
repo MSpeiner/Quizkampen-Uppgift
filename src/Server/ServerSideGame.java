@@ -48,7 +48,7 @@ public class ServerSideGame {
         // Hämta en slumpmässig fråga från vald kategori
         Question question = questionManager.getQuestionByCategory(selectedCategory);
         // Skicka frågan till spelaren
-        currentPlayer.send("QUESTION" + question.getQuestion());
+        currentPlayer.send("QUESTION " + question.getQuestion());
         // Hämta ut frågans svarsalternativ
         String[] answers = question.getAnswers();
         for (String answer : answers) {

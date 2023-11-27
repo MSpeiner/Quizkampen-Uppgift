@@ -33,8 +33,9 @@ public class CategoryViewGUI extends JPanel {
     }
 
     private void createPanel() {
+        this.setLayout(new BorderLayout());
         this.add(northPanel, BorderLayout.NORTH);
-        this.add(southPanel, BorderLayout.SOUTH);
+        this.add(southPanel, BorderLayout.CENTER);
 
         northPanel.add(questionLabel);
         northPanel.add(chosenCategoryLabel);
