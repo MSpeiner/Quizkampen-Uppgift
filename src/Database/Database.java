@@ -39,16 +39,18 @@ public class Database {
 
         return null;
     }
-    /*
+
     public void removeQuestion (Question question){
-        for (int i=0; i<questionArray.size(); i++){
-            if (question == questionArray.get(i)){
-                questionArray.remove(i);
-                break;
+        for (int i=0; i<questionList.size(); i++){
+            QuestionManager tempManager = questionList.get(i);
+            for(int j=0; j<tempManager.getArraySize(); j++){
+                if(tempManager.getQuestion(j).equals(question)){
+                    questionList.get(i).removeQuestion(j);
+                }
             }
         }
     }
-    */
+
     public static void main(String[] args) {
 
 

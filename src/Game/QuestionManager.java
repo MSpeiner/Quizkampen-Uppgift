@@ -92,5 +92,16 @@ public class QuestionManager {
         return questionArray.get(0).getCategory();
     }
 
+    public Question getQuestion (int index){
+        return questionArray.get(index);
+    }
+
+    public int getArraySize (){
+        return questionArray.size();
+    }
+
+    public void removeQuestion(int index){
+        questionArray.remove(index);
+    }
 
 }

@@ -75,6 +75,7 @@ public class ServerSideGame {
         gameState.updateAnswer(currentPlayer.getPlayerNumber(), answer);
         currentPlayer.send("ANSWER_RESULT " + answer);
         currentPlayer.getOpponent().send("OPPONENT_RESULT " + answer);
+        database.removeQuestion(question);
     }
 
     //Skapar upp
