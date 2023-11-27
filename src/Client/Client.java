@@ -103,14 +103,10 @@ public class Client {
                     for (int i = 0; i < 4; i++) {
                         answers[i] = in.readLine();
                     }
+                    int correctAnswer = Integer.parseInt(in.readLine());
                     String category = gameState.getCurrentCategory();
-                    guiManager.answerQuestion(category, question, answers);
+                    guiManager.answerQuestion(category, question, answers, correctAnswer);
 
-                    try {
-                        Thread.sleep(5000); // 5000 milliseconds = 5 seconds
-                    } catch (InterruptedException e) {
-                        e.printStackTrace(); // Handle the InterruptedException
-                    }
 
                 } else if(response.startsWith("SELECT_CATEGORY")){
                     guiManager.selectCategory();

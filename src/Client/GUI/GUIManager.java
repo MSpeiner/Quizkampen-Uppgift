@@ -28,7 +28,7 @@ public class GUIManager {
         this.clientOutputStream = clientOutputStream;
         frame = new JFrame("Quizkampen!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300);
+        frame.setSize(400, 750);
         frame.setVisible(true);
     }
 
@@ -112,7 +112,7 @@ public class GUIManager {
      * @param question The question to be answered.
      * @param answers The possible answers for the question.
      */
-    public void answerQuestion(String category, String question, String[] answers) {
+    public void answerQuestion(String category, String question, String[] answers, int correctAnswer) {
         // Använder SwingUtilities.invokeLater för att se till att GUI-uppdateringar körs på rätt tråd
         SwingUtilities.invokeLater(() -> {
             clear(); // Rensar det nuvarande gränssnittet
@@ -123,7 +123,7 @@ public class GUIManager {
             // Initierar frågepanelen med kategorin, frågan, svarsalternativen och en händelsehanterare för knapptryck
             questionPanelHolder[0] = new GameViewGUI(category, question, answers, e -> {
                 JButton clickedButton = (JButton) e.getSource(); // Hämtar den klickade knappen
-                questionPanelHolder[0].changeButtonColor(clickedButton, Color.GREEN); // Ändrar färgen på knappen till grön
+                questionPanelHolder[0].changeButtonColor(clickedButton, correctAnswer); // Ändrar färgen på knappen till grön
 
                 // Avaktiverar alla svarsknappar för att förhindra ytterligare inmatning
                 questionPanelHolder[0].setAnswerButtonsEnabled(false);

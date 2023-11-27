@@ -94,14 +94,13 @@ public class GameState implements Serializable {
             return false; // Om dom inte har lika många svar är det inte en ny runda
         }
 
-        int totalAnswer = player1AnswerCount + player2AnswerCount;
-        int antalFragor = propertiesManager.antalFragor();
-        // totalAnswer % antalFragor == 0 OM totalAnswer == 0
-        // returnerar true om totalAnswer % antalFragor == 0
+        int antalFragorPerRunda = propertiesManager.antalFragor();
+        // player1AnswerCount % antalFragorPerRunda == 0 OM totalAnswer == 0
+        // returnerar true om player1AnswerCount % antalFragorPerRunda == 0
         // annars returnerar vi false.
         // Vi kan göra detta genom att direkt returnera
-        // totalAnswer % antalFragor == 0
-        return totalAnswer % antalFragor == 0;
+        // player1AnswerCount % antalFragorPerRunda == 0
+        return player1AnswerCount % antalFragorPerRunda == 0;
     }
 
     // Helper method to count "CORRECT" answers in a player's answer array

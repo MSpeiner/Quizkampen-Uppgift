@@ -63,6 +63,8 @@ public class ServerSideGame {
             // Skicka varje alternativ till spelaren som separata meddelanden
             currentPlayer.send(answer);
         }
+        int correctAnswer = question.getCorrectAnswer();
+        currentPlayer.send(String.valueOf(correctAnswer));
         // Nu väntar vi på spelarens svar
         String answerMessage = currentPlayer.receive();
         // Eftersom spelarens svar kommer börja med ANSWER vet vi att svaret är på index 7
@@ -87,7 +89,7 @@ public class ServerSideGame {
             // Om vi är på en ny runda!
             if(gameState.isNewRound()) {
                 // Kollar vi först om spelet är slut
-                if (gameState.gameIsOver() || numberOfQuestionAsked > 7) {
+                if (gameState.gameIsOver()) {
                     // LOGIK FÖR NÄR SPELET ÄR SLUT
                     int winner = gameState.getWinner();
                     if (winner == 1) {
@@ -118,13 +120,10 @@ public class ServerSideGame {
                     // Uppdaterar gamestate med vald kategori
                     // kommer att behöva ha koll på detta när vi ska hämta frågor
                     gameState.setCurrentCategory(category);
-
-                    numberOfQuestionAsked++;
                     askQuestion();
                 }
             } else {
                 // PRESENTERA EN FRÅGA
-                numberOfQuestionAsked++;
                 askQuestion();
             }
             if(!gameState.isNewRound()) {

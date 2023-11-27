@@ -24,7 +24,10 @@ public class GameStatePanel extends JPanel {
     public GameStatePanel(ClientGameState gameState) {
         this.gameState = gameState;
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        setLayout(new GridLayout(0, 3)); // Flexible grid layout with 3 columns
+        // Set the layout with horizontal and vertical gaps (margins)
+        int hGap = 10; // horizontal gap in pixels
+        int vGap = 10; // vertical gap in pixels
+        setLayout(new GridLayout(0, 3, hGap, vGap)); // Flexible grid layout with 3 columns and gaps
         initializeUI();
     }
 
@@ -76,7 +79,9 @@ public class GameStatePanel extends JPanel {
      * @return A JPanel containing the visual representation of answers.
      */
     private JPanel createAnswerPanel(Answer[] answers) {
-        JPanel panel = new JPanel(new GridLayout(1, answers.length));
+        int hGap = 10; // horizontal gap in pixels
+        int vGap = 10; // vertical gap in pixels
+        JPanel panel = new JPanel(new GridLayout(1, gameState.getNumberOfQuestions(), hGap, vGap));
         for (Answer answer : answers) {
             RoundedBoxPanel roundedPanel = new RoundedBoxPanel(10); // Rounded corners with a radius of 10
             roundedPanel.setBackground(getColorForAnswer(answer));
@@ -104,7 +109,9 @@ public class GameStatePanel extends JPanel {
      * @return A JPanel representing an empty answer slot.
      */
     private JPanel createEmptyAnswerPanel() {
-        JPanel panel = new JPanel(new GridLayout(1, gameState.getNumberOfQuestions()));
+        int hGap = 10; // horizontal gap in pixels
+        int vGap = 10; // vertical gap in pixels
+        JPanel panel = new JPanel(new GridLayout(1, gameState.getNumberOfQuestions(), hGap, vGap));
         for (int i = 0; i < gameState.getNumberOfQuestions(); i++) {
             RoundedBoxPanel roundedPanel = new RoundedBoxPanel(10); // Rounded corners with a radius of 10
             roundedPanel.setBackground(Color.GRAY);
