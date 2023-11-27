@@ -81,7 +81,7 @@ public class Client {
                     guiManager.showGameStateScreen(gameState);
                 } else if(response.startsWith("QUESTION")){
                     // Handle question display
-                    String question = response.substring(9);
+                    String question = response.substring(8);
                     String[] answers = new String[4];
                     for (int i = 0; i < 4; i++) {
                         answers[i] = in.readLine();
