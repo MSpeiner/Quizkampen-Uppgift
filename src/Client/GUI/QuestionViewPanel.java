@@ -5,10 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GameViewGUI extends JPanel {
+public class QuestionViewPanel extends JPanel {
     private final JButton[] answerButtons = new JButton[4];
 
-    public GameViewGUI(String category, String question, String[] answers, ActionListener answerAction) {
+    public QuestionViewPanel(String category, String question, String[] answers, ActionListener answerAction) {
         setLayout(new BorderLayout());
 
         // Category label

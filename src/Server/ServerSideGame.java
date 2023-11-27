@@ -1,6 +1,5 @@
 package Server;
 
-import Client.GUI.ResultGUI;
 import Enums.Answer;
 import Enums.Category;
 import Game.GameState;

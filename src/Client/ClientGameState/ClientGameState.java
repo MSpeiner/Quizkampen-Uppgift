@@ -18,7 +18,7 @@ public class ClientGameState {
      * Constructs a new game state with a specified number of questions per round and total number of rounds.
      *
      * @param numberOfQuestions The number of questions in each round.
-     * @param numberOfRounds The total number of rounds in the game.
+     * @param numberOfRounds    The total number of rounds in the game.
      */
     public ClientGameState(int numberOfQuestions, int numberOfRounds) {
         this.numberOfQuestions = numberOfQuestions;
@@ -97,7 +97,7 @@ public class ClientGameState {
      */
     public void addPlayerAnswer(Answer answer) {
         ClientRoundState currentRound = getCurrentRound();
-        if(currentRound != null){
+        if (currentRound != null) {
             currentRound.addPlayerAnswer(answer);
         }
     }
@@ -109,7 +109,7 @@ public class ClientGameState {
      */
     public void addOpponentAnswer(Answer answer) {
         ClientRoundState currentRound = getCurrentRound();
-        if(currentRound != null){
+        if (currentRound != null) {
             currentRound.addOpponentAnswer(answer);
         }
     }

@@ -1,5 +1,5 @@
 package Enums;
 
 public enum Category {
-    Sport, Religion, Science, History;
+    Sport, Religion, Science, History
 }

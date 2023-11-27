@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Database {
 
-    private ArrayList<QuestionManager> questionList = new ArrayList<>();
+    private final ArrayList<QuestionManager> questionList = new ArrayList<>();
 
     public Database() {
 

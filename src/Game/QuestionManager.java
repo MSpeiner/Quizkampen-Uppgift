@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class QuestionManager {
 
     protected ArrayList<Question> questionArray = new ArrayList<>();
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public void loadQuestions(String path) {
         System.out.println("We get here? loading questions");
@@ -59,16 +59,16 @@ public class QuestionManager {
     }
 
     public Question getQuestionByCategory(Category category) {
-        if(category.equals(Category.History)){
+        if (category.equals(Category.History)) {
             loadQuestions("src/TextFiles/History.txt");
         }
-        if(category.equals(Category.Religion)){
+        if (category.equals(Category.Religion)) {
             loadQuestions("src/TextFiles/Religion.txt");
         }
-        if(category.equals(Category.Science)){
+        if (category.equals(Category.Science)) {
             loadQuestions("src/TextFiles/Science.txt");
         }
-        if(category.equals(Category.Sport)){
+        if (category.equals(Category.Sport)) {
             loadQuestions("src/TextFiles/Sport.txt");
         }
         return getRandomQuestion();
@@ -82,9 +82,4 @@ public class QuestionManager {
         int randomIndex = random.nextInt(questionArray.size());
         return questionArray.get(randomIndex);
     }
-
-    public ArrayList<Question> getQuestions() {
-        return new ArrayList<>(questionArray);
-    }
-
 }

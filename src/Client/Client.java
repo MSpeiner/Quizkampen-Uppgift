@@ -2,11 +2,8 @@ package Client;
 
 import Client.ClientGameState.ClientGameState;
 import Client.GUI.GUIManager;
-import Client.GUI.ResultGUI;
 import Enums.Answer;
-import Game.GameState;
 
-import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
@@ -19,14 +16,12 @@ import java.net.Socket;
  */
 public class Client {
 
-    private static int PORT = 8901; // Server port
-    private Socket socket; // Socket for connecting to the server
-    private BufferedReader in; // Reader for incoming messages
-    private PrintWriter out; // Writer for outgoing messages
+    private static final int PORT = 8901; // Server port
+    private final Socket socket; // Socket for connecting to the server
+    private final BufferedReader in; // Reader for incoming messages
+    private final PrintWriter out; // Writer for outgoing messages
 
     private final GUIManager guiManager; // Manager for the graphical user interface
-
-    ObjectInputStream objectInputStream; // Object input stream for receiving game state objects
 
     /**
      * Constructs a Client and initializes the connection to the server.
@@ -40,7 +35,6 @@ public class Client {
         socket = new Socket(serverAddress, PORT);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
-        objectInputStream = new ObjectInputStream(socket.getInputStream());
 
         // Set up the GUI manager
         guiManager = new GUIManager(out);
@@ -65,21 +59,21 @@ public class Client {
                 response = in.readLine();
 
                 // Handle different types of server messages
-                if(response.startsWith("ENTER_NAME")){
+                if (response.startsWith("ENTER_NAME")) {
                     guiManager.getPlayerName();
-                } else if(response.startsWith("YOUR_NAME")){
+                } else if (response.startsWith("YOUR_NAME")) {
                     playerName = response.substring(10);
                     gameState.setPlayerName(playerName);
                     guiManager.showGameStateScreen(gameState);
-                } else if(response.startsWith("OPPONENT_NAME")){
+                } else if (response.startsWith("OPPONENT_NAME")) {
                     opponentName = response.substring(14);
                     gameState.setOpponentName(opponentName);
                     guiManager.showGameStateScreen(gameState);
-                } else if(response.startsWith("CATEGORY_SELECTED")){
+                } else if (response.startsWith("CATEGORY_SELECTED")) {
                     currentCategory = response.substring(18);
                     gameState.addRound(currentCategory);
                     guiManager.showGameStateScreen(gameState);
-                } else if(response.startsWith("QUESTION")){
+                } else if (response.startsWith("QUESTION")) {
                     // Handle question display
                     String question = response.substring(9);
                     String[] answers = new String[4];
@@ -88,7 +82,7 @@ public class Client {
                     }
                     String category = gameState.getCurrentCategory();
                     guiManager.answerQuestion(category, question, answers);
-                } else if(response.startsWith("SELECT_CATEGORY")){
+                } else if (response.startsWith("SELECT_CATEGORY")) {
                     guiManager.selectCategory();
                 } else if (response.startsWith("ANSWER_RESULT")) {
                     Answer answer = Answer.valueOf(response.substring(14));
@@ -98,11 +92,11 @@ public class Client {
                     Answer answer = Answer.valueOf(response.substring(16));
                     gameState.addOpponentAnswer(answer);
                     guiManager.showGameStateScreen(gameState);
-                } else if (response.startsWith("GAME_OVER")){
+                } else if (response.startsWith("GAME_OVER")) {
                     String winner = response.substring(9);
                     guiManager.showGameOverResult(gameState, winner);
 
-                } else if(response.equals("QUIT")){
+                } else if (response.equals("QUIT")) {
                     break; // Exit the loop if the server sends a quit command
                 }
             }

@@ -7,6 +7,12 @@ import Enums.Category;
 import java.io.Serializable;
 
 public class GameState implements Serializable {
+
+    private final PropertiesManager propertiesManager = new PropertiesManager();
+    private Category currentCategory;
+    protected Answer[] player1Answers;
+    protected Answer[] player2Answers;
+
     public Category getCurrentCategory() {
         return currentCategory;
     }
@@ -14,15 +20,6 @@ public class GameState implements Serializable {
     public void setCurrentCategory(Category currentCategory) {
         this.currentCategory = currentCategory;
     }
-
-    private final PropertiesManager propertiesManager = new PropertiesManager();
-    private Category currentCategory;
-    protected Answer[] player1Answers;
-    protected Answer[] player2Answers;
-    public String answer1;
-    public String answer2;
-    public String answer3;
-    public String answer4;
 
     public GameState() {
         // Initialize each player's answers with nulls (unanswered)
@@ -48,14 +45,6 @@ public class GameState implements Serializable {
         return allAnswersFilled(player1Answers) && allAnswersFilled(player2Answers);
     }
 
-    // Method to check if player one has more "CORRECT" answers than player two
-    public boolean hasWinner() {
-        int player1CorrectCount = countCorrectAnswers(player1Answers);
-        int player2CorrectCount = countCorrectAnswers(player2Answers);
-
-        return player1CorrectCount > player2CorrectCount;
-    }
-
     public int getWinner() {
         int player1CorrectCount = countCorrectAnswers(player1Answers);
         int player2CorrectCount = countCorrectAnswers(player2Answers);
@@ -79,14 +68,6 @@ public class GameState implements Serializable {
         return correctCount;
     }
 
-    public int getCorrectForPlayer1() {
-        return countCorrectAnswers(player1Answers);
-    }
-
-    public int getCorrectForPlayer2() {
-        return countCorrectAnswers(player2Answers);
-    }
-
     public boolean isNewRound() {
         int player1AnswerCount = countAnswers(player1Answers);
         int player2AnswerCount = countAnswers(player2Answers);
@@ -98,11 +79,7 @@ public class GameState implements Serializable {
         int antalFragor = propertiesManager.antalFragor();
         if (totalAnswer == 0) {
             return true;
-        } else if (totalAnswer % antalFragor == 0)  {
-            return true;
-        } else {
-            return false;
-        }
+        } else return totalAnswer % antalFragor == 0;
     }
 
     // Helper method to count "CORRECT" answers in a player's answer array
@@ -123,33 +100,5 @@ public class GameState implements Serializable {
             }
         }
         return true;
-    }
-
-    //Metod som konverterar arrayen svar till string array som kan skickas mellan server och klient
-    public String[] convertAnswersToStringArray(Answer[] answers) {
-        String[] stringArray = new String[answers.length];
-        for (int i = 0; i < answers.length; i++) {
-            if (answers[i] != null) {
-                stringArray[i] = answers[i].toString();
-            }
-        }
-        return stringArray;
-    }
-
-    //Metod som gör om String Array till 4 separata strängar som kan skickas till klienten
-    public void sendableAnswers(String[] Answers) {
-        answer1 = Answers[0];
-        answer2 = Answers[1];
-        answer3 = Answers[2];
-        answer4 = Answers[3];
-    }
-
-    //Getters för metoder och variabler
-    public Answer[] getPlayer1Answers() {
-        return player1Answers;
-    }
-
-    public Answer[] getPlayer2Answers() {
-        return player2Answers;
     }
 }

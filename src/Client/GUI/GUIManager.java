@@ -2,10 +2,7 @@ package Client.GUI;
 
 import Client.ClientGameState.ClientGameState;
 import Enums.Category;
-import Game.GameState;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.io.PrintWriter;
 
@@ -72,9 +69,9 @@ public class GUIManager {
         SwingUtilities.invokeLater(() -> {
             clear();
 
-            final CategoryViewGUI[] categorySelectPanelHolder = new CategoryViewGUI[1];
+            final CategoryViewPanel[] categorySelectPanelHolder = new CategoryViewPanel[1];
 
-            categorySelectPanelHolder[0] = new CategoryViewGUI(e -> {
+            categorySelectPanelHolder[0] = new CategoryViewPanel(e -> {
                 Category selectedCategory = categorySelectPanelHolder[0].getSelectedCategory(e);
                 clientOutputStream.println("CATEGORY_SELECTED " + selectedCategory);
                 clear();
@@ -116,9 +113,9 @@ public class GUIManager {
         SwingUtilities.invokeLater(() -> {
             clear();
 
-            final GameViewGUI[] questionPanelHolder = new GameViewGUI[1];
+            final QuestionViewPanel[] questionPanelHolder = new QuestionViewPanel[1];
 
-            questionPanelHolder[0] = new GameViewGUI(category, question, answers, e -> {
+            questionPanelHolder[0] = new QuestionViewPanel(category, question, answers, e -> {
                 int selectedAnswer = questionPanelHolder[0].getSelectedAnswerIndex(e);
                 clientOutputStream.println("ANSWER " + selectedAnswer);
                 clear();

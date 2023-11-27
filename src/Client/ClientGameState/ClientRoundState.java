@@ -20,7 +20,7 @@ public class ClientRoundState {
     /**
      * Constructs a new round state with a specified category and number of questions.
      *
-     * @param category The category of questions for this round.
+     * @param category          The category of questions for this round.
      * @param numberOfQuestions The total number of questions in this round.
      */
     public ClientRoundState(String category, int numberOfQuestions) {
