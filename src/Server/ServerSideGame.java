@@ -122,14 +122,17 @@ public class ServerSideGame {
                     // Uppdaterar gamestate med vald kategori
                     // kommer att behöva ha koll på detta när vi ska hämta frågor
                     gameState.setCurrentCategory(category);
+                    numberOfQuestionAsked++;
                     askQuestion();
                 }
             } else {
                 // PRESENTERA EN FRÅGA
+                numberOfQuestionAsked++;
                 askQuestion();
             }
-            if (!gameState.isNewRound()) {
+            if (numberOfQuestionAsked == propertiesManager.antalFragor()) {
                 currentPlayer = currentPlayer.getOpponent();
+                numberOfQuestionAsked = 0;
             }
             // int antalFragor = propertiesManager.antalFragor() * 2; // vi har två spelare tar därför gånger 2
             //
