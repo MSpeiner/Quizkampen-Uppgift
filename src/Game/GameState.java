@@ -2,21 +2,21 @@ package Game;
 
 import Enums.Answer;
 import Utils.PropertiesManager;
+import Enums.Category;
 
 import java.io.Serializable;
 
 public class GameState implements Serializable {
-    public String getCurrentCategory() {
+    public Category getCurrentCategory() {
         return currentCategory;
     }
 
-    public void setCurrentCategory(String currentCategory) {
+    public void setCurrentCategory(Category currentCategory) {
         this.currentCategory = currentCategory;
     }
 
     private final PropertiesManager propertiesManager = new PropertiesManager();
-
-    private String currentCategory;
+    private Category currentCategory;
     protected Answer[] player1Answers;
     protected Answer[] player2Answers;
     public String answer1;
@@ -94,15 +94,13 @@ public class GameState implements Serializable {
             return false; // Om dom inte har lika många svar är det inte en ny runda
         }
 
-        int totalAnswer = player1AnswerCount + player2AnswerCount;
-        int antalFragor = propertiesManager.antalFragor();
-        if (totalAnswer == 0) {
-            return true;
-        } else if (totalAnswer % antalFragor == 0)  {
-            return true;
-        } else {
-            return false;
-        }
+        int antalFragorPerRunda = propertiesManager.antalFragor();
+        // player1AnswerCount % antalFragorPerRunda == 0 OM totalAnswer == 0
+        // returnerar true om player1AnswerCount % antalFragorPerRunda == 0
+        // annars returnerar vi false.
+        // Vi kan göra detta genom att direkt returnera
+        // player1AnswerCount % antalFragorPerRunda == 0
+        return player1AnswerCount % antalFragorPerRunda == 0;
     }
 
     // Helper method to count "CORRECT" answers in a player's answer array

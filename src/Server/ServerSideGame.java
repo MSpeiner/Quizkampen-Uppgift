@@ -1,16 +1,14 @@
 package Server;
 
-import Client.ResultGUI;
+import Client.GUI.ResultGUI;
+import Database.Database;
+import Database.Database;
 import Enums.Answer;
+import Enums.Category;
 import Game.GameState;
 import Game.Question;
 import Game.QuestionManager;
-import Client.ResultGUI;
 import Utils.PropertiesManager;
-
-import javax.swing.*;
-import javax.xml.transform.Result;
-import java.awt.*;
 
 public class ServerSideGame {
 
@@ -22,9 +20,7 @@ public class ServerSideGame {
     private final PropertiesManager propertiesManager = new PropertiesManager();
     // Håller reda på spelets nuvarande tillstånd
     private final GameState gameState = new GameState();
-
-    ResultGUI result;
-
+    Database database = new Database();
 
     public ServerSideGame(ServerPlayer player1, ServerPlayer player2) {
         this.player1 = player1;
@@ -32,6 +28,14 @@ public class ServerSideGame {
         this.currentPlayer = player1;
         this.player1.setOpponent(player2);
         this.player2.setOpponent(player1);
+    }
+
+    private void informPlayerAboutGameProperties(ServerPlayer player) {
+        int numberOfQuestions = propertiesManager.antalFragor();
+        int rounds = propertiesManager.antalOmgangar();
+        player.send("GAME_INFORMATION");
+        player.send("ROUNDS " + rounds);
+        player.send("QUESTIONS " + numberOfQuestions);
     }
 
     private void setPlayerName(ServerPlayer player) {
@@ -43,23 +47,27 @@ public class ServerSideGame {
         String playerName = command.substring(5);
         // Sparar spelarens namn
         player.setPlayerName(playerName);
+        player.send("YOUR_NAME " + playerName);
         // Skickar spelarens namn till motståndarens klient för deras GUIs skull
         player.getOpponent().send("OPPONENT_NAME " + playerName);
     }
 
     private void askQuestion() {
         // Förutsätter att en kategori är vald
-        String selectedCategory = gameState.getCurrentCategory();
+        Category selectedCategory = gameState.getCurrentCategory();
         // Hämta en slumpmässig fråga från vald kategori
-        Question question = questionManager.getQuestionByCategory(selectedCategory);
+        //Question question = questionManager.getQuestionByCategory(selectedCategory);
+        Question question = database.getQuestionByCategory(selectedCategory);
         // Skicka frågan till spelaren
-        currentPlayer.send("QUESTION + " + question.getQuestion());
+        currentPlayer.send("QUESTION " + question.getQuestion());
         // Hämta ut frågans svarsalternativ
         String[] answers = question.getAnswers();
         for (String answer : answers) {
             // Skicka varje alternativ till spelaren som separata meddelanden
             currentPlayer.send(answer);
         }
+        int correctAnswer = question.getCorrectAnswer();
+        currentPlayer.send(String.valueOf(correctAnswer));
         // Nu väntar vi på spelarens svar
         String answerMessage = currentPlayer.receive();
         // Eftersom spelarens svar kommer börja med ANSWER vet vi att svaret är på index 7
@@ -68,52 +76,47 @@ public class ServerSideGame {
         Answer answer = answerIndex == question.getCorrectAnswer() ? Answer.CORRECT : Answer.INCORRECT;
         // Uppdaterar spelet med användarens svar så att det sparas undan till senare
         gameState.updateAnswer(currentPlayer.getPlayerNumber(), answer);
-        currentPlayer.send("ANSWER_RESULT " + (answer == Answer.CORRECT ? "Correct" : "Incorrect"));
-        currentPlayer.getOpponent().send("OPPONENT_RESULT " + (answer == Answer.CORRECT ? "Correct" : "Incorrect"));
-        // TODO: informera spelaren och motståndaren om huruvida spelaren svarade rätt
-        // Kom ihåg att hantera det meddelandet hos klienten med något protokoll.
-        // T.ex. OPPONENT_ANSWERED CORRECT och YOU_ANSWERED INCORRECT
+        currentPlayer.send("ANSWER_RESULT " + answer);
+        currentPlayer.getOpponent().send("OPPONENT_RESULT " + answer);
+        database.removeQuestion(question);
     }
 
     //Skapar upp
     public void doGame() {
+        informPlayerAboutGameProperties(player1);
+        informPlayerAboutGameProperties(player2);
         setPlayerName(player1);
         setPlayerName(player2);
 
         int numberOfQuestionAsked = 0;
         while (true) {
             // Om vi är på en ny runda!
-            if (gameState.isNewRound()) {
+            if(gameState.isNewRound()) {
                 // Kollar vi först om spelet är slut
                 if (gameState.gameIsOver()) {
                     // LOGIK FÖR NÄR SPELET ÄR SLUT
-                    int player1Score = gameState.getCorrectForPlayer1();
-                    int player2Score = gameState.getCorrectForPlayer2();
-                    System.out.println(player1.getPlayerName() + " fick " + player1Score + " rätt!");
-                    System.out.println(player2.getPlayerName() + " fick " + player2Score + " rätt!");
                     int winner = gameState.getWinner();
                     if (winner == 1) {
-                        System.out.println("Vinnaren är " + player1.getPlayerName());
+                        currentPlayer.send("GAME_OVER" + " Winner is: " + player1.getPlayerName());
+                        currentPlayer.getOpponent().send("GAME_OVER" + " Winner is: " + player1.getPlayerName());
                     } else if (winner == 2) {
-                        System.out.println("Vinnaren är " + player2.getPlayerName());
+                        currentPlayer.send("GAME_OVER" + " Winner is: " + player2.getPlayerName());
+                        currentPlayer.getOpponent().send("GAME_OVER" + " Winner is: " + player2.getPlayerName());
                     } else {
-                        System.out.println("Det blev lika!");
+                        currentPlayer.send("GAME_OVER" + " It's a tie!");
+                        currentPlayer.getOpponent().send("GAME_OVER" + " It's a tie!");
                     }
-                    ResultGUI result = new ResultGUI(gameState);
-
-
-
                     player1.send("QUIT");
                     player2.send("QUIT");
                     break;
                 } else {
                     // Om spelet INTE är slut OCH vi är på en ny runda!
                     // DAGS ATT VÄLJA NY KATEGORI
-                    numberOfQuestionAsked = 1;
+                    //numberOfQuestionAsked = 1;
                     currentPlayer.send("SELECT_CATEGORY");
                     String categoryMessage = currentPlayer.receive();  // ta emot från klient
                     // Eftersom meddelandet börjar med CATEGORY_SELECTED kommer kategorin börja på index 18
-                    String category = categoryMessage.substring(18);
+                    Category category = Category.valueOf(categoryMessage.substring(18));
                     // Informera current player om att kategorin är vald
                     currentPlayer.send("CATEGORY_SELECTED " + category);
                     // Informera motståndaren om att kategorin är vald
@@ -121,21 +124,22 @@ public class ServerSideGame {
                     // Uppdaterar gamestate med vald kategori
                     // kommer att behöva ha koll på detta när vi ska hämta frågor
                     gameState.setCurrentCategory(category);
-
-                    numberOfQuestionAsked++;
                     askQuestion();
-                    currentPlayer = currentPlayer.getOpponent();
                 }
             } else {
                 // PRESENTERA EN FRÅGA
-                int antalFragor = propertiesManager.antalFragor() * 2; // vi har två spelare tar därför gånger 2
-
-                while (numberOfQuestionAsked <= antalFragor ) {
-                    numberOfQuestionAsked++;
-                    askQuestion();
-                    currentPlayer = currentPlayer.getOpponent();
-                }
+                askQuestion();
             }
+            if(!gameState.isNewRound()) {
+                currentPlayer = currentPlayer.getOpponent();
+            }
+            // int antalFragor = propertiesManager.antalFragor() * 2; // vi har två spelare tar därför gånger 2
+            //
+            //                while (numberOfQuestionAsked <= antalFragor ) {
+            //                    numberOfQuestionAsked++;
+            //                    askQuestion();
+            //                    currentPlayer = currentPlayer.getOpponent();
+            //                }
         }
     }
 }
