@@ -94,6 +94,42 @@ public class GameState implements Serializable {
         return count;
     }
 
+    public boolean playerHasFinishedAnswering() {
+        int player1AnswerCount = countAnswers(player1Answers);
+        int player2AnswerCount = countAnswers(player2Answers);
+        int antalFragorPerRunda = propertiesManager.antalFragor();
+        int totalAnswersSoFar = player1AnswerCount + player2AnswerCount;
+        // Om spelet inte börjat än ska vi inte byta spelare
+        if(totalAnswersSoFar == 0){
+            return false;
+        }
+        // Om totala mängden besvarade frågor är jämnt delbart med antal frågor per runda
+        // har en spelare precis avslutat sin delrunda
+        return totalAnswersSoFar % antalFragorPerRunda == 0;
+    }
+
+    public boolean shouldChangePlayer() {
+        int player1AnswerCount = countAnswers(player1Answers);
+        int player2AnswerCount = countAnswers(player2Answers);
+        int antalFragorPerRunda = propertiesManager.antalFragor();
+        int totalAnswersSoFar = player1AnswerCount + player2AnswerCount;
+        System.out.println();
+        System.out.println("shouldChangePlayer");
+        System.out.println(totalAnswersSoFar);
+        System.out.println(antalFragorPerRunda);
+        System.out.println(playerHasFinishedAnswering());
+        // Om en spelare precis avslutat sin delrunda
+        if(playerHasFinishedAnswering()){
+            // Vi kan få vilken "delrunda" vi är på genom att dela totala mängden besvarade frågor
+            // på antal frågor per runda
+            int subRound = totalAnswersSoFar / antalFragorPerRunda;
+            System.out.println(subRound);
+            // om vi är på en udda delrunda är det dags att byta spelare
+            return subRound % 2 != 0;
+        }
+        return false;
+    }
+
     private boolean allAnswersFilled(Answer[] answers) {
         for (Answer answer : answers) {
             if (answer == null) {
