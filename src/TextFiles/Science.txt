@@ -1,16 +1,51 @@
 Science
-What is the chemical symbol for gold? ; Gd ; Au ; Ag ; Pt ; 1
-In the periodic table, which element has the atomic number 1? ; Hydrogen ; Helium ; Oxygen ; Carbon ; 0
-What is the largest planet in our solar system? ; Earth ; Jupiter ; Mars ; Venus ; 1
-Who is credited with the discovery of penicillin? ; Alexander Fleming ; Marie Curie ; Louis Pasteur ; Joseph Lister ; 0
-What is the main component of Earth's atmosphere? ; Oxygen ; Nitrogen ; Carbon Dioxide ; Argon ; 1
-Which scientist formulated the laws of motion and universal gravitation? ; Albert Einstein ; Isaac Newton ; Galileo Galilei ; Johannes Kepler ; 1
+What is the chemical symbol for the element gold? ; Au ; Ag ; Fe ; Hg ; 0
+In physics, what does the acronym "DNA" stand for? ; Deoxyribonucleic Acid ; Dynamic Nucleic Acid ; Diatomic Nitrogen Atom ; Dopamine Nucleotide Assembly ; 1
+Who developed the theory of general relativity? ; Albert Einstein ; Isaac Newton ; Stephen Hawking ; Galileo Galilei ; 0
+What is the largest planet in our solar system? ; Jupiter ; Saturn ; Earth ; Mars ; 2
+In chemistry, what is the pH scale used to measure? ; Acidity ; Temperature ; Density ; Pressure ; 0
+What is the smallest bone in the human body? ; Stapes ; Femur ; Tibia ; Radius ; 1
+Who is known as the "father of modern physics" and formulated the laws of motion and universal gravitation? ; Isaac Newton ; Galileo Galilei ; Nikola Tesla ; Marie Curie ; 0
+Which gas is essential for photosynthesis in plants? ; Carbon Dioxide ; Oxygen ; Nitrogen ; Hydrogen ; 1
 What is the powerhouse of the cell? ; Mitochondria ; Nucleus ; Endoplasmic Reticulum ; Golgi Apparatus ; 0
-What is the speed of light in a vacuum? ; 300,000 km/s ; 150,000 km/s ; 500,000 km/s ; 1,000,000 km/s ; 0
-Which planet is known as the "Red Planet"? ; Venus ; Mars ; Jupiter ; Saturn ; 1
-What is the chemical formula for water? ; CO2 ; H2O ; O2 ; CH4 ; 1
-Who proposed the theory of relativity? ; Isaac Newton ; Galileo Galilei ; Albert Einstein ; Niels Bohr ; 2
-What is the smallest prime number? ; 0 ; 1 ; 2 ; 3 ; 2
-Which gas is responsible for the Earth's greenhouse effect? ; Oxygen ; Nitrogen ; Carbon Dioxide ; Hydrogen ; 2
-What is the smallest bone in the human body? ; Femur ; Stapes ; Tibia ; Radius ; 1
-What is the chemical symbol for the element with atomic number 6? ; C ; O ; N ; Fe ; 0
+In genetics, what is the name for the crossing of two different species to produce offspring with desirable traits? ; Hybridization ; Cloning ; Mutation ; Inbreeding ; 2
+Who developed the periodic table of elements? ; Dmitri Mendeleev ; Marie Curie ; Antoine Lavoisier ; Linus Pauling ; 0
+What is the chemical symbol for water? ; H2O ; CO2 ; O2 ; CH4 ; 1
+Which planet is known as the "Red Planet"? ; Mars ; Venus ; Jupiter ; Mercury ; 0
+What is the largest mammal in the world? ; Blue Whale ; Elephant ; Giraffe ; Gorilla ; 1
+In astronomy, what is a light-year? ; The distance light travels in a year ; A unit of time ; The brightness of a star ; The duration of sunlight in a day ; 0
+What is the process by which plants make their own food using sunlight? ; Photosynthesis ; Respiration ; Transpiration ; Reproduction ; 1
+Who is credited with the discovery of penicillin, the first widely used antibiotic? ; Alexander Fleming ; Louis Pasteur ; Marie Curie ; Joseph Lister ; 0
+What is the chemical symbol for the element oxygen? ; O ; Ox ; Om ; Oz ; 1
+What is the main function of the ozone layer in the Earth's atmosphere? ; Absorbing ultraviolet radiation ; Regulating temperature ; Producing oxygen ; Blocking visible light ; 0
+In geology, what is the term for a sudden and violent shaking of the ground, often causing great destruction? ; Earthquake ; Tsunami ; Hurricane ; Tornado ; 2
+What is the smallest planet in our solar system? ; Mercury ; Mars ; Venus ; Earth ; 0
+Who is known for the laws of heredity and is considered the father of modern genetics? ; Gregor Mendel ; Charles Darwin ; Alfred Wallace ; Thomas Hunt Morgan ; 1
+What is the chemical symbol for the element carbon? ; C ; Co ; Ca ; Cu ; 0
+Which gas is most abundant in the Earth's atmosphere? ; Nitrogen ; Oxygen ; Carbon Dioxide ; Argon ; 2
+What is the name of the process by which plants release water vapor into the atmosphere? ; Transpiration ; Respiration ; Evaporation ; Condensation ; 1
+Who proposed the theory of evolution by natural selection along with Charles Darwin? ; Alfred Wallace ; Gregor Mendel ; Lamarck ; Watson and Crick ; 2
+What is the chemical symbol for the element helium? ; He ; H ; Ho ; Hu ; 0
+Which scientist is known for the laws of motion and the law of universal gravitation? ; Isaac Newton ; Galileo Galilei ; Albert Einstein ; Nikola Tesla ; 2
+What is the process by which plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll? ; Photosynthesis ; Respiration ; Fermentation ; Digestion ; 1
+What is the largest organ in the human body? ; Skin ; Liver ; Heart ; Brain ; 0
+Who is credited with the discovery of X-rays? ; Wilhelm Roentgen ; Marie Curie ; Albert Einstein ; Max Planck ; 0
+What is the chemical symbol for the element sodium? ; Na ; Ni ; Ne ; No ; 2
+In physics, what does the equation E=mc^2 represent? ; Energy-mass equivalence ; Force and motion ; Wave-particle duality ; Newton's laws of motion ; 0
+Which gas makes up the majority of the Earth's atmosphere? ; Nitrogen ; Oxygen ; Carbon Dioxide ; Argon ; 1
+What is the main function of the ribosomes in a cell? ; Protein synthesis ; Energy production ; DNA replication ; Waste elimination ; 2
+What is the name of the force that opposes the motion of objects through air or water? ; Drag ; Thrust ; Lift ; Tension ; 0
+Who proposed the heliocentric model of the solar system, placing the Sun at the center? ; Nicolaus Copernicus ; Galileo Galilei ; Johannes Kepler ; Ptolemy ; 1
+What is the chemical symbol for the element iron? ; Fe ; Au ; Ag ; Cu ; 2
+In chemistry, what is the term for a substance that speeds up a chemical reaction but is not consumed in the process? ; Catalyst ; Enzyme ; Reactant ; Product ; 0
+Which scientist is known for the development of the three laws of motion? ; Isaac Newton ; Galileo Galilei ; Albert Einstein ; Nikola Tesla ; 2
+What is the chemical symbol for the element nitrogen? ; N ; Ni ; Na ; Ne ; 0
+Who is known for the discovery of the structure of DNA, along with James Watson? ; Francis Crick ; Rosalind Franklin ; Linus Pauling ; Maurice Wilkins ; 1
+What is the chemical symbol for the element silver? ; Ag ; Au ; Si ; Sr ; 2
+In physics, what is the unit of measurement for electric current? ; Ampere ; Volt ; Watt ; Ohm ; 1
+Which planet is known as the "Morning Star" or "Evening Star" due to its visibility in the night sky? ; Venus ; Mercury ; Mars ; Jupiter ; 0
+What is the process by which an organism develops from a fertilized egg to maturity? ; Development ; Evolution ; Reproduction ; Growth ; 2
+What is the chemical symbol for the element copper? ; Cu ; Cr ; Cs ; 2
+In astronomy, what is the name for the region of space where gravity is so strong that nothing, not even light, can escape? ; Black Hole ; Nebula ; Quasar ; Galaxy ; 3
+What is the chemical symbol for the element potassium? ; K ; P ; Po ; Pt ; 0
+Who is known for the discovery of radioactivity and the elements polonium and radium? ; Marie Curie ; Ernest Rutherford ; Niels Bohr ; Enrico Fermi ; 1
