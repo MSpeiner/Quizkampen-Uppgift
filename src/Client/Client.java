@@ -122,8 +122,14 @@ public class Client {
                     String winner = response.substring(9);
                     guiManager.showGameOverResult(gameState, winner);
 
-                } else if(response.equals("QUIT")){
+                } else if (response.equals("QUIT")) {
                     break; // Exit the loop if the server sends a quit command
+                    //Om en av spelarna stänger ner programmet stängs server och clienter ner för båda spelarna.
+                } else if (response.equals("GER_UPP")) {
+                    JOptionPane.showMessageDialog(null, "Spelet har avbrutits av din motståndare. \n" +
+                            "På grund av detta avbryts spelet.");
+                    socket.close();
+                    System.exit(0);
                 }
             }
         } finally {

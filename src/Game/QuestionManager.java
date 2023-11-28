@@ -2,6 +2,7 @@ package Game;
 
 import Enums.Category;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -60,16 +61,16 @@ public class QuestionManager {
     }
 
     public Question getQuestionByCategory(Category category) {
-        if(category.equals(Category.History)){
+        if (category.equals(Category.History)) {
             loadQuestions("src/TextFiles/History.txt");
         }
-        if(category.equals(Category.Religion)){
+        if (category.equals(Category.Religion)) {
             loadQuestions("src/TextFiles/Religion.txt");
         }
-        if(category.equals(Category.Science)){
+        if (category.equals(Category.Science)) {
             loadQuestions("src/TextFiles/Science.txt");
         }
-        if(category.equals(Category.Sport)){
+        if (category.equals(Category.Sport)) {
             loadQuestions("src/TextFiles/Sport.txt");
         }
         return getRandomQuestion();
@@ -88,19 +89,24 @@ public class QuestionManager {
         return new ArrayList<>(questionArray);
     }
 
-    public String getCategory (){
+    public String getCategory() {
+        try {
+            questionArray.get(0).getCategory();
+        } catch (IndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null,"Slut på frågor! Vänligen gör en av följande: \n - Starta om spelet med färre rundor. \n - Utöka antalet frågor i textfilerna History, Religion, Science, Sport ");
+        }
         return questionArray.get(0).getCategory();
     }
 
-    public Question getQuestion (int index){
+    public Question getQuestion(int index) {
         return questionArray.get(index);
     }
 
-    public int getArraySize (){
+    public int getArraySize() {
         return questionArray.size();
     }
 
-    public void removeQuestion(int index){
+    public void removeQuestion(int index) {
         questionArray.remove(index);
     }
 
