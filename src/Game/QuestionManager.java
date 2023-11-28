@@ -2,6 +2,7 @@ package Game;
 
 import Enums.Category;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -73,10 +74,15 @@ public class QuestionManager {
     }
 
     public String getCategory() {
+        try {
+            questionArray.get(0).getCategory();
+        } catch (IndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null,"Slut på frågor! Vänligen gör en av följande: \n - Starta om spelet med färre rundor. \n - Utöka antalet frågor i textfilerna History, Religion, Science, Sport ");
+        }
         return questionArray.get(0).getCategory();
     }
 
-    public Question getQuestion(int index) {
+    public Question getQuestion (int index){
         return questionArray.get(index);
     }
 

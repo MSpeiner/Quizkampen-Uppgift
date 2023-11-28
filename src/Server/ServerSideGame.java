@@ -112,17 +112,23 @@ public class ServerSideGame {
                     // DAGS ATT VÄLJA NY KATEGORI
                     //numberOfQuestionAsked = 1;
                     currentPlayer.send("SELECT_CATEGORY");
-                    String categoryMessage = currentPlayer.receive();  // ta emot från klient
-                    // Eftersom meddelandet börjar med CATEGORY_SELECTED kommer kategorin börja på index 18
-                    Category category = Category.valueOf(categoryMessage.substring(18));
-                    // Informera current player om att kategorin är vald
-                    currentPlayer.send("CATEGORY_SELECTED " + category);
-                    // Informera motståndaren om att kategorin är vald
-                    currentPlayer.getOpponent().send("CATEGORY_SELECTED " + category);
-                    // Uppdaterar gamestate med vald kategori
-                    // kommer att behöva ha koll på detta när vi ska hämta frågor
-                    gameState.setCurrentCategory(category);
-                    askQuestion();
+                    try {
+                        String categoryMessage = currentPlayer.receive();  // ta emot från klient
+                        // Eftersom meddelandet börjar med CATEGORY_SELECTED kommer kategorin börja på index 18
+                        Category category = Category.valueOf(categoryMessage.substring(18));
+                        // Informera current player om att kategorin är vald
+                        currentPlayer.send("CATEGORY_SELECTED " + category);
+                        // Informera motståndaren om att kategorin är vald
+                        currentPlayer.getOpponent().send("CATEGORY_SELECTED " + category);
+                        // Uppdaterar gamestate med vald kategori
+                        // kommer att behöva ha koll på detta när vi ska hämta frågor
+                        gameState.setCurrentCategory(category);
+                        askQuestion();
+                        // Om en spelare stänger ner spelet stängs server ner och motståndaren meddelas och klienten stängs ner
+                    } catch (RuntimeException rte) {
+                        currentPlayer.opponent.send("GER_UPP");
+                        currentPlayer.send("GER_UPP");
+                    }
                 }
             } else {
                 // PRESENTERA EN FRÅGA
