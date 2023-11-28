@@ -13,4 +13,34 @@ Which city is considered the holiest in Islam, home to the Kaaba? ; Mecca ; Jeru
 In Sikhism, what is the term for the community kitchen where free meals are served to all visitors? ; Gurudwara ; Langar ; Mandir ; Synagogue ; 1
 What is the sacred text of Zoroastrianism, the religion founded by the prophet Zoroaster? ; Vedas ; Avesta ; Torah ; Bible ; 1
 In Hinduism, what is the concept of righteous duty and moral responsibility called? ; Dharma ; Karma ; Moksha ; Nirvana ; 0
-Who is the central figure in Islam's annual pilgrimage, the Hajj? ; Abraham ; Moses ; Muhammad ; Jesus ; 2
+In Buddhism, what is the term for the fundamental teachings of the Buddha? ; Dharma ; Karma ; Nirvana ; Samsara ; 0
+Who is the central figure in Jainism, known for his teachings on non-violence and asceticism? ; Kundakunda ; Parshvanatha ; Adinatha ; Mahavira ; 3
+In Christianity, what sacrament is a ritual of initiation and symbolizes cleansing from sin? ; Confession ; Communion ; Baptism ; Confirmation ; 2
+What is the name of the founder of the Church of Scientology? ; L. Ron Hubbard ; Joseph Smith ; Mary Baker Eddy ; Ellen G. White ; 0
+In Sikhism, what is the central religious scripture that includes the teachings of Sikh Gurus? ; Guru Granth Sahib ; Dasam Granth ; Anand Sahib ; Rehras ; 0
+What is the term for the central concept in Buddhism, referring to the truth of suffering and the path to its cessation? ; Eightfold Path ; Four Noble Truths ; Middle Way ; Karma ; 1
+In Hinduism, who is the goddess of wealth and prosperity? ; Lakshmi ; Saraswati ; Parvati ; Durga ; 0
+What is the term for the Islamic declaration of faith, affirming the oneness of God and the prophethood of Muhammad? ; Zakat ; Salat ; Shahada ; Hajj ; 2
+In Zoroastrianism, who is the supreme deity and creator of all? ; Ahura Mazda ; Angra Mainyu ; Mithra ; Vayu ; 0
+What is the name of the holy scripture in the Rastafari movement, which includes the teachings of Marcus Garvey? ; The Book of Mormon ; Kebra Nagast ; The Bible ; The Holy Piby ; 3
+In Buddhism, what is the term for compassionate action and the moral law that emphasizes the consequences of one's actions? ; Samsara ; Dharma ; Nirvana ; Karma ; 3
+What is the holiest day in the Jewish calendar, known as the Day of Atonement? ; Yom Kippur ; Hanukkah ; Rosh Hashanah ; Passover ; 0
+Who is considered the first Sikh Guru and the founder of Sikhism? ; Guru Angad ; Guru Gobind Singh ; Guru Nanak ; Guru Tegh Bahadur ; 2
+In Christianity, which apostle is often called the "Apostle to the Gentiles" for his role in spreading the teachings of Jesus beyond the Jewish community? ; Lars ; Peter ; Paul ; John ; 2
+What is the Islamic holy month of fasting, during which Muslims commemorate the first revelation of the Quran to Muhammad? ; Ramadan ; Shawwal ; Dhul-Hijjah ; Muharram ; 0
+In Hinduism, who is the monkey god known for his strength and devotion to Lord Rama? ; Garuda ; Hanuman ; Ganesha ; Kali ; 1
+What is the term for the Sikh initiation ceremony, during which Sikhs formally accept the teachings of the Gurus? ; Nitnem ; Ardas ; Hukam ; Amrit ; 3
+In Islam, what is the term for the pilgrimage to the holy city of Mecca that every Muslim is required to undertake at least once in their lifetime? ; Zakat ; Umrah ; Hajj ; Salat ; 2
+Who is the central figure in the Bahá'í Faith, considered the latest in a line of prophets that includes Abraham, Moses, Buddha, Jesus, and Muhammad? ; The Bab ; Abdul-Baha ; Bahá'u'lláh ; Shoghi Effendi ; 2
+What is the Hindu festival of lights, celebrating the victory of light over darkness and good over evil? ; Raksha Bandhan ; Holi ; Navaratri ; Diwali ; 3
+In Jainism, what is the term for the principle of non-violence towards all living things? ; Ahimsa ; Aparigraha ; Satya ; Asteya ; 0
+What is the name of the Islamic holy book revealed to the Prophet Muhammad? ; Hadith ; Quran ; Sunnah ; Tafsir ; 1
+What is the Buddhist festival that commemorates the birth, enlightenment, and death of Gautama Buddha? ; Songkran ; Diwali ; Vesak ; Hanamatsuri ; 2
+What is the name of the scripture in Hinduism that consists of 108 Upanishads and is considered one of the oldest sacred texts? ; Smritis ; Bhagavad Gita ; SmritisVedas ; Aranyakas ; 2
+In Judaism, what is the term for the Jewish New Year? ; Rosh Hashanah ; Yom Kippur ; Hanukkah ; Passover ; 0
+Who is the founder of the Sikh martial art form known as Gatka? ; Guru Nanak ; Guru Hargobind ; Guru Gobind Singh ; Guru Angad ; 1
+What is the term for the Islamic practice of charitable giving, one of the Five Pillars of Islam? ; Hajj ; Salat ; Sawm ; Zakat ; 3
+In Hinduism, who is the goddess of knowledge, music, arts, and wisdom? ; Saraswati ; Lakshmi ; Parvati ; Durga ; 0
+What is the term for the Jewish coming-of-age ceremony for boys, usually celebrated at the age of 13? ; Bar Mitzvah ; Bat Mitzvah ; Bris ; Hanukkah ; 0
+In Buddhism, what is the name of the path that leads to the cessation of suffering? ; Four Noble Truths ; Middle Way ; Eightfold Path ; Nirvana ; 2
+What is the sacred scripture of Zoroastrianism, consisting of hymns attributed to Zarathustra? ; Avesta ; Gathas ; Yasna ; Vendidad ; 1
