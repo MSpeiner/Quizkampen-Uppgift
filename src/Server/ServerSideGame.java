@@ -132,8 +132,9 @@ public class ServerSideGame {
             if (numberOfQuestionAsked == propertiesManager.antalFragor()) {
                 if (!gameState.isNewRound()) {
                     currentPlayer = currentPlayer.getOpponent();
+                } else {
+                    currentPlayer.getOpponent().send("ROUND_ENDED");
                 }
-                currentPlayer.getOpponent().send("ROUND_ENDED");
                 numberOfQuestionAsked = 0;
             }
 
