@@ -100,7 +100,6 @@ public class Client {
                     String category = gameState.getCurrentCategory();
                     guiManager.answerQuestion(category, question, answers, correctAnswer);
 
-
                 } else if (response.startsWith("SELECT_CATEGORY")) {
                     guiManager.selectCategory();
                 } else if (response.startsWith("ANSWER_RESULT")) {
@@ -111,7 +110,9 @@ public class Client {
                     Answer answer = Answer.valueOf(response.substring(16));
                     gameState.addOpponentAnswer(answer);
                     //guiManager.showGameStateScreen(gameState);
-                } else if (response.startsWith("GAME_OVER")) {
+                } else if (response.startsWith("ROUND_ENDED")) {
+                    guiManager.showGameStateScreen(gameState);
+                }else if (response.startsWith("GAME_OVER")) {
                     String winner = response.substring(9);
                     guiManager.showGameOverResult(gameState, winner);
 
