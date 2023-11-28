@@ -1,5 +1,6 @@
 package Server;
 
+import Database.Database;
 import Enums.Answer;
 import Enums.Category;
 import Game.GameState;
@@ -17,7 +18,7 @@ public class ServerSideGame {
     private final PropertiesManager propertiesManager = new PropertiesManager();
     // Håller reda på spelets nuvarande tillstånd
     private final GameState gameState = new GameState();
-
+    Database database = new Database();
 
     public ServerSideGame(ServerPlayer player1, ServerPlayer player2) {
         this.player1 = player1;
@@ -25,6 +26,14 @@ public class ServerSideGame {
         this.currentPlayer = player1;
         this.player1.setOpponent(player2);
         this.player2.setOpponent(player1);
+    }
+
+    private void informPlayerAboutGameProperties(ServerPlayer player) {
+        int numberOfQuestions = propertiesManager.antalFragor();
+        int rounds = propertiesManager.antalOmgangar();
+        player.send("GAME_INFORMATION");
+        player.send("ROUNDS " + rounds);
+        player.send("QUESTIONS " + numberOfQuestions);
     }
 
     private void setPlayerName(ServerPlayer player) {
@@ -45,7 +54,8 @@ public class ServerSideGame {
         // Förutsätter att en kategori är vald
         Category selectedCategory = gameState.getCurrentCategory();
         // Hämta en slumpmässig fråga från vald kategori
-        Question question = questionManager.getQuestionByCategory(selectedCategory);
+        //Question question = questionManager.getQuestionByCategory(selectedCategory);
+        Question question = database.getQuestionByCategory(selectedCategory);
         // Skicka frågan till spelaren
         currentPlayer.send("QUESTION " + question.getQuestion());
         // Hämta ut frågans svarsalternativ
@@ -54,6 +64,8 @@ public class ServerSideGame {
             // Skicka varje alternativ till spelaren som separata meddelanden
             currentPlayer.send(answer);
         }
+        int correctAnswer = question.getCorrectAnswer();
+        currentPlayer.send(String.valueOf(correctAnswer));
         // Nu väntar vi på spelarens svar
         String answerMessage = currentPlayer.receive();
         // Eftersom spelarens svar kommer börja med ANSWER vet vi att svaret är på index 7
@@ -64,10 +76,13 @@ public class ServerSideGame {
         gameState.updateAnswer(currentPlayer.getPlayerNumber(), answer);
         currentPlayer.send("ANSWER_RESULT " + answer);
         currentPlayer.getOpponent().send("OPPONENT_RESULT " + answer);
+        database.removeQuestion(question);
     }
 
     //Skapar upp
     public void doGame() {
+        informPlayerAboutGameProperties(player1);
+        informPlayerAboutGameProperties(player2);
         setPlayerName(player1);
         setPlayerName(player2);
 
@@ -76,7 +91,7 @@ public class ServerSideGame {
             // Om vi är på en ny runda!
             if(gameState.isNewRound()) {
                 // Kollar vi först om spelet är slut
-                if (gameState.gameIsOver() || numberOfQuestionAsked > 7) {
+                if (gameState.gameIsOver()) {
                     // LOGIK FÖR NÄR SPELET ÄR SLUT
                     int winner = gameState.getWinner();
                     if (winner == 1) {
@@ -107,13 +122,10 @@ public class ServerSideGame {
                     // Uppdaterar gamestate med vald kategori
                     // kommer att behöva ha koll på detta när vi ska hämta frågor
                     gameState.setCurrentCategory(category);
-
-                    numberOfQuestionAsked++;
                     askQuestion();
                 }
             } else {
                 // PRESENTERA EN FRÅGA
-                numberOfQuestionAsked++;
                 askQuestion();
             }
             if(!gameState.isNewRound()) {

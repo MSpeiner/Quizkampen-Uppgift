@@ -16,10 +16,11 @@ import java.net.Socket;
  */
 public class Client {
 
-    private static final int PORT = 8901; // Server port
-    private final Socket socket; // Socket for connecting to the server
-    private final BufferedReader in; // Reader for incoming messages
-    private final PrintWriter out; // Writer for outgoing messages
+    private static int PORT = 8901; // Server port
+    private Socket socket; // Socket for connecting to the server
+    private BufferedReader in; // Reader for incoming messages
+    private PrintWriter out; // Writer for outgoing messages
+    private ClientGameState gameState;
 
     private final GUIManager guiManager; // Manager for the graphical user interface
 
@@ -52,37 +53,56 @@ public class Client {
         String playerName = "";
         String opponentName = "";
         String currentCategory = "";
-        ClientGameState gameState = new ClientGameState(2, 2); // Initialize game state
 
         try {
             while (true) {
                 response = in.readLine();
+                if(response.startsWith("GAME_INFORMATION")){
+                    int rounds;
+                    int numberOfQuestions;
+                    String roundsMessage = in.readLine();
+                    if (roundsMessage.startsWith("ROUNDS")) {
+                        rounds = Integer.parseInt(roundsMessage.substring(7));
+                    } else {
+                        throw new IllegalArgumentException("Invalid message format. Expected message to start with 'ROUNDS'.\nmessage: " + roundsMessage);
+                    }
 
+                    String numberOfQuestionsMessage = in.readLine();
+                    if (numberOfQuestionsMessage.startsWith("QUESTIONS")) {
+                        numberOfQuestions = Integer.parseInt(numberOfQuestionsMessage.substring(10));
+                    } else {
+                        throw new IllegalArgumentException("Invalid message format. Expected message to start with 'QUESTIONS'.\nmessage: " + numberOfQuestionsMessage);
+                    }
+                    gameState = new ClientGameState(numberOfQuestions, rounds);
+                }
                 // Handle different types of server messages
-                if (response.startsWith("ENTER_NAME")) {
+                if(response.startsWith("ENTER_NAME")){
                     guiManager.getPlayerName();
-                } else if (response.startsWith("YOUR_NAME")) {
+                } else if(response.startsWith("YOUR_NAME")){
                     playerName = response.substring(10);
                     gameState.setPlayerName(playerName);
                     guiManager.showGameStateScreen(gameState);
-                } else if (response.startsWith("OPPONENT_NAME")) {
+                } else if(response.startsWith("OPPONENT_NAME")){
                     opponentName = response.substring(14);
                     gameState.setOpponentName(opponentName);
                     guiManager.showGameStateScreen(gameState);
-                } else if (response.startsWith("CATEGORY_SELECTED")) {
+                } else if(response.startsWith("CATEGORY_SELECTED")){
                     currentCategory = response.substring(18);
                     gameState.addRound(currentCategory);
                     guiManager.showGameStateScreen(gameState);
-                } else if (response.startsWith("QUESTION")) {
+                } else if(response.startsWith("QUESTION")){
                     // Handle question display
                     String question = response.substring(9);
                     String[] answers = new String[4];
                     for (int i = 0; i < 4; i++) {
                         answers[i] = in.readLine();
                     }
+                    int correctAnswer = Integer.parseInt(in.readLine());
                     String category = gameState.getCurrentCategory();
-                    guiManager.answerQuestion(category, question, answers);
-                } else if (response.startsWith("SELECT_CATEGORY")) {
+                    guiManager.answerQuestion(category, question, answers, correctAnswer);
+
+
+                } else if(response.startsWith("SELECT_CATEGORY")){
                     guiManager.selectCategory();
                 } else if (response.startsWith("ANSWER_RESULT")) {
                     Answer answer = Answer.valueOf(response.substring(14));
@@ -92,11 +112,11 @@ public class Client {
                     Answer answer = Answer.valueOf(response.substring(16));
                     gameState.addOpponentAnswer(answer);
                     guiManager.showGameStateScreen(gameState);
-                } else if (response.startsWith("GAME_OVER")) {
+                } else if (response.startsWith("GAME_OVER")){
                     String winner = response.substring(9);
                     guiManager.showGameOverResult(gameState, winner);
 
-                } else if (response.equals("QUIT")) {
+                } else if(response.equals("QUIT")){
                     break; // Exit the loop if the server sends a quit command
                 }
             }

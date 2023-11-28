@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -59,16 +60,16 @@ public class QuestionManager {
     }
 
     public Question getQuestionByCategory(Category category) {
-        if (category.equals(Category.History)) {
+        if(category.equals(Category.History)){
             loadQuestions("src/TextFiles/History.txt");
         }
-        if (category.equals(Category.Religion)) {
+        if(category.equals(Category.Religion)){
             loadQuestions("src/TextFiles/Religion.txt");
         }
-        if (category.equals(Category.Science)) {
+        if(category.equals(Category.Science)){
             loadQuestions("src/TextFiles/Science.txt");
         }
-        if (category.equals(Category.Sport)) {
+        if(category.equals(Category.Sport)){
             loadQuestions("src/TextFiles/Sport.txt");
         }
         return getRandomQuestion();
@@ -82,4 +83,25 @@ public class QuestionManager {
         int randomIndex = random.nextInt(questionArray.size());
         return questionArray.get(randomIndex);
     }
+
+    public ArrayList<Question> getQuestions() {
+        return new ArrayList<>(questionArray);
+    }
+
+    public String getCategory (){
+        return questionArray.get(0).getCategory();
+    }
+
+    public Question getQuestion (int index){
+        return questionArray.get(index);
+    }
+
+    public int getArraySize (){
+        return questionArray.size();
+    }
+
+    public void removeQuestion(int index){
+        questionArray.remove(index);
+    }
+
 }
