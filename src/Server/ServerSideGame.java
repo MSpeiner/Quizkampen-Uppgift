@@ -110,7 +110,7 @@ public class ServerSideGame {
                     player2.send("QUIT");
                     break;
                 } else {
-// Om spelet INTE är slut OCH vi är på en ny runda!
+                    // Om spelet INTE är slut OCH vi är på en ny runda!
                     // DAGS ATT VÄLJA NY KATEGORI
                     //numberOfQuestionAsked = 1;
                     currentPlayer.send("SELECT_CATEGORY");
