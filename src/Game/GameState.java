@@ -108,7 +108,6 @@ public class GameState implements Serializable {
             // Vi kan få vilken "delrunda" vi är på genom att dela totala mängden besvarade frågor
             // på antal frågor per runda
             int subRound = totalAnswersSoFar / antalFragorPerRunda;
-            System.out.println(subRound);
             // om vi är på en udda delrunda är det dags att byta spelare
             return subRound % 2 != 0;
         }
