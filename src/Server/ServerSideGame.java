@@ -89,7 +89,7 @@ public class ServerSideGame {
         int numberOfQuestionAsked = 0;
         while (true) {
             // Om vi är på en ny runda!
-            if(gameState.isNewRound()) {
+            if (gameState.isNewRound()) {
                 // Kollar vi först om spelet är slut
                 if (gameState.gameIsOver()) {
                     // LOGIK FÖR NÄR SPELET ÄR SLUT
@@ -128,7 +128,7 @@ public class ServerSideGame {
                 // PRESENTERA EN FRÅGA
                 askQuestion();
             }
-            if(!gameState.isNewRound()) {
+            if (!gameState.isNewRound()) {
                 currentPlayer = currentPlayer.getOpponent();
             }
             // int antalFragor = propertiesManager.antalFragor() * 2; // vi har två spelare tar därför gånger 2

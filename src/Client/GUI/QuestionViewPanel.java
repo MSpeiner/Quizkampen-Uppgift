@@ -33,7 +33,7 @@ public class QuestionViewPanel extends JPanel {
     }
 
     public void changeButtonColor(JButton button, int correctAnswer) {
-        if(button.equals(answerButtons[correctAnswer])){
+        if (button.equals(answerButtons[correctAnswer])) {
             button.setBackground(Color.green);
         } else {
             button.setBackground(Color.red);

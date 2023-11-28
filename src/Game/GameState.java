@@ -3,7 +3,6 @@ package Game;
 import Enums.Answer;
 import Utils.PropertiesManager;
 import Enums.Category;
-
 import java.io.Serializable;
 
 public class GameState implements Serializable {

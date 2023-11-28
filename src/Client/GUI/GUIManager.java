@@ -2,8 +2,6 @@ package Client.GUI;
 
 import Client.ClientGameState.ClientGameState;
 import Enums.Category;
-import Game.Question;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.PrintWriter;

@@ -28,11 +28,12 @@ public class Database {
         sport.loadQuestions("src/TextFiles/Sport.txt");
         questionList.add(sport);
     }
+
     public Question getQuestionByCategory(Category category) {
         String tempCategory = category.toString();
 
-        for (int i=0; i<questionList.size(); i++){
-            if(questionList.get(i).getCategory().equals(tempCategory)){
+        for (int i = 0; i < questionList.size(); i++) {
+            if (questionList.get(i).getCategory().equals(tempCategory)) {
                 return questionList.get(i).getRandomQuestion();
             }
         }
@@ -40,11 +41,11 @@ public class Database {
         return null;
     }
 
-    public void removeQuestion (Question question){
-        for (int i=0; i<questionList.size(); i++){
+    public void removeQuestion(Question question) {
+        for (int i = 0; i < questionList.size(); i++) {
             QuestionManager tempManager = questionList.get(i);
-            for(int j=0; j<tempManager.getArraySize(); j++){
-                if(tempManager.getQuestion(j).equals(question)){
+            for (int j = 0; j < tempManager.getArraySize(); j++) {
+                if (tempManager.getQuestion(j).equals(question)) {
                     questionList.get(i).removeQuestion(j);
                 }
             }

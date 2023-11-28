@@ -19,10 +19,10 @@ class RoundedBoxPanel extends JPanel {
 
         // Draw rounded rectangle
         g2d.setColor(getBackground());
-        g2d.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, radius, radius);
+        g2d.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radius, radius);
 
         // Draw border
         g2d.setColor(Color.BLACK);
-        g2d.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, radius, radius);
+        g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radius, radius);
     }
 }
