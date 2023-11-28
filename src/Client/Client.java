@@ -113,6 +113,7 @@ public class Client {
                 } else if (response.startsWith("GAME_OVER")) {
                     String winner = response.substring(9);
                     guiManager.showGameOverResult(gameState, winner);
+
                 } else if (response.startsWith("REVEAL_OPPONENT_SCORE")){
                     guiManager.showGameStateScreen(gameState);
                 } else if (response.equals("QUIT")) {

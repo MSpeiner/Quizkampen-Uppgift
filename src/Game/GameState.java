@@ -103,10 +103,11 @@ public class GameState implements Serializable {
         if(totalAnswersSoFar == 0){
             return false;
         }
-        // Om en spelare precis avslutat sin delrunda
+        // Om totala mängden svar är jämt delbart med antal frågor
+        // har en spelare precis avslutat sin delrunda
         if(totalAnswersSoFar % antalFragorPerRunda == 0){
-            // Vi kan få vilken "delrunda" vi är på genom att dela totala mängden besvarade frågor
-            // på antal frågor per runda
+            // Totala mängden besvarade frågor dividerat med antal frågor per runda
+            // ger vilken delrunda vi är på
             int subRound = totalAnswersSoFar / antalFragorPerRunda;
             // om vi är på en udda delrunda är det dags att byta spelare
             return subRound % 2 != 0;

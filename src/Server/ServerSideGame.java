@@ -111,6 +111,7 @@ public class ServerSideGame {
                     // Om spelet INTE är slut OCH vi är på en ny runda!
                     // Nu kan motståndaren få se vad spelaren svarade på förgående rond
                     currentPlayer.getOpponent().send("REVEAL_OPPONENT_SCORE");
+                    //numberOfQuestionAsked = 1;
                     // DAGS ATT VÄLJA NY KATEGORI
                     currentPlayer.send("SELECT_CATEGORY");
                     String categoryMessage = currentPlayer.receive();  // ta emot från klient
