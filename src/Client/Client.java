@@ -23,6 +23,7 @@ public class Client {
     private Socket socket; // Socket for connecting to the server
     private BufferedReader in; // Reader for incoming messages
     private PrintWriter out; // Writer for outgoing messages
+    private ClientGameState gameState;
 
     private final GUIManager guiManager; // Manager for the graphical user interface
 
@@ -58,12 +59,28 @@ public class Client {
         String playerName = "";
         String opponentName = "";
         String currentCategory = "";
-        ClientGameState gameState = new ClientGameState(2, 2); // Initialize game state
 
         try {
             while (true) {
                 response = in.readLine();
+                if(response.startsWith("GAME_INFORMATION")){
+                    int rounds;
+                    int numberOfQuestions;
+                    String roundsMessage = in.readLine();
+                    if (roundsMessage.startsWith("ROUNDS")) {
+                        rounds = Integer.parseInt(roundsMessage.substring(7));
+                    } else {
+                        throw new IllegalArgumentException("Invalid message format. Expected message to start with 'ROUNDS'.\nmessage: " + roundsMessage);
+                    }
 
+                    String numberOfQuestionsMessage = in.readLine();
+                    if (numberOfQuestionsMessage.startsWith("QUESTIONS")) {
+                        numberOfQuestions = Integer.parseInt(numberOfQuestionsMessage.substring(10));
+                    } else {
+                        throw new IllegalArgumentException("Invalid message format. Expected message to start with 'QUESTIONS'.\nmessage: " + numberOfQuestionsMessage);
+                    }
+                    gameState = new ClientGameState(numberOfQuestions, rounds);
+                }
                 // Handle different types of server messages
                 if(response.startsWith("ENTER_NAME")){
                     guiManager.getPlayerName();
@@ -86,8 +103,11 @@ public class Client {
                     for (int i = 0; i < 4; i++) {
                         answers[i] = in.readLine();
                     }
+                    int correctAnswer = Integer.parseInt(in.readLine());
                     String category = gameState.getCurrentCategory();
-                    guiManager.answerQuestion(category, question, answers);
+                    guiManager.answerQuestion(category, question, answers, correctAnswer);
+
+
                 } else if(response.startsWith("SELECT_CATEGORY")){
                     guiManager.selectCategory();
                 } else if (response.startsWith("ANSWER_RESULT")) {
