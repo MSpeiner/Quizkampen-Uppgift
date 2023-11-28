@@ -128,7 +128,6 @@ public class Client {
                 } else if (response.equals("GER_UPP")) {
                     JOptionPane.showMessageDialog(null, "Spelet har avbrutits av din motståndare. \n" +
                             "På grund av detta avbryts spelet.");
-                    socket.close();
                     System.exit(0);
                 }
             }
