@@ -28,7 +28,8 @@ public class GUIManager {
         this.clientOutputStream = clientOutputStream;
         frame = new JFrame("Quizkampen!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 750);
+        frame.setSize(380, 740);
+        frame.getContentPane().setBackground(Color.BLUE);
         frame.setVisible(true);
     }
 
