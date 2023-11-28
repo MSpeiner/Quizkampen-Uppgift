@@ -94,7 +94,7 @@ public class GameState implements Serializable {
         return count;
     }
 
-    public boolean playerHasFinishedAnswering() {
+    public boolean shouldChangePlayer() {
         int player1AnswerCount = countAnswers(player1Answers);
         int player2AnswerCount = countAnswers(player2Answers);
         int antalFragorPerRunda = propertiesManager.antalFragor();
@@ -103,23 +103,8 @@ public class GameState implements Serializable {
         if(totalAnswersSoFar == 0){
             return false;
         }
-        // Om totala mängden besvarade frågor är jämnt delbart med antal frågor per runda
-        // har en spelare precis avslutat sin delrunda
-        return totalAnswersSoFar % antalFragorPerRunda == 0;
-    }
-
-    public boolean shouldChangePlayer() {
-        int player1AnswerCount = countAnswers(player1Answers);
-        int player2AnswerCount = countAnswers(player2Answers);
-        int antalFragorPerRunda = propertiesManager.antalFragor();
-        int totalAnswersSoFar = player1AnswerCount + player2AnswerCount;
-        System.out.println();
-        System.out.println("shouldChangePlayer");
-        System.out.println(totalAnswersSoFar);
-        System.out.println(antalFragorPerRunda);
-        System.out.println(playerHasFinishedAnswering());
         // Om en spelare precis avslutat sin delrunda
-        if(playerHasFinishedAnswering()){
+        if(totalAnswersSoFar % antalFragorPerRunda == 0){
             // Vi kan få vilken "delrunda" vi är på genom att dela totala mängden besvarade frågor
             // på antal frågor per runda
             int subRound = totalAnswersSoFar / antalFragorPerRunda;
