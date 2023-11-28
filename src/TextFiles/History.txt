@@ -3,47 +3,39 @@ Who was the first President of the United States? ; Thomas Jefferson ; George Wa
 In what year did Christopher Columbus first reach the Americas? ; 1492 ; 1500 ; 1520 ; 1600 ; 0
 Which ancient civilization built the pyramids in Egypt? ; Mesopotamia ; Greece ; Rome ; Egypt ; 3
 Who was the leader of the Soviet Union during World War II? ; Joseph Stalin ; Vladimir Lenin ; Nikita Khrushchev ; Mikhail Gorbachev ; 0
-In which century did the Renaissance take place? ; 14th ; 15th ; 16th ; 17th ; 1
 What event marked the beginning of World War I? ; Assassination of Archduke Franz Ferdinand ; Bombing of Pearl Harbor ; Treaty of Versailles ; Battle of Stalingrad ; 0
-Who was the queen of ancient Egypt and the last pharaoh? ; Cleopatra ; Nefertiti ; Hatshepsut ; Ankhesenamun ; 0
-Who was the famous nurse during the Crimean War, known as the Lady with the Lamp? ; Florence Nightingale ; Clara Barton ; Mary Seacole ; Dorothea Dix ; 0
+Who was the queen of ancient Egypt and the last pharaoh? ; Ankhesenamun ; Nefertiti ; Hatshepsut ; Cleopatra ; 3
+Who was the famous nurse during the Crimean War, known as the Lady with the Lamp? ; Mary Seacole ; Clara Barton ; Florence Nightingale ; Dorothea Dix ; 2
 What event marked the end of the Cold War? ; Berlin Wall Fall ; Cuban Missile Crisis ; Korean War Armistice ; Vietnam War ; 0
 Who wrote "The Communist Manifesto" with Karl Marx? ; Friedrich Engels ; Vladimir Lenin ; Leon Trotsky ; Mao Zedong ; 0
 Which ancient empire was ruled by Julius Caesar, Augustus, and Nero? ; Persian Empire ; Roman Empire ; Greek Empire ; Byzantine Empire ; 1
-What was the main goal of the Lewis and Clark Expedition in the early 19th century? ; Find the Northwest Passage ; Map the Louisiana Purchase ; Explore the Oregon Trail ; Discover gold in California ; 1
-What was the code name for the Allied invasion of Normandy during World War II? ; Operation Overlord ; Operation Barbarossa ; Operation Market Garden ; Operation Torch ; 0
+What was the code name for the Allied invasion of Normandy during World War II? ; Operation Torch ; Operation Barbarossa ; Operation Market Garden ; Operation Overlord ; 3
 Who was the leader of the civil rights movement in the United States ; Malcolm X ; Martin Luther King Jr. ; Rosa Parks ; W.E.B. Du Bois ; 1
-Which ancient wonder was a colossal statue of the Greek god Zeus, erected in the city of Olympia? ; Colossus of Rhodes ; Statue of Liberty ; Temple of Artemis ; Statue of Zeus at Olympia ; 3
-Who was the first woman to win a Nobel Prize and remains the only person to win Nobel Prizes in two different scientific fields? ; Marie Curie ; Rosalind Franklin ; Barbara McClintock ; Dorothy Crowfoot Hodgkin ; 2
-Which U.S. president is known for issuing the Emancipation Proclamation during the American Civil War? ; Abraham Lincoln ; Andrew Johnson ; Ulysses S. Grant ; James Buchanan ; 1
+Who was the first woman to win a Nobel Prize and remains the only person to win Nobel Prizes in two different scientific fields? ; Barbara McClintock ; Rosalind Franklin ; Marie Curie ; Dorothy Crowfoot Hodgkin ; 2
+Which U.S. president is known for issuing the Emancipation Proclamation during the American Civil War? ; Andrew Johnson ; Abraham Lincoln ; Ulysses S. Grant ; James Buchanan ; 1
 In what year did the Titanic sink after hitting an iceberg in the North Atlantic Ocean? ; 1912 ; 1905 ; 1920 ; 1915 ; 0
-Who was the first astronaut to set foot on the Moon during the Apollo 11 mission? ; Neil Armstrong ; Buzz Aldrin ; Michael Collins ; Yuri Gagarin ; 1
+Who was the first astronaut to set foot on the Moon during the Apollo 11 mission? ; Michael Collins ; Buzz Aldrin ; Neil Armstrong ; Yuri Gagarin ; 2
 Which scientist is best known for developing the theory of general relativity? ; Albert Einstein ; Isaac Newton ; Stephen Hawking ; Galileo Galilei ; 0
-What ancient civilization built the city of Machu Picchu in the Andes Mountains of Peru? ; Inca Empire ; Maya Civilization ; Aztec Empire ; Olmec Civilization ; 2
-Who wrote the play "Romeo and Juliet," one of the most famous works of literature in the world? ; William Shakespeare ; Jane Austen ; Charles Dickens ; Mark Twain ; 1
+What ancient civilization built the city of Machu Picchu in the Andes Mountains of Peru? ; Aztec Empire ; Maya Civilization ; Inca Empire ; Olmec Civilization ; 2
+Who wrote the play "Romeo and Juliet," one of the most famous works of literature in the world? ; William Shakespeare ; Jane Austen ; Charles Dickens ; Mark Twain ; 0
 In what year did the Berlin Wall fall, symbolizing the end of the Cold War? ; 1989 ; 1991 ; 1985 ; 1990 ; 0
-Which queen of England is known for her long reign, spanning from 1837 to 1901, and the Victorian Era is named after her? ; Queen Victoria ; Queen Elizabeth I ; Queen Mary ; Queen Anne ; 1
-What was the main cause of the Great Depression, a severe worldwide economic depression in the 1930s? ; Stock market crash of 1929 ; World War I ; Agricultural collapse ; Technological advancements ; 1
-Who was the famous painter responsible for works like "Starry Night" and "The Starry Night"? ; Vincent van Gogh ; Pablo Picasso ; Leonardo da Vinci ; Claude Monet ; 2
-What battle is considered the turning point in the American Revolution, where the British suffered a significant defeat? ; Battle of Saratoga ; Battle of Bunker Hill ; Battle of Yorktown ; Battle of Trenton ; 1
+Which queen of England is known for her long reign, spanning from 1837 to 1901, and the Victorian Era is named after her? ; Queen Elizabeth I ; Queen Victoria ; Queen Mary ; Queen Anne ; 1
+What was the main cause of the Great Depression, a severe worldwide economic depression in the 1930s? ; Stock market crash of 1929 ; World War I ; Agricultural collapse ; Technological advancements ; 0
+Who was the famous painter responsible for works like "Starry Night" and "The Starry Night"? ; Leonardo da Vinci ; Pablo Picasso ; Vincent van Gogh ; Claude Monet ; 2
+What battle is considered the turning point in the American Revolution, where the British suffered a significant defeat? ; Battle of Bunker Hill ; Battle of Saratoga ; Battle of Yorktown ; Battle of Trenton ; 1
 In what year did the United States declare its independence from Great Britain? ; 1776 ; 1789 ; 1750 ; 1801 ; 0
-Which African-American woman became a prominent figure in the civil rights movement and is known for refusing to give up her seat on a bus in Montgomery, Alabama? ; Rosa Parks ; Harriet Tubman ; Coretta Scott King ; Fannie Lou Hamer ; 2
-Who is the author of the classic novel "To Kill a Mockingbird," addressing issues of racial injustice and moral growth in the American South? ; Harper Lee ; Mark Twain ; J.D. Salinger ; F. Scott Fitzgerald ; 1
+Which African-American woman became a prominent figure in the civil rights movement and is known for refusing to give up her seat on a bus in Montgomery, Alabama? ; Coretta Scott King ; Harriet Tubman ; Rosa Parks ; Fannie Lou Hamer ; 2
+Who is the author of the classic novel "To Kill a Mockingbird," addressing issues of racial injustice and moral growth in the American South? ; Mark Twain ; Harper Lee ; J.D. Salinger ; F. Scott Fitzgerald ; 1
 Who was the ancient Greek philosopher known for his method of questioning and the Socratic method of teaching? ; Socrates ; Plato ; Aristotle ; Diogenes ; 0
-In what year did the Industrial Revolution begin, marking a significant shift in manufacturing and production processes? ; 17th ; 18th ; 19th ; 20th ; 2
-What ancient civilization is credited with the invention of the wheel? ; Mesopotamia ; Egypt ; China ; Indus Valley ; 0
+What ancient civilization is credited with the invention of the wheel? ; Indus Valley ; Egypt ; China ; Mesopotamia  ; 3
 Who wrote the novel "1984," a dystopian classic exploring themes of totalitarianism and government surveillance? ; George Orwell ; Aldous Huxley ; Ray Bradbury ; H.G. Wells ; 0
-What famous scientist made significant contributions to the understanding of genetics through his experiments with pea plants? ; Gregor Mendel ; Charles Darwin ; Thomas Edison ; Louis Pasteur ; 0
-Which Roman emperor is known for building a wall in Britain to defend the empire against invasions? ; Hadrian ; Augustus ; Nero ; Julius Caesar ; 0
+What famous scientist made significant contributions to the understanding of genetics through his experiments with pea plants? ; Louis Pasteur ; Charles Darwin ; Thomas Edison ; Gregor Mendel ; 3
+Which Roman emperor is known for building a wall in Britain to defend the empire against invasions? ; Nero ; Augustus ; Hadrian  ; Julius Caesar ; 2
 In what year did the Russian Revolution take place, leading to the establishment of the Soviet Union? ; 1905 ; 1917 ; 1923 ; 1932 ; 1
-Who is the author of the play "Hamlet," one of William Shakespeare's most famous tragedies? ; William Shakespeare ; Christopher Marlowe ; Ben Jonson ; John Milton ; 0
 What ancient wonder was a massive statue of the Greek god Helios, erected on the island of Rhodes? ; Colossus of Rhodes ; Statue of Zeus at Olympia ; Hanging Gardens of Babylon ; Lighthouse of Alexandria ; 0
 Who was the famous queen of ancient Carthage, known for her role in the Second Punic War against Rome? ; Cleopatra ; Dido ; Boudicca ; Joan of Arc ; 1
 In what year did the French Revolution begin, leading to the overthrow of the monarchy and the rise of radical political ideologies? ; 1765 ; 1789 ; 1804 ; 1832 ; 1
-Which Asian philosophy and spiritual practice emphasizes meditation, ethical living, and the path to enlightenment? ; Buddhism ; Confucianism ; Hinduism ; Taoism ; 0
-What ancient civilization built the city of Teotihuacan in Mesoamerica, known for its massive pyramids and temples? ; Aztecs ; Mayans ; Incas ; Olmecs ; 1
 Who was the 16th President of the United States, leading the country through the Civil War and issuing the Emancipation Proclamation? ; Abraham Lincoln ; Andrew Johnson ; Ulysses S. Grant ; James Buchanan ; 0
-What was the primary cause of the Opium Wars between China and Britain in the 19th century? ; Tea trade disputes ; Opium addiction in China ; Religious conflicts ; Territorial disputes ; 1
-Which medieval queen of England is known for her strong and assertive rule during a period of political turmoil? ; Elizabeth I ; Matilda ; Eleanor of Aquitaine ; Mary, Queen of Scots ; 2
-In what year did the Berlin Wall fall, symbolizing the end of the Cold War? ; 1989 ; 1991 ; 1985 ; 1990 ; 0
+Which medieval queen of England is known for her strong and assertive rule during a period of political turmoil? ; Eleanor of Aquitaine ; Matilda ; Elizabeth I ; Mary, Queen of Scots ; 2
+In what year did the Berlin Wall fall, symbolizing the end of the Cold War? ; 1987 ; 1991 ; 1985 ; 1989 ; 3
 What influential political treatise, written by Niccolò Machiavelli, explores the principles of leadership and the pursuit of power? ; The Prince ; The Republic ; Leviathan ; The Social Contract ; 0
