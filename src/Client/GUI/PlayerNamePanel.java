@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class PlayerNamePanel extends JPanel {
-
     private final JTextField inputField;
 
     public PlayerNamePanel(ActionListener submitAction) {

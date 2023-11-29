@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class QuestionManager {
 
     protected ArrayList<Question> questionArray = new ArrayList<>();
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public void loadQuestions(String path) {
         System.out.println("We get here? loading questions");
@@ -59,22 +59,6 @@ public class QuestionManager {
         }
     }
 
-    public Question getQuestionByCategory(Category category) {
-        if(category.equals(Category.History)){
-            loadQuestions("src/TextFiles/History.txt");
-        }
-        if(category.equals(Category.Religion)){
-            loadQuestions("src/TextFiles/Religion.txt");
-        }
-        if(category.equals(Category.Science)){
-            loadQuestions("src/TextFiles/Science.txt");
-        }
-        if(category.equals(Category.Sport)){
-            loadQuestions("src/TextFiles/Sport.txt");
-        }
-        return getRandomQuestion();
-    }
-
     public Question getRandomQuestion() {
         System.out.println("length: " + questionArray.size());
         if (questionArray.isEmpty()) {
@@ -88,19 +72,19 @@ public class QuestionManager {
         return new ArrayList<>(questionArray);
     }
 
-    public String getCategory (){
+    public String getCategory() {
         return questionArray.get(0).getCategory();
     }
 
-    public Question getQuestion (int index){
+    public Question getQuestion(int index) {
         return questionArray.get(index);
     }
 
-    public int getArraySize (){
+    public int getArraySize() {
         return questionArray.size();
     }
 
-    public void removeQuestion(int index){
+    public void removeQuestion(int index) {
         questionArray.remove(index);
     }
 

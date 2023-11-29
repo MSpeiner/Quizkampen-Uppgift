@@ -2,10 +2,7 @@ package Client.GUI;
 
 import Client.ClientGameState.ClientGameState;
 import Enums.Category;
-import Game.GameState;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.io.PrintWriter;
 
@@ -73,9 +70,9 @@ public class GUIManager {
         SwingUtilities.invokeLater(() -> {
             clear();
 
-            final CategoryViewGUI[] categorySelectPanelHolder = new CategoryViewGUI[1];
+            final CategoryViewPanel[] categorySelectPanelHolder = new CategoryViewPanel[1];
 
-            categorySelectPanelHolder[0] = new CategoryViewGUI(e -> {
+            categorySelectPanelHolder[0] = new CategoryViewPanel(e -> {
                 Category selectedCategory = categorySelectPanelHolder[0].getSelectedCategory(e);
                 clientOutputStream.println("CATEGORY_SELECTED " + selectedCategory);
                 clear();
@@ -119,10 +116,10 @@ public class GUIManager {
             clear(); // Rensar det nuvarande gränssnittet
 
             // Skapar en behållare för frågepanelen
-            final GameViewGUI[] questionPanelHolder = new GameViewGUI[1];
+            final QuestionViewPanel[] questionPanelHolder = new QuestionViewPanel[1];
 
             // Initierar frågepanelen med kategorin, frågan, svarsalternativen och en händelsehanterare för knapptryck
-            questionPanelHolder[0] = new GameViewGUI(category, question, answers, e -> {
+            questionPanelHolder[0] = new QuestionViewPanel(category, question, answers, e -> {
                 JButton clickedButton = (JButton) e.getSource(); // Hämtar den klickade knappen
                 questionPanelHolder[0].changeButtonColor(clickedButton, correctAnswer); // Ändrar färgen på knappen till grön
 
@@ -171,11 +168,15 @@ public class GUIManager {
 
             GameStatePanel gameStatePanel = new GameStatePanel(gameState);
             JLabel gameOverLabel = new JLabel(gameOverText);
+            gameOverLabel.setPreferredSize(new Dimension(100,100));
+            Font gameOverFont = gameOverLabel.getFont();
+            gameOverLabel.setFont(new Font(gameOverFont.getName(), Font.PLAIN, 20));
             frame.getContentPane().add(gameStatePanel, BorderLayout.CENTER);
             frame.add(gameOverLabel, BorderLayout.NORTH);
             frame.revalidate();
             frame.repaint();
         });
-
     }
+
+
 }

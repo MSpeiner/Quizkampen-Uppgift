@@ -6,21 +6,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.PrintWriter;
 
-public class CategoryViewGUI extends JPanel {
-    private JPanel northPanel = new JPanel(new GridLayout(2,1));
-    private JPanel southPanel = new JPanel(new GridLayout(2,2));
-    private JLabel questionLabel = new JLabel("Vilken kategori vill du välja?");
-    private JButton sportButton = new JButton(Category.Sport.name());
-    private JButton historyButton = new JButton(Category.History.name());
-    private JButton religionButton = new JButton(Category.Religion.name());
-    private JButton scienceButton = new JButton(Category.Science.name());
-    private JLabel chosenCategoryLabel = new JLabel(""); // variabel för att visa vald kategori i GUI. Den här variabeln kan tas bort sen
+public class CategoryViewPanel extends JPanel {
+    private final JPanel northPanel = new JPanel(new GridLayout(2, 1));
+    private final JPanel southPanel = new JPanel(new GridLayout(2, 2));
+    private final JLabel questionLabel = new JLabel("Vilken kategori vill du välja?");
+    private final JButton sportButton = new JButton(Category.Sport.name());
+    private final JButton historyButton = new JButton(Category.History.name());
+    private final JButton religionButton = new JButton(Category.Religion.name());
+    private final JButton scienceButton = new JButton(Category.Science.name());
+    private final JLabel chosenCategoryLabel = new JLabel(""); // variabel för att visa vald kategori i GUI. Den här variabeln kan tas bort sen
 
-    private PrintWriter clientOutputStream;
-
-    public CategoryViewGUI(ActionListener actionListener){
+    public CategoryViewPanel(ActionListener actionListener) {
         createPanel();
         createButtons(actionListener);
     }
@@ -45,12 +42,6 @@ public class CategoryViewGUI extends JPanel {
         southPanel.add(religionButton);
         southPanel.add(scienceButton);
     }
-
-    private void selectCategory(String category){
-        clientOutputStream.println("CATEGORY_SELECTED " + category);
-        setVisible(false);
-    }
-
 
     public Category getSelectedCategory(ActionEvent e) {
         if (e.getSource() == sportButton) {

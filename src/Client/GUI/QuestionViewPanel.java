@@ -5,10 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class QuestionPanel extends JPanel {
+public class QuestionViewPanel extends JPanel {
     private final JButton[] answerButtons = new JButton[4];
 
-    public QuestionPanel(String category, String question, String[] answers, ActionListener answerAction) {
+    public QuestionViewPanel(String category, String question, String[] answers, ActionListener answerAction) {
         setLayout(new BorderLayout());
 
         // Category label
@@ -30,6 +30,23 @@ public class QuestionPanel extends JPanel {
         add(categoryLabel, BorderLayout.NORTH);
         add(questionLabel, BorderLayout.CENTER);
         add(answersPanel, BorderLayout.SOUTH);
+    }
+
+    public void changeButtonColor(JButton button, int correctAnswer) {
+        if (button.equals(answerButtons[correctAnswer])) {
+            button.setBackground(Color.green);
+        } else {
+            button.setBackground(Color.red);
+        }
+
+        button.setOpaque(true);
+        button.setBorderPainted(false);
+    }
+
+    public void setAnswerButtonsEnabled(boolean enabled) {
+        for (JButton button : answerButtons) {
+            button.setEnabled(enabled);
+        }
     }
 
     public int getSelectedAnswerIndex(ActionEvent e) {

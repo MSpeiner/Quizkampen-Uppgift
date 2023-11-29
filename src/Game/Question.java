@@ -38,10 +38,4 @@ public class Question {
     public void setCategory(String category) {
         this.category = category;
     }
-
-    public void printAllAnswers (){          // Ta bort sen
-        for (String answer : answers) {
-            System.out.println(answer);
-        }
-    }
 }
