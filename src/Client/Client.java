@@ -7,6 +7,7 @@ import Enums.Answer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.Socket;
 
 /**
@@ -119,9 +120,9 @@ public class Client {
                 } else if (response.equals("QUIT")) {
                     break; // Exit the loop if the server sends a quit command
                     //Om en av spelarna stänger ner programmet stängs server och clienter ner för båda spelarna.
-                } else if (response.equals("GER_UPP")) {
-                    JOptionPane.showMessageDialog(null, "Spelet har avbrutits av din motståndare. \n" +
-                            "På grund av detta avbryts spelet.");
+                } else if (response.equals("GIVE_UP")) {
+                    JOptionPane.showMessageDialog(null, "The game was exited by your opponent." +
+                            "\n - Please close the server or start a new game.");
                     System.exit(0);
                 }
             }
@@ -137,8 +138,12 @@ public class Client {
      * @param args Command line arguments.
      */
     public static void main(String[] args) throws Exception {
-        String serverAddress = (args.length == 0) ? "localhost" : args[1];
-        Client client = new Client(serverAddress);
-        client.play();
+        try {
+            String serverAddress = (args.length == 0) ? "localhost" : args[1];
+            Client client = new Client(serverAddress);
+            client.play();
+        } catch (ConnectException ce) {
+            JOptionPane.showMessageDialog(null, "Start the server before you start the client!");
+        }
     }
 }

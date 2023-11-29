@@ -77,7 +77,9 @@ public class QuestionManager {
         try {
             questionArray.get(0).getCategory();
         } catch (IndexOutOfBoundsException e){
-            JOptionPane.showMessageDialog(null,"Slut på frågor! Vänligen gör en av följande: \n - Starta om spelet med färre rundor. \n - Utöka antalet frågor i textfilerna History, Religion, Science, Sport ");
+            JOptionPane.showMessageDialog(null,"You ran out of questions please do one of the following: " +
+                    "\n - Restart the game with less rounds. " +
+                    "\n - Enter the database and add questions/answers to History, Religion, Science, Sport ");
         }
         return questionArray.get(0).getCategory();
     }

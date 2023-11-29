@@ -79,12 +79,21 @@ public class ServerSideGame {
         database.removeQuestion(question);
     }
 
+    public void surrender() {
+        currentPlayer.opponent.send("GIVE_UP");
+        currentPlayer.send("GIVE_UP");
+    }
+
     //Skapar upp
     public void doGame() {
-        informPlayerAboutGameProperties(player1);
-        informPlayerAboutGameProperties(player2);
-        setPlayerName(player1);
-        setPlayerName(player2);
+        try {
+            informPlayerAboutGameProperties(player1);
+            informPlayerAboutGameProperties(player2);
+            setPlayerName(player1);
+            setPlayerName(player2);
+        } catch (RuntimeException rTE) {
+            surrender();
+        }
 
         int numberOfQuestionAsked = 0;
         while (true) {
@@ -110,6 +119,7 @@ public class ServerSideGame {
                 } else {
                     // Om spelet INTE är slut OCH vi är på en ny runda!
                     // DAGS ATT VÄLJA NY KATEGORI
+                    try {
                     currentPlayer.send("SELECT_CATEGORY");
                     String categoryMessage = currentPlayer.receive();  // ta emot från klient
                     // Eftersom meddelandet börjar med CATEGORY_SELECTED kommer kategorin börja på index 18
@@ -123,12 +133,18 @@ public class ServerSideGame {
                     gameState.setCurrentCategory(category);
                     askQuestion();
                     numberOfQuestionAsked++;
+                    } catch (RuntimeException rte) {
+                        surrender();
+                    }
                 }
             } else {
                 // PRESENTERA EN FRÅGA
+                try {
                 askQuestion();
                 numberOfQuestionAsked++;
-            }
+                } catch (RuntimeException rTE) {
+                    surrender();
+                }
             if (numberOfQuestionAsked == propertiesManager.antalFragor()) {
                 if (!gameState.isNewRound()) {
                     currentPlayer = currentPlayer.getOpponent();
