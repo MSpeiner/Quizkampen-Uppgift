@@ -110,7 +110,6 @@ public class ServerSideGame {
                 } else {
                     // Om spelet INTE är slut OCH vi är på en ny runda!
                     // DAGS ATT VÄLJA NY KATEGORI
-                    //numberOfQuestionAsked = 1;
                     currentPlayer.send("SELECT_CATEGORY");
                     String categoryMessage = currentPlayer.receive();  // ta emot från klient
                     // Eftersom meddelandet börjar med CATEGORY_SELECTED kommer kategorin börja på index 18
@@ -123,14 +122,23 @@ public class ServerSideGame {
                     // kommer att behöva ha koll på detta när vi ska hämta frågor
                     gameState.setCurrentCategory(category);
                     askQuestion();
+                    numberOfQuestionAsked++;
                 }
             } else {
                 // PRESENTERA EN FRÅGA
                 askQuestion();
+                numberOfQuestionAsked++;
             }
-            if (!gameState.isNewRound()) {
-                currentPlayer = currentPlayer.getOpponent();
+            if (numberOfQuestionAsked == propertiesManager.antalFragor()) {
+                if (!gameState.isNewRound()) {
+                    currentPlayer = currentPlayer.getOpponent();
+                } else {
+                    currentPlayer.getOpponent().send("ROUND_ENDED");
+                }
+                numberOfQuestionAsked = 0;
             }
+
+
             // int antalFragor = propertiesManager.antalFragor() * 2; // vi har två spelare tar därför gånger 2
             //
             //                while (numberOfQuestionAsked <= antalFragor ) {
