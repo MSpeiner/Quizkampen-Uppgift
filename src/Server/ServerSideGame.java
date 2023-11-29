@@ -81,12 +81,21 @@ public class ServerSideGame {
         database.removeQuestion(question);
     }
 
+    public void surrender() {
+        currentPlayer.opponent.send("GER_UPP");
+        currentPlayer.send("GER_UPP");
+    }
+
     //Skapar upp
     public void doGame() {
-        informPlayerAboutGameProperties(player1);
-        informPlayerAboutGameProperties(player2);
-        setPlayerName(player1);
-        setPlayerName(player2);
+        try {
+            informPlayerAboutGameProperties(player1);
+            informPlayerAboutGameProperties(player2);
+            setPlayerName(player1);
+            setPlayerName(player2);
+        } catch (RuntimeException rTE) {
+            surrender();
+        }
 
         int numberOfQuestionAsked = 0;
         while (true) {
@@ -113,8 +122,8 @@ public class ServerSideGame {
                     // Om spelet INTE är slut OCH vi är på en ny runda!
                     // DAGS ATT VÄLJA NY KATEGORI
                     //numberOfQuestionAsked = 1;
-                    currentPlayer.send("SELECT_CATEGORY");
                     try {
+                        currentPlayer.send("SELECT_CATEGORY");
                         String categoryMessage = currentPlayer.receive();  // ta emot från klient
                         // Eftersom meddelandet börjar med CATEGORY_SELECTED kommer kategorin börja på index 18
                         Category category = Category.valueOf(categoryMessage.substring(18));
@@ -128,13 +137,16 @@ public class ServerSideGame {
                         askQuestion();
                         // Om en spelare stänger ner spelet stängs server ner och motståndaren meddelas och klienten stängs ner
                     } catch (RuntimeException rte) {
-                        currentPlayer.opponent.send("GER_UPP");
-                        currentPlayer.send("GER_UPP");
+                        surrender();
                     }
                 }
             } else {
                 // PRESENTERA EN FRÅGA
-                askQuestion();
+                try {
+                    askQuestion();
+                } catch (RuntimeException rTE) {
+                surrender();
+                }
             }
             if (!gameState.isNewRound()) {
                 currentPlayer = currentPlayer.getOpponent();

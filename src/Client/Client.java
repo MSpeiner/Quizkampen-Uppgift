@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.Socket;
 
 /**
@@ -37,6 +38,7 @@ public class Client {
      * @throws Exception If an error occurs during setup.
      */
     public Client(String serverAddress) throws Exception {
+
         // Initialize connection to the server
         socket = new Socket(serverAddress, PORT);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -63,7 +65,7 @@ public class Client {
         try {
             while (true) {
                 response = in.readLine();
-                if(response.startsWith("GAME_INFORMATION")){
+                if (response.startsWith("GAME_INFORMATION")) {
                     int rounds;
                     int numberOfQuestions;
                     String roundsMessage = in.readLine();
@@ -82,21 +84,21 @@ public class Client {
                     gameState = new ClientGameState(numberOfQuestions, rounds);
                 }
                 // Handle different types of server messages
-                if(response.startsWith("ENTER_NAME")){
+                if (response.startsWith("ENTER_NAME")) {
                     guiManager.getPlayerName();
-                } else if(response.startsWith("YOUR_NAME")){
+                } else if (response.startsWith("YOUR_NAME")) {
                     playerName = response.substring(10);
                     gameState.setPlayerName(playerName);
                     guiManager.showGameStateScreen(gameState);
-                } else if(response.startsWith("OPPONENT_NAME")){
+                } else if (response.startsWith("OPPONENT_NAME")) {
                     opponentName = response.substring(14);
                     gameState.setOpponentName(opponentName);
                     guiManager.showGameStateScreen(gameState);
-                } else if(response.startsWith("CATEGORY_SELECTED")){
+                } else if (response.startsWith("CATEGORY_SELECTED")) {
                     currentCategory = response.substring(18);
                     gameState.addRound(currentCategory);
                     guiManager.showGameStateScreen(gameState);
-                } else if(response.startsWith("QUESTION")){
+                } else if (response.startsWith("QUESTION")) {
                     // Handle question display
                     String question = response.substring(8);
                     String[] answers = new String[4];
@@ -108,7 +110,7 @@ public class Client {
                     guiManager.answerQuestion(category, question, answers, correctAnswer);
 
 
-                } else if(response.startsWith("SELECT_CATEGORY")){
+                } else if (response.startsWith("SELECT_CATEGORY")) {
                     guiManager.selectCategory();
                 } else if (response.startsWith("ANSWER_RESULT")) {
                     Answer answer = Answer.valueOf(response.substring(14));
@@ -118,7 +120,7 @@ public class Client {
                     Answer answer = Answer.valueOf(response.substring(16));
                     gameState.addOpponentAnswer(answer);
                     guiManager.showGameStateScreen(gameState);
-                } else if (response.startsWith("GAME_OVER")){
+                } else if (response.startsWith("GAME_OVER")) {
                     String winner = response.substring(9);
                     guiManager.showGameOverResult(gameState, winner);
 
@@ -126,8 +128,8 @@ public class Client {
                     break; // Exit the loop if the server sends a quit command
                     //Om en av spelarna stänger ner programmet stängs server och clienter ner för båda spelarna.
                 } else if (response.equals("GER_UPP")) {
-                    JOptionPane.showMessageDialog(null, "Spelet har avbrutits av din motståndare. \n" +
-                            "På grund av detta avbryts spelet.");
+                    JOptionPane.showMessageDialog(null, "The game was exited by your opponent." +
+                            "\n - Please close the server or start a new game.");
                     System.exit(0);
                 }
             }
@@ -143,8 +145,12 @@ public class Client {
      * @param args Command line arguments.
      */
     public static void main(String[] args) throws Exception {
-        String serverAddress = (args.length == 0) ? "localhost" : args[1];
-        Client client = new Client(serverAddress);
-        client.play();
+        try {
+            String serverAddress = (args.length == 0) ? "localhost" : args[1];
+            Client client = new Client(serverAddress);
+            client.play();
+        } catch (ConnectException ce) {
+            JOptionPane.showMessageDialog(null, "Start the server before you start the client!");
+        }
     }
 }
