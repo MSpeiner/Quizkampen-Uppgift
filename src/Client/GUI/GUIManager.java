@@ -168,11 +168,15 @@ public class GUIManager {
 
             GameStatePanel gameStatePanel = new GameStatePanel(gameState);
             JLabel gameOverLabel = new JLabel(gameOverText);
+            gameOverLabel.setPreferredSize(new Dimension(100,100));
+            Font gameOverFont = gameOverLabel.getFont();
+            gameOverLabel.setFont(new Font(gameOverFont.getName(), Font.PLAIN, 20));
             frame.getContentPane().add(gameStatePanel, BorderLayout.CENTER);
             frame.add(gameOverLabel, BorderLayout.NORTH);
             frame.revalidate();
             frame.repaint();
         });
-
     }
+
+
 }

@@ -1,16 +1,35 @@
 Sport
-What is the highest-scoring game in NBA history? ; 186 ; 173 ; 198 ; 225 ; 0
-In which city did the first modern Olympic Games take place? ; Paris ; London ; Athens ; Rome ; 2
-Who holds the record for the most goals scored in a single FIFA World Cup tournament? ; Ronaldo ; Lionel Messi ; Pele ; Miroslav Klose ; 3
-What country has won the most gold medals in the history of the Summer Olympics? ; United States ; China ; Soviet Union ; Russia ; 0
-In which year did Serena Williams win her first Grand Slam singles title? ; 1999 ; 2002 ; 2005 ; 2008 ; 1
-Which boxer is known as "The Greatest" and "The People's Champion"? ; Mike Tyson ; Muhammad Ali ; Floyd Mayweather ; Manny Pacquiao ; 1
-What is the official diameter of a standard table tennis ball in millimeters? ; 38 ; 40 ; 42 ; 44 ; 1
-Which country won the FIFA Women's World Cup in 2019? ; United States ; Germany ; Brazil ; Sweden ; 0
-Who holds the record for the most Olympic gold medals in swimming? ; Michael Phelps ; Ian Thorpe ; Mark Spitz ; Ryan Lochte ; 0
-In which year did the first Super Bowl take place? ; 1965 ; 1967 ; 1970 ; 1972 ; 1
-Which golfer is known as the "Golden Bear"? ; Tiger Woods ; Phil Mickelson ; Arnold Palmer ; Jack Nicklaus ; 3
-What is the length of a standard Olympic swimming pool in meters? ; 40 ; 50 ; 60 ; 70 ; 1
-Who is the all-time leading scorer in the history of the NBA? ; LeBron James ; Kareem Abdul-Jabbar ; Kobe Bryant ; Michael Jordan ; 1
-In which sport would you perform a slam dunk? ; Tennis ; Basketball ; Soccer ; Golf ; 1
-Which country hosted the 2016 Summer Olympics? ; Brazil ; Russia ; China ; South Africa ; 0
+Who is often considered the greatest basketball player of all time, known for his career with the Chicago Bulls? ; Michael Jordan ; LeBron James ; Kobe Bryant ; Magic Johnson ; 0
+In which country did the sport of judo originate? ; China ; Japan ; South Korea ; Brazil ; 1
+Who holds the record for the most Olympic gold medals in track and field events? ; Usain Bolt ; Carl Lewis ; Jesse Owens ; Michael Johnson ; 1
+Which tennis player has won the most Grand Slam singles titles in the Open Era? ; Serena Williams ; Roger Federer ; Rafael Nadal ; Novak Djokovic ; 3
+In what year did the first modern Olympic Games take place? ; 1896 ; 1900 ; 1920 ; 1936 ; 0
+Who is the all-time leading goal scorer in the history of men's international soccer (football)? ; Lionel Messi ; Cristiano Ronaldo ; Pele ; Didier Drogba ; 1
+Which boxer was known for his nickname "Iron Mike" and became the youngest heavyweight champion in history? ; Mike Tyson ; Muhammad Ali ; Evander Holyfield ; Lennox Lewis ; 0
+In golf, what is the term for completing a hole in one stroke under par? ; Eagle ; Birdie ; Albatross ; Bogey ; 1
+Which country won the FIFA World Cup in 2018, held in Russia? ; Brazil ; Croatia ; France ; Germany ; 3
+Who is the only swimmer to win seven gold medals at a single Olympic Games, achieving this feat in 1972? ; Mark Spitz ; Michael Phelps ; Ian Thorpe ; Ryan Lochte ; 0
+What is the term for a score of zero in tennis? ; Love ; Zero ; Nil ; Goose Egg ; 0
+Who is the most decorated Olympian of all time, with a total of 28 Olympic medals? ; Michael Phelps ; Usain Bolt ; Carl Lewis ; Simone Biles ; 0
+In which city did the first modern Summer Olympics take place in 1896? ; London ; Rome ; Paris ; Athens ; 3
+Who is the only athlete to have won Olympic gold in both the 100 meters and 200 meters in three consecutive Olympic Games? ; Usain Bolt ; Carl Lewis ; Jesse Owens ; Michael Johnson ; 0
+Which country hosted the 2016 Summer Olympics? ; Brazil ; China ; United States ; Russia ; 0
+Who won the FIFA Women's World Cup in 2019, held in France? ; Sweden ; Netherlands ; United States ; England ; 2
+What is the highest possible break in a single frame of snooker? ; 147 ; 155 ; 160 ; 180 ; 0
+In American football, how many points is a touchdown worth? ; 4 ; 6 ; 7 ; 2 ; 1
+Who is the most decorated female gymnast in Olympic history, winning a total of 7 Olympic gold medals? ; Nastia Liukin ; Gabby Douglas ; Aly Raisman ; Simone Biles ; 3
+What is the term for a three-strike sequence in bowling? ; Turkey ; Hattrick ; Strikeout ; Spare ; 0
+Which cyclist holds the record for the most Tour de France victories, with seven consecutive wins from 1999 to 2005? ; Chris Froome ; Eddy Merckx ; Lance Armstrong ; Miguel Indurain ; 2
+In which year did the first official soccer (football) World Cup take place? ; 1938 ; 1926 ; 1950 ; 1930 ; 3
+In which city did the famous "Rumble in the Jungle" boxing match between Muhammad Ali and George Foreman take place in 1974? ; Las Vegas ; Manila ; Kinshasa ; New York ; 2
+What is the term for a score of one stroke over par in golf? ; Bogey ; Par ; Birdie ; Eagle ; 0
+Which country won the Rugby World Cup in 2019, held in Japan? ; South Africa ; New Zealand ; England ; Australia ; 0
+Who is the all-time leading scorer in the history of the NBA? ; Kareem Abdul-Jabbar ; LeBron James ; Karl Malone ; Kobe Bryant ; 1
+In which sport would you perform a slam dunk? ; Tennis ; Soccer ; Volleyball ; Basketball ; 3
+What is the term for a situation in soccer (football) where a player scores three goals in a single game? ; Hat Trick ; Slam Dunk ; Triple Play ; Grand Slam ; 0
+Who won the UEFA Champions League in 2021? ; Real Madrid ; Manchester City ; Chelsea ; Paris Saint-Germain ; 3
+What is the term for a score of one stroke under par in golf? ; Birdie ; Eagle ; Albatross ; Bogey ; 0
+Who holds the record for the most goals scored in a single NHL season? ; Mario Lemieux ; Wayne Gretzky ; Bobby Orr ; Brett Hull ; 1
+In which city did the 2016 Summer Olympics take place? ; London ; Tokyo ; Rio de Janeiro ; Beijing ; 3
+Which country won the UEFA Euro 2020 football tournament? ; England ; Italy ; France ; Germany ; 1
+Who is the only female tennis player to have won a Golden Slam in singles, winning all four Grand Slam titles and an Olympic gold medal in a single year? ; Steffi Graf ; Serena Williams ; Martina Navratilova ; Chris Evert ; 0

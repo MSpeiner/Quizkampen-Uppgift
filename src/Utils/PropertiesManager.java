@@ -6,12 +6,13 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertiesManager {
+    // vi har skapat 2 metoder. antalomgångar och antalfrågor.
     public int antalOmgangar() {
         int antalOmgangarInt = 1; // default värde ifall vi inte kan läsa properties filen
-        try (InputStream inputFil = new FileInputStream("src/Utils/quizkampen.properties")) {
+        try (InputStream inputFil = new FileInputStream("src/Utils/quizkampen.properties")) { // försöker öppna filen med try with resource
 
             Properties properties = new Properties();
-            // läser in propeties-filen till min properties variabel
+            // läser in propeties-filen till min properties variabel med load metoden
             properties.load(inputFil);
 
             // returnera antal omgångar
@@ -19,10 +20,11 @@ public class PropertiesManager {
             // konverterar till int
             antalOmgangarInt = Integer.parseInt(antalOmgangarString);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            ex.printStackTrace(); // misslyckas öppna filen, default värde returneras
         }
-        return antalOmgangarInt;
+        return antalOmgangarInt; // returnerar antal omgångar
     }
+
 
     public int antalFragor() {
         int antalFragaInt = 1; // default värde ifall vi inte kan läsa properties filen
