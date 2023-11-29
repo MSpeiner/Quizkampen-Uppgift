@@ -94,6 +94,27 @@ public class GameState implements Serializable {
         return count;
     }
 
+    public boolean shouldChangePlayer() {
+        int player1AnswerCount = countAnswers(player1Answers);
+        int player2AnswerCount = countAnswers(player2Answers);
+        int antalFragorPerRunda = propertiesManager.antalFragor();
+        int totalAnswersSoFar = player1AnswerCount + player2AnswerCount;
+        // Om spelet inte börjat än ska vi inte byta spelare
+        if(totalAnswersSoFar == 0){
+            return false;
+        }
+        // Om totala mängden svar är jämt delbart med antal frågor
+        // har en spelare precis avslutat sin delrunda
+        if(totalAnswersSoFar % antalFragorPerRunda == 0){
+            // Totala mängden besvarade frågor dividerat med antal frågor per runda
+            // ger vilken delrunda vi är på
+            int subRound = totalAnswersSoFar / antalFragorPerRunda;
+            // om vi är på en udda delrunda är det dags att byta spelare
+            return subRound % 2 != 0;
+        }
+        return false;
+    }
+
     private boolean allAnswersFilled(Answer[] answers) {
         for (Answer answer : answers) {
             if (answer == null) {

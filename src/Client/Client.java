@@ -110,11 +110,12 @@ public class Client {
                 } else if (response.startsWith("OPPONENT_RESULT")) {
                     Answer answer = Answer.valueOf(response.substring(16));
                     gameState.addOpponentAnswer(answer);
-                    guiManager.showGameStateScreen(gameState);
                 } else if (response.startsWith("GAME_OVER")) {
                     String winner = response.substring(9);
                     guiManager.showGameOverResult(gameState, winner);
 
+                } else if (response.startsWith("REVEAL_OPPONENT_SCORE")){
+                    guiManager.showGameStateScreen(gameState);
                 } else if (response.equals("QUIT")) {
                     break; // Exit the loop if the server sends a quit command
                 }
