@@ -82,8 +82,8 @@ public class ServerSideGame {
     }
 
     public void surrender() {
-        currentPlayer.opponent.send("GER_UPP");
-        currentPlayer.send("GER_UPP");
+        currentPlayer.opponent.send("GIVE_UP");
+        currentPlayer.send("GIVE_UP");
     }
 
     //Skapar upp

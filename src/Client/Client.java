@@ -127,7 +127,7 @@ public class Client {
                 } else if (response.equals("QUIT")) {
                     break; // Exit the loop if the server sends a quit command
                     //Om en av spelarna stänger ner programmet stängs server och clienter ner för båda spelarna.
-                } else if (response.equals("GER_UPP")) {
+                } else if (response.equals("GIVE_UP")) {
                     JOptionPane.showMessageDialog(null, "The game was exited by your opponent." +
                             "\n - Please close the server or start a new game.");
                     System.exit(0);
