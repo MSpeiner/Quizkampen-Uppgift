@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertiesManager {
+    // vi har skapat 2 metoder. antalomgångar och antalfrågor.
     public int antalOmgangar() {
         int antalOmgangarInt = 1; // default värde ifall vi inte kan läsa properties filen
         try (InputStream inputFil = new FileInputStream("src/Utils/quizkampen.properties")) {
@@ -23,6 +24,7 @@ public class PropertiesManager {
         }
         return antalOmgangarInt;
     }
+
 
     public int antalFragor() {
         int antalFragaInt = 1; // default värde ifall vi inte kan läsa properties filen
