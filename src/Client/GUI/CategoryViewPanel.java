@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class CategoryViewPanel extends JPanel {
     private final JPanel northPanel = new JPanel(new GridLayout(2, 1)); // skapar norra panelen med rut-layout
     private final JPanel southPanel = new JPanel(new GridLayout(2, 2)); // skapar södra panelen med rut-layout
-    private final JLabel questionLabel = new JLabel("Vilken kategori vill du välja?"); // skapar fråga som ska visas i gui
+    private final JLabel questionLabel = new JLabel("Pick a category:"); // skapar fråga som ska visas i gui
     private final JButton sportButton = new JButton(Category.Sport.name()); // skapar knappar med text från category enum
     private final JButton historyButton = new JButton(Category.History.name());
     private final JButton religionButton = new JButton(Category.Religion.name());
