@@ -15,15 +15,17 @@ public class QuestionViewPanel extends JPanel {
         JLabel categoryLabel = new JLabel(category, JLabel.CENTER);
 
         // Question label
-        JLabel questionLabel = new JLabel("<html>" + question + "</html>"); // HTML for word-wrap
-        questionLabel.setHorizontalAlignment(JLabel.LEFT);
+        JLabel questionLabel = new JLabel("<html><div style='text-align: center;'>" + question + "</div></html>");
+        questionLabel.setHorizontalAlignment(JLabel.CENTER);
 
         // Answer buttons panel
         JPanel answersPanel = new JPanel(new GridLayout(2, 2));
+        Dimension buttonSize = new Dimension(100, 50);
 
         for (int i = 0; i < 4; i++) {
-            answerButtons[i] = new JButton(answers[i]);
+            answerButtons[i] = new RoundedCornerButton(answers[i]);
             answerButtons[i].addActionListener(answerAction);
+            answerButtons[i].setPreferredSize(buttonSize); // Set the preferred size for each button
             answersPanel.add(answerButtons[i]);
         }
 
@@ -39,8 +41,6 @@ public class QuestionViewPanel extends JPanel {
             button.setBackground(Color.red);
         }
 
-        button.setOpaque(true);
-        button.setBorderPainted(false);
     }
 
     public void setAnswerButtonsEnabled(boolean enabled) {

@@ -25,8 +25,7 @@ public class GUIManager {
         this.clientOutputStream = clientOutputStream;
         frame = new JFrame("Quizkampen!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(380, 740);
-        frame.getContentPane().setBackground(Color.BLUE);
+        frame.setSize(540, 740);
         frame.setVisible(true);
     }
 
@@ -164,11 +163,11 @@ public class GUIManager {
     public void showGameOverResult(ClientGameState gameState, String winner){
         SwingUtilities.invokeLater(() -> {
             clear();
-            String gameOverText = "Game Over!" + winner;
+            String gameOverText = "Game Over! " + winner;
 
             GameStatePanel gameStatePanel = new GameStatePanel(gameState);
-            JLabel gameOverLabel = new JLabel(gameOverText);
-            gameOverLabel.setPreferredSize(new Dimension(100,100));
+            JLabel gameOverLabel = new JLabel(gameOverText, JLabel.CENTER);
+            gameOverLabel.setPreferredSize(new Dimension(100, 100));
             Font gameOverFont = gameOverLabel.getFont();
             gameOverLabel.setFont(new Font(gameOverFont.getName(), Font.PLAIN, 20));
             frame.getContentPane().add(gameStatePanel, BorderLayout.CENTER);
@@ -177,6 +176,7 @@ public class GUIManager {
             frame.repaint();
         });
     }
+
 
 
 }
