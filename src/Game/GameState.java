@@ -103,6 +103,11 @@ public class GameState implements Serializable {
         if(totalAnswersSoFar == 0){
             return false;
         }
+        System.out.println();
+        System.out.println("shouldChangePlayer");
+        System.out.println(totalAnswersSoFar);
+        System.out.println(antalFragorPerRunda);
+        System.out.println(totalAnswersSoFar % antalFragorPerRunda == 0);
         // Om totala mängden svar är jämt delbart med antal frågor
         // har en spelare precis avslutat sin delrunda
         if(totalAnswersSoFar % antalFragorPerRunda == 0){
